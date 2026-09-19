@@ -1,0 +1,2 @@
+import Image from "next/image";
+export function Photo({src,alt,className="",priority=false}:{src:string;alt:string;className?:string;priority?:boolean}){return <div className={`photo ${className}`}><Image src={src} alt={alt} fill priority={priority} sizes={className.includes("home-group") || className.includes("about-group") ? "(max-width: 800px) 100vw, (max-width: 1500px) 90vw, 1320px" : "(max-width: 700px) 100vw, (max-width: 1100px) 70vw, 60vw"} quality={className.includes("home-group") || className.includes("about-group") ? 90 : 75}/></div>;}
