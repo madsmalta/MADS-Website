@@ -61,7 +61,7 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
  padding:64px max(40px,calc((100vw - 1360px)/2));
 }
 .opening-copy{width:auto;margin:0;display:block;padding:0}
-.opening-copy .eyebrow{color:#d7bd8c;max-width:32ch;margin-bottom:25px;font-size:clamp(1.3rem,1.8vw,1.7rem);line-height:1.35}
+.opening-copy .eyebrow{color:#d7bd8c;max-width:32ch;margin-bottom:25px;font-size:clamp(1.4rem,1.95vw,1.85rem);line-height:1.35}
 .opening-copy h1{font-size:clamp(2.7rem,4.25vw,4.1rem);line-height:1.17;letter-spacing:-.025em}
 .opening-description{max-width:44ch;padding:0;margin-top:27px}
 .opening-description p{color:#d4e2e7;font-size:1rem;line-height:1.85}
@@ -87,15 +87,17 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 
 .section{padding-block:64px}
 .home-events{gap:56px;align-items:center;padding-block:48px}
+.home-events>div:first-child{text-align:center;align-self:center}
 .quiet-state{background:var(--paper);border:0;border-left:3px solid var(--gold);padding:32px 36px}
 .quiet-state svg{color:var(--teal);margin-bottom:14px}
 .quiet-state h3{font-size:1.3rem}
 .community-section{background:var(--pale);padding-block:36px}
 .community-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
-.dental-detail{display:block;width:40px;height:40px;color:var(--teal);margin-bottom:14px;opacity:.75}
+.dental-detail{display:block;width:40px;height:40px;color:var(--teal);background:currentColor;mask:var(--dental-icon) center/contain no-repeat;margin-bottom:14px;opacity:.75}
 .student-band .dental-detail{color:#e3ca9c}
 .community-photo{aspect-ratio:1.65;box-shadow:-8px 8px 0 #d8e6df}
 .community-copy{padding-block:0}
+@media(min-width:801px){.community-copy{padding-left:24px}}
 .community-copy h2{font-size:clamp(1.8rem,2.7vw,2.6rem);margin-bottom:16px}
 .community-copy .dental-detail{float:left;margin:0 10px 0 0;width:28px;height:28px}
 .community-copy .eyebrow{margin-bottom:12px;min-height:28px}
@@ -106,8 +108,14 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .story-caption h3,.gallery-grid h2{font-family:var(--sans);font-weight:600;font-size:1.5rem;line-height:1.4}
 .story-caption>svg{color:var(--teal)}
 .student-band{background:var(--teal-dark);border-top:3px solid var(--gold);padding-block:32px}
-.student-band-inner{flex-direction:column;align-items:flex-start;gap:16px}
+.student-band-inner{flex-direction:row;justify-content:flex-start;align-items:center;gap:clamp(28px,4vw,60px)}
 .student-band-inner>div{max-width:none}
+.student-band .button[href="/new-students"]{background:var(--gold);color:var(--navy)}
+@media(min-width:1024px){
+ .student-band-inner:has(>a[href="/new-students"]){display:grid;grid-template-columns:1fr 1fr;gap:32px}
+ .student-band .button[href="/new-students"]{justify-self:center}
+}
+@media(hover:hover) and (pointer:fine){.student-band .button[href="/new-students"]:hover{background:#d5b984}}
 .student-band h2{font-size:clamp(1.8rem,2.7vw,2.6rem);margin-bottom:12px}
 .student-band p:last-child{margin-bottom:0}
 .student-band .dental-detail{float:left;width:30px;height:30px;margin:0 10px 0 0}
@@ -122,10 +130,56 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .newsletter p{color:#d7e2e6}
 
 /* Interior pages keep their existing content and order, with consistent framing. */
-.page-hero{padding-block:64px 48px;border-bottom:1px solid var(--line);margin-bottom:42px}
+.page-hero{padding-block:46px 34px;border-bottom:1px solid var(--line);margin-bottom:32px}
 .page-hero .eyebrow{display:flex;align-items:center;gap:15px}
 .page-hero .eyebrow::before,.freshers-hero .eyebrow::before,.partner-hero .eyebrow::before{content:"";display:inline-block;flex-shrink:0;width:28px;height:28px;background:var(--gold);mask:url('/media/dental-mirror.svg') center/contain no-repeat}
 .freshers-hero .eyebrow,.partner-hero .eyebrow{display:flex;align-items:center;gap:12px}
+.freshers-hero,.partner-hero{padding-block:48px}
+[data-dental-icon] .eyebrow::before{mask-image:var(--dental-icon)}
+[data-dental-icon="braces"]{--dental-icon:url('/media/dental-braces.svg')}
+[data-dental-icon="probe"]{--dental-icon:url('/media/dental-probe.svg')}
+[data-dental-icon="brush"]{--dental-icon:url('/media/dental-brush.svg')}
+[data-dental-icon="toothbrush"]{--dental-icon:url('/media/dental-toothbrush.svg')}
+[data-dental-icon="floss"]{--dental-icon:url('/media/dental-floss.svg')}
+[data-dental-icon="tooth"]{--dental-icon:url('/media/dental-tooth.svg')}
+[data-dental-icon="implant"]{--dental-icon:url('/media/dental-implant.svg')}
+[data-dental-icon="handpiece"]{--dental-icon:url('/media/dental-handpiece.svg')}
+[data-dental-icon="mirror"]{--dental-icon:url('/media/dental-mirror.svg')}
+[data-dental-icon="syringe"]{--dental-icon:url('/media/dental-syringe.svg')}
+[data-dental-icon="tweezers"]{--dental-icon:url('/media/dental-tweezers.svg')}
+[data-dental-icon="loupes"]{--dental-icon:url('/media/dental-loupes.svg')}
+[data-dental-icon="mask"]{--dental-icon:url('/media/dental-mask.svg')}
+[data-dental-icon="glove"]{--dental-icon:url('/media/dental-glove.svg')}
+[data-dental-icon="bur"]{--dental-icon:url('/media/dental-bur.svg')}
+[data-dental-icon="needle-holder"]{--dental-icon:url('/media/dental-needle-holder.svg')}
+[data-dental-icon="scalpel"]{--dental-icon:url('/media/dental-scalpel.svg')}
+[data-dental-icon="aligners"]{--dental-icon:url('/media/dental-aligners.svg')}
+.dental-label{display:flex;align-items:center;gap:10px}
+.dental-label::before{content:"";flex:0 0 28px;height:28px;background:currentColor;mask:var(--dental-icon) center/contain no-repeat;opacity:.8}
+.official-section>div:first-child{text-align:center;align-self:center}
+.official-section>div:first-child h2{margin-bottom:0}
+#calendar-status .calendar-wrap{margin-top:0}
+#calendar-status{padding-bottom:24px}
+#calendar-status+.section{padding-top:16px}
+.outreach-invitation{margin-bottom:40px}
+.page-hero:has(+.outreach-invitation){margin-bottom:0}
+.outreach-invitation .student-band-inner{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.outreach-invitation .button{justify-self:center;margin-left:0}
+.outreach-invitation+.outreach-stories{padding-bottom:32px}
+.outreach-invitation+.outreach-stories .outreach-story:last-child{margin-bottom:0}
+.gallery-grid{padding-bottom:32px}
+.photo-policy{margin-bottom:32px}
+.photo-policy.section{padding-block:24px}
+.photo-policy h2{font-size:1.4rem;margin-bottom:10px}
+.photo-policy p{margin-bottom:12px}
+.gallery-detail{padding-bottom:32px}
+.gallery-detail .photo-policy{margin-bottom:0}
+.proposal{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.proposal>.button{justify-self:center;transform:translateX(16px)}
+.freshers-hero~.section{padding-block:32px}
+.freshers-hero~.section .path-grid{gap:24px}
+.freshers-hero~.split-section{gap:36px}
+.freshers-hero~.faq{padding-top:24px;padding-bottom:40px}
 .page-hero h1{max-width:23ch}
 .page-hero>p:not(.eyebrow){font-size:1.05rem;max-width:67ch}
 .compact-section{padding-top:0}
@@ -152,6 +206,8 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .path-grid h2,.partner-points h2{font-family:var(--sans);font-size:1.5rem;font-weight:600;line-height:1.4}
 .path-grid span{color:var(--teal)}
 .faq summary{font-size:1.08rem}
+.faq>.eyebrow,.faq>h2{text-align:center;margin-inline:auto}
+.faq>.eyebrow{position:relative;top:6px}
 .contact-section{background:var(--paper)}
 .contact-router aside{background:var(--teal-dark);border-top:3px solid var(--gold)}
 .contact-router aside span{color:#e5cb9f}
@@ -164,12 +220,15 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .fc-event{background:var(--teal);border-color:var(--teal)}
 .site-footer{background:#0c2236;padding-block:36px 18px;border-top:1px solid #ffffff14}
 .footer-grid{gap:30px}
-.footer-grid .logo img{width:100px;margin-bottom:10px}
-.footer-grid h2{font-family:var(--utility);font-weight:600;font-size:.94rem;letter-spacing:.015em;text-transform:none;color:#dec18e;margin-bottom:12px}
+.footer-grid .logo img{width:115px;margin-bottom:10px}
+.footer-grid h2{font-family:var(--utility);font-weight:600;font-size:1.1rem;letter-spacing:.015em;text-transform:none;color:#dec18e;margin-bottom:12px}
 .footer-grid a:not(.logo){font-size:.88rem;margin-bottom:6px}
-.footer-bottom{align-items:center;font-family:var(--utility);font-size:.85rem;margin-top:22px;padding-top:14px}
+.footer-bottom{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;font-family:var(--utility);font-size:.85rem;margin-top:22px;padding-top:14px}
+.footer-bottom .back-to-top{justify-self:end}
+.developer-credit{text-align:center;color:#d7bd8c}
 .social-links{display:flex;gap:10px;margin-top:12px}
-.footer-grid .social-links a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin:0;padding:0;color:#e3ca9c;background:#ffffff08;border:1px solid #c3a26766;border-radius:4px}
+.footer-grid .footer-name{color:#e3ca9c}
+.footer-grid .social-links a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin:0;padding:0;color:#e3ca9c;background:transparent;border:0;border-radius:4px}
 .intro{background:linear-gradient(#102c4626,#102c4626),url('/media/intro-coast.webp') center/cover no-repeat,var(--navy)}
 .intro-art{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
 .back-to-top{display:flex;align-items:center;gap:14px;background:var(--teal-dark);border:1px solid #689c96;color:white;min-height:46px;padding:9px 17px;border-radius:3px;font:600 1rem var(--utility);transition:background-color .2s,color .2s,border-color .2s}
@@ -237,7 +296,10 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
  .community-grid{grid-template-columns:1fr;gap:24px}
  .community-photo{aspect-ratio:1.5;box-shadow:-8px 8px 0 #d8e6df}
  .community-copy{padding:0}
- .page-hero{padding-block:45px 30px;margin-bottom:30px}
+ .page-hero{padding-block:34px 24px;margin-bottom:24px}
+ .freshers-hero,.partner-hero{padding-block:34px}
+ .student-band-inner{flex-wrap:wrap;gap:20px}
+ .freshers-hero~.section{padding-block:24px}
  .photo-policy{padding:28px}
  .footer-bottom{align-items:start}
  .intro{background-position:40% center}
@@ -245,7 +307,7 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 @media(max-width:480px){
  .home-opening{padding:34px 20px 28px}
  .opening-copy h1{font-size:2.7rem;line-height:1.2}
- .opening-copy .eyebrow{font-size:1.3rem;max-width:28ch}
+ .opening-copy .eyebrow{font-size:1.4rem;max-width:28ch}
  .opening-description p{font-size:.94rem}
  .opening-copy .hero-actions{gap:20px}
  .opening-copy .button{padding-inline:18px}
@@ -279,7 +341,11 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .freshers-hero p:not(.eyebrow){color:#d7e2e6}
 .freshers-hero .button--dark{background:var(--gold);color:var(--navy)}
 .partner-hero .button--light{background:var(--gold);color:var(--navy)}
-.committee-section{background:var(--pale);border-top:1px solid #cadcd4}
+.committee-section{background:var(--pale);border-top:1px solid #cadcd4;padding-bottom:28px}
+.committee-section+.split-section{padding-top:32px}
+.committee-section+.split-section>h2{align-self:center;margin-bottom:0}
+.committee-section+.split-section>div{align-self:center}
+.page-hero>.eyebrow,.freshers-hero>.shell>.eyebrow,.partner-hero>.shell>.eyebrow,.legal-page>.eyebrow,.gallery-detail>.eyebrow,.event-detail>.eyebrow{font-size:1.1rem}
 .committee-grid article{border-bottom:1px solid #b6cec3;padding-bottom:20px}
 .committee-grid p{color:var(--teal-dark)}
 .outreach-story>div:not(.photo){padding:30px;border-left:3px solid var(--gold);background:var(--paper)}
@@ -350,3 +416,9 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .calendar-tooltip-hint{display:block;border-top:1px solid var(--line);padding-top:10px;font:600 13px/1.5 var(--utility);color:var(--teal-dark)}
 @keyframes tooltip-in{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.calendar-tooltip{animation:none}}
+@media(max-width:800px){
+ .outreach-invitation .student-band-inner,.proposal{grid-template-columns:1fr;gap:20px}
+ .outreach-invitation .button,.proposal>.button{justify-self:start;transform:none;margin-left:0}
+ .footer-bottom{grid-template-columns:1fr 1fr}
+ .developer-credit{grid-column:1/-1;grid-row:2}
+}

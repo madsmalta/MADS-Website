@@ -114,7 +114,7 @@ export function Calendar({ events }: { events: EventItem[] }) {
  const categories = ["All", ...Array.from(new Set(events.map(event => event.category)))];
  const visible = useMemo(() => category === "All" ? events : events.filter(event => event.category === category), [category, events]);
  const calendarEvents = useMemo(() => visible.map(event => ({
-  id: event.slug, title: event.title.replace("Sample: ", ""), start: event.date, end: event.end,
+  id: event.slug, title: event.title, start: event.date, end: event.end,
   url: `/events/${event.slug}`, classNames: [`category-${event.category.toLowerCase()}`],
   extendedProps: { details: event },
  })), [visible]);
