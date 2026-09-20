@@ -12,9 +12,9 @@
 .home-group,.about-group{height:auto!important;aspect-ratio:1.61}
 .home-group img,.about-group img{object-position:center!important;object-fit:contain}
 .button,.desktop-nav a,.menu-button,.calendar-link{transition:background-color .25s ease,color .25s ease,box-shadow .25s ease,transform .25s ease}
-.intro{background:radial-gradient(ellipse at 50% 44%,#174e76 0%,#0b2944 65%)}
+.intro{background:var(--navy)}
 .intro-art{width:min(310px,70vw);filter:none}
-html[data-reveal="play"] .intro{animation:reveal-exit .65s 3.25s forwards}
+html[data-reveal="play"] .intro{animation:reveal-exit .65s 2.75s forwards}
 .intro-tooth{animation:tooth-in .7s cubic-bezier(.22,1,.36,1) both}
 .intro-word{animation:word-in 1.2s .55s cubic-bezier(.22,1,.36,1) both}
 .intro-word-window,.intro-word{clip-path:inset(28% 0 48% 35%)}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./theme.css";
 import { Intro } from "@/components/intro";
 import { RouteScroll } from "@/components/route-scroll";
 
