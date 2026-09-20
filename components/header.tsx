@@ -9,6 +9,12 @@ export function Header(){
  const [open,setOpen]=useState(false);const path=usePathname();const toggle=useRef<HTMLButtonElement>(null);
  const header=useRef<HTMLElement>(null);
  useEffect(()=>{
+  const logo=header.current?.querySelector<HTMLAnchorElement>(".logo");
+  const goHome=()=>{setOpen(false);if(path==="/")window.scrollTo({top:0,behavior:"instant"});};
+  logo?.addEventListener("click",goHome);
+  return()=>logo?.removeEventListener("click",goHome);
+ },[path]);
+ useEffect(()=>{
   let last=window.scrollY, distance=0, direction=0, frame=0;
   const update=()=>{
    frame=0;const y=Math.max(0,window.scrollY);const delta=y-last;last=y;
