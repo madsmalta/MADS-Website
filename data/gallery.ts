@@ -6,6 +6,13 @@ export const galleries = [
  {slug:"volleyball",title:"MADS Volleyball Tournament",category:"Student life",image:"/media/volleyball.webp",alt:"A group pictured at the MADS Volleyball Tournament",description:"A moment from the MADS Volleyball Tournament."},
 ];
 export const committee: {file:string;name:string;role?:string}[]=[
- {file:"kayleigh",name:"Kayleigh"},{file:"arem",name:"Adam"},{file:"jeremy",name:"Jeremy Austin",role:"Secretary General"},{file:"andreya",name:"Andreya"},{file:"nicole",name:"Nicole"},{file:"kylie",name:"Kylie"},{file:"shakira",name:"Shakira"},{file:"maria",name:"Maria"},{file:"judith",name:"Judith"}
+ {file:"edited-andreya",name:"Andreya Gauci",role:"President"},
+ {file:"edited-nicole",name:"Nicole Caruana",role:"Vice President"},
+ {file:"edited-jeremy",name:"Jeremy Austin",role:"Secretary General"},
+ {file:"edited-maria",name:"Maria Sammut",role:"Financial Officer"},
+ {file:"edited-kylie",name:"Kylie Zerafa",role:"Education Officer"},
+ {file:"edited-kayleigh",name:"Kayleigh Vella Barberi",role:"Leisure Officer"},
+ {file:"edited-adam",name:"Adam Demajo",role:"Public Relations Officer"},
+ {file:"edited-judith",name:"Judith Zammit",role:"PR & Marketing Officer"},
+ {file:"edited-shakira",name:"Shakira Yusuf",role:"Social Policy Officer"}
 ];
-

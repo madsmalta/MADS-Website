@@ -40,6 +40,7 @@ p{max-width:78ch}
 .button:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,
 textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:#398f88}
 .site-header{border-bottom-color:#dce4df}
+.committee-grid .portrait img{object-fit:contain;object-position:center;transform:none}
 .site-header .logo img{width:90px}
 @media(max-width:1200px){.site-header .logo img{width:82px}}
 @media(max-width:800px){.site-header .logo img{width:74px}}
