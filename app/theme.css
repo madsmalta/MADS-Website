@@ -90,18 +90,28 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .quiet-state{background:var(--paper);border:0;border-left:3px solid var(--gold);padding:32px 36px}
 .quiet-state svg{color:var(--teal);margin-bottom:14px}
 .quiet-state h3{font-size:1.3rem}
-.community-section{background:var(--pale);padding-block:64px}
+.community-section{background:var(--pale);padding-block:36px}
+.community-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
 .dental-detail{display:block;width:40px;height:40px;color:var(--teal);margin-bottom:14px;opacity:.75}
 .student-band .dental-detail{color:#e3ca9c}
-.community-photo{aspect-ratio:1.2;box-shadow:-14px 14px 0 #d8e6df}
-.community-copy{padding-block:20px}
+.community-photo{aspect-ratio:1.65;box-shadow:-8px 8px 0 #d8e6df}
+.community-copy{padding-block:0}
+.community-copy h2{font-size:clamp(1.8rem,2.7vw,2.6rem);margin-bottom:16px}
+.community-copy .dental-detail{float:left;margin:0 10px 0 0;width:28px;height:28px}
+.community-copy .eyebrow{margin-bottom:12px;min-height:28px}
 .section-heading .text-link{padding-bottom:5px;border-bottom:1px solid var(--gold)}
 .story .photo{aspect-ratio:1.4}
 .story-caption{padding-top:24px}
 .story-caption .eyebrow{margin-bottom:8px}
 .story-caption h3,.gallery-grid h2{font-family:var(--sans);font-weight:600;font-size:1.5rem;line-height:1.4}
 .story-caption>svg{color:var(--teal)}
-.student-band{background:var(--teal-dark);border-top:3px solid var(--gold)}
+.student-band{background:var(--teal-dark);border-top:3px solid var(--gold);padding-block:32px}
+.student-band-inner{flex-direction:column;align-items:flex-start;gap:16px}
+.student-band-inner>div{max-width:none}
+.student-band h2{font-size:clamp(1.8rem,2.7vw,2.6rem);margin-bottom:12px}
+.student-band p:last-child{margin-bottom:0}
+.student-band .dental-detail{float:left;width:30px;height:30px;margin:0 10px 0 0}
+.student-band .eyebrow{margin-bottom:12px;min-height:30px}
 .student-band .eyebrow{color:#e3ca9c}
 .student-band p{color:#d6e8e2}
 .opportunity-intro{align-items:center}
@@ -114,7 +124,8 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 /* Interior pages keep their existing content and order, with consistent framing. */
 .page-hero{padding-block:64px 48px;border-bottom:1px solid var(--line);margin-bottom:42px}
 .page-hero .eyebrow{display:flex;align-items:center;gap:15px}
-.page-hero .eyebrow::before{content:"";width:30px;height:2px;background:var(--gold)}
+.page-hero .eyebrow::before,.freshers-hero .eyebrow::before,.partner-hero .eyebrow::before{content:"";display:inline-block;flex-shrink:0;width:28px;height:28px;background:var(--gold);mask:url('/media/dental-mirror.svg') center/contain no-repeat}
+.freshers-hero .eyebrow,.partner-hero .eyebrow{display:flex;align-items:center;gap:12px}
 .page-hero h1{max-width:23ch}
 .page-hero>p:not(.eyebrow){font-size:1.05rem;max-width:67ch}
 .compact-section{padding-top:0}
@@ -222,7 +233,8 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
  .compact-section{padding-top:0}
  .home-events{gap:24px;padding-block:36px}
  .quiet-state{padding:28px}
- .community-section{padding-block:55px}
+ .community-section{padding-block:30px}
+ .community-grid{grid-template-columns:1fr;gap:24px}
  .community-photo{aspect-ratio:1.5;box-shadow:-8px 8px 0 #d8e6df}
  .community-copy{padding:0}
  .page-hero{padding-block:45px 30px;margin-bottom:30px}
