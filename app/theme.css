@@ -66,7 +66,7 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .opening-description{max-width:44ch;padding:0;margin-top:27px}
 .opening-description p{color:#d4e2e7;font-size:1rem;line-height:1.85}
 .opening-copy .hero-actions{gap:24px;margin-top:28px}
-.opening-copy .button--dark{background:var(--gold);color:#102c46}
+.opening-copy .button--dark{background:#cbb68e;color:var(--navy)}
 .opening-copy .text-link{color:white}
 .home-photo-wrap{width:100%;max-width:none;margin:0;box-shadow:14px 14px 0 #ffffff08;border-bottom:3px solid var(--gold)}
 .home-group{aspect-ratio:1.61}
@@ -110,12 +110,12 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .student-band{background:var(--teal-dark);border-top:3px solid var(--gold);padding-block:32px}
 .student-band-inner{flex-direction:row;justify-content:flex-start;align-items:center;gap:clamp(28px,4vw,60px)}
 .student-band-inner>div{max-width:none}
-.student-band .button[href="/new-students"]{background:var(--gold);color:var(--navy)}
+.student-band .button[href="/new-students"]{background:#fff;color:var(--navy)}
 @media(min-width:1024px){
  .student-band-inner:has(>a[href="/new-students"]){display:grid;grid-template-columns:1fr 1fr;gap:32px}
  .student-band .button[href="/new-students"]{justify-self:center}
 }
-@media(hover:hover) and (pointer:fine){.student-band .button[href="/new-students"]:hover{background:#d5b984}}
+@media(hover:hover) and (pointer:fine){.student-band .button[href="/new-students"]:hover{background:#eef5f7}}
 .student-band h2{font-size:clamp(1.8rem,2.7vw,2.6rem);margin-bottom:12px}
 .student-band p:last-child{margin-bottom:0}
 .student-band .dental-detail{float:left;width:30px;height:30px;margin:0 10px 0 0}
@@ -227,6 +227,10 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .footer-bottom .back-to-top{justify-self:end}
 .developer-credit{text-align:center;color:#d7bd8c}
 .social-links{display:flex;gap:10px;margin-top:12px}
+.mobile-menu .social-links{flex-wrap:nowrap;gap:10px;margin-top:12px}
+.mobile-menu .social-links a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;padding:0;border:0;border-radius:4px;color:#fff;transition:background-color .2s}
+.mobile-menu .social-links a:hover,.mobile-menu .social-links a:focus-visible{background:#ffffff18;color:#fff}
+.mobile-menu .social-links a:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .footer-grid .footer-name{color:#e3ca9c}
 .footer-grid .social-links a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin:0;padding:0;color:#e3ca9c;background:transparent;border:0;border-radius:4px}
 .intro{background:linear-gradient(#102c4626,#102c4626),url('/media/intro-coast.webp') center/cover no-repeat,var(--navy)}
@@ -235,7 +239,7 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 
 @media(hover:hover) and (pointer:fine){
  .button--dark:hover{background:var(--teal-dark)}
- .opening-copy .button--dark:hover{background:#d5b984}
+ .opening-copy .button--dark:hover{background:#d8c7a7}
  .newsletter .button:hover{background:var(--teal-dark);border-color:#87bfb5}
  .button--outline:hover,.button--light:hover{background:#dfece5}
  .desktop-nav a:hover,.calendar-link:hover,.menu-button:hover{background:var(--pale)}
