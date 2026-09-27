@@ -9,6 +9,7 @@ node_modules/
 
 # Downloaded agent skills stay local.
 .agents/
+.impeccable/
 .claude/skills/
 .codex/skills/
 skills/

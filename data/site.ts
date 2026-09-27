@@ -2,7 +2,7 @@ export type Category = "Academic" | "Social" | "Freshers" | "Outreach" | "Intern
 export type EventItem = { slug: string; title: string; date: string; end?: string; category: Category; location: string; status: "Upcoming" | "Postponed" | "Cancelled" | "Sold out"; description: string; longDescription: string; registrationLabel?: string; registrationUrl?: string };
 
 export const siteRoutes = [
-  { href: "/", label: "Home" }, { href: "/events", label: "Events" }, { href: "/opportunities", label: "Opportunities" }, { href: "/new-students", label: "New Students" }, { href: "/outreach", label: "Outreach" }, { href: "/news", label: "News & Photos" }, { href: "/about", label: "About MADS" }, { href: "/partners", label: "Partners" }, { href: "/contact", label: "Contact" },
+  { href: "/", label: "Home" }, { href: "/events", label: "Events" }, { href: "/opportunities", label: "Opportunities" }, { href: "/outreach", label: "Outreach" }, { href: "/news", label: "News & Photos" }, { href: "/about", label: "About MADS" }, { href: "/contact", label: "Contact" },
 ];
 
 // These are intentionally labelled demonstrations until a public MADS calendar is supplied.
@@ -21,16 +21,13 @@ export const opportunities = [
 export const articles = [
   { title: "News will appear here once approved", category: "Announcement", date: "Publication date pending", excerpt: "A source-backed home for MADS announcements, recaps and student notices." },
   { title: "Photo collections are handled with care", category: "Photos", date: "Information pending", excerpt: "Eligible event galleries will show a download expiry and link only to a MADS-owned Drive folder." },
-  { title: "The MADS Update", category: "Newsletter", date: "Current issue pending", excerpt: "A concise route to events, opportunities and verified student information." },
+  { title: "The Molar", category: "Newsletter", date: "Current issue pending", excerpt: "A concise route to events, opportunities and verified student information." },
 ];
 
 export const contacts = [
+  { need: "General enquiry", role: "MADS general enquiries", note: "We will route your message to the suitable MADS contact once the delivery service is configured.", action: "Ask MADS" },
   { need: "Academic concern", role: "Relevant course representative", note: "Course representation details await confirmation. For urgent academic matters, use the Faculty's official channels.", action: "Ask MADS" },
-  { need: "Student representation", role: "Course representative or committee", note: "A representative can listen to a student concern and guide it to the right official channel.", action: "Ask MADS" },
   { need: "Event suggestion", role: "MADS events team", note: "Tell us what you would like MADS to create or improve.", action: "Send an idea" },
-  { need: "Sponsorship or collaboration", role: "MADS partnerships contact", note: "We welcome a clear outline of your organisation and proposed collaboration.", action: "Start a conversation" },
   { need: "Volunteering", role: "MADS outreach contact", note: "Share your interests and availability; opportunities are listed when verified.", action: "Volunteer interest" },
   { need: "International opportunity", role: "MADS opportunities contact", note: "Share the original source and deadline so it can be considered for publication.", action: "Share an opportunity" },
-  { need: "Wellbeing support", role: "Official support service", note: "MADS does not replace medical, wellbeing, Faculty, University or emergency services. Use the appropriate official service for urgent help.", action: "Ask for signposting" },
-  { need: "General enquiry", role: "MADS general enquiries", note: "We will route your message to the suitable MADS contact once the delivery service is configured.", action: "Ask MADS" },
 ];
