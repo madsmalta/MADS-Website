@@ -8,7 +8,6 @@ const motion = {
   duration: 760,
   easing: "cubic-bezier(0.22, 0.8, 0.25, 1)",
   distance: 44,
-  mobileDistance: 28,
   triggerInset: 96,
 };
 
@@ -22,7 +21,7 @@ export function ScrollReveal() {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (reducedMotion.matches) return;
     const hashTarget = document.getElementById(window.location.hash.slice(1));
-    const distance = window.matchMedia("(max-width: 700px)").matches ? motion.mobileDistance : motion.distance;
+    const distance = motion.distance;
 
     const pending = new Set<HTMLElement>();
     const animations = new Set<Animation>();
