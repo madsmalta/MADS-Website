@@ -1,13 +1,17 @@
 "use client";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import listPlugin from "@fullcalendar/list";
 import type { EventMountArg } from "@fullcalendar/core";
 import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import type { EventItem } from "@/data/site";
 
 type Preview = { event: EventItem; anchor: HTMLElement };
+type EventGroup = "Social" | "Community" | "Learning";
+const eventGroups: Record<EventItem["category"], EventGroup> = {
+ Academic: "Learning", Social: "Social", Freshers: "Social",
+ Outreach: "Community", International: "Learning", Wellbeing: "Community",
+};
 
 function EventPreview({ preview, id, keepOpen, leave }: {
  preview: Preview; id: string; keepOpen: () => void; leave: () => void;
@@ -111,8 +115,8 @@ export function Calendar({ events }: { events: EventItem[] }) {
    window.removeEventListener("resize", dismiss);
   };
  }, [cancelTimers, dismiss]);
- const categories = ["All", ...Array.from(new Set(events.map(event => event.category)))];
- const visible = useMemo(() => category === "All" ? events : events.filter(event => event.category === category), [category, events]);
+ const categories = ["All", ...(["Social", "Community", "Learning"] as const).filter(group => events.some(event => eventGroups[event.category] === group))];
+ const visible = useMemo(() => category === "All" ? events : events.filter(event => eventGroups[event.category] === category), [category, events]);
  const calendarEvents = useMemo(() => visible.map(event => ({
   id: event.slug, title: event.title, start: event.date, end: event.end,
   url: `/events/${event.slug}`, classNames: [`category-${event.category.toLowerCase()}`],
@@ -123,20 +127,18 @@ export function Calendar({ events }: { events: EventItem[] }) {
   cleanups.current.delete(info.el);
   dismiss();
  }, [dismiss]);
- const initialView = typeof window !== "undefined" && window.innerWidth < 640 ? "listMonth" : "dayGridMonth";
  return <div className="calendar-wrap">
   <div className="calendar-filters" aria-label="Filter calendar events"><span>Show</span>{categories.map(item =>
    <button key={item} onClick={() => { dismiss(); setCategory(item); }} className={category === item ? "active" : ""} aria-pressed={category === item}>{item}</button>
   )}</div>
   <FullCalendar
-   plugins={[dayGridPlugin, listPlugin]} initialDate={events[0]?.date} initialView={initialView}
-   headerToolbar={{ left:"title", center:"", right:"dayGridMonth,listMonth" }}
-   buttonText={{ dayGridMonth:"Month", listMonth:"Agenda" }}
+   plugins={[dayGridPlugin]} initialDate={events[0]?.date} initialView="dayGridMonth"
+   headerToolbar={{ left:"title", center:"", right:"prev,next" }}
    events={calendarEvents}
    eventDidMount={mount}
    eventWillUnmount={unmount}
    datesSet={dismiss}
-   height="auto" noEventsContent="No public events match this filter yet."
+   height="auto"
   />
   {preview && <EventPreview preview={preview} id={id} keepOpen={cancelTimers} leave={leave}/>}
  </div>;

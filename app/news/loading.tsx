@@ -1,2 +1,2 @@
 import { PageLoading } from "@/components/page-loading";
-export default function Loading() { return <PageLoading variant="news" label="News and photos" />; }
+export default function Loading() { return <PageLoading variant="news" label="News & Photos" />; }

@@ -7,7 +7,7 @@ const categories = [
   "General enquiry",
   "Academic concern",
   "Event suggestion",
-  "Volunteering",
+  "Outreach collaboration",
   "International opportunity",
   "Privacy or photo request",
 ] as const;
@@ -28,6 +28,7 @@ function validateControl(control: Control): string | undefined {
   if (control.name === "consent") return (control as HTMLInputElement).checked ? undefined : "Please confirm that MADS may use these details to reply.";
   if (control.name === "email") return !control.value.trim() ? "Enter your email address." : emailPattern.test(control.value.trim()) ? undefined : "Enter an email address in the format name@example.com.";
   if (control.name === "message") return !control.value.trim() ? "Write a message so MADS knows how to help." : undefined;
+  if (control.name === "course") return !control.value.trim() ? "Enter your course." : undefined;
   return control.required && !control.value.trim() ? `Enter your ${control.name}.` : undefined;
 }
 
@@ -60,6 +61,7 @@ export function ContactForm({ category, onCategoryChange }: ContactFormProps) {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Partial<Record<FieldName, boolean>>>({});
   const [delivery, setDelivery] = useState<DeliveryStatus>("checking");
+  const needsCourse = category !== "Outreach collaboration";
 
   useEffect(() => {
     const controller = new AbortController();
@@ -86,6 +88,7 @@ export function ContactForm({ category, onCategoryChange }: ContactFormProps) {
 
   function setControlRef(name: FieldName, control: Control | null) {
     if (control) controls.current[name] = control;
+    else delete controls.current[name];
   }
 
   function updateError(control: Control, show = true) {
@@ -113,6 +116,7 @@ export function ContactForm({ category, onCategoryChange }: ContactFormProps) {
   function validateForm() {
     const nextErrors: FieldErrors = {};
     (["name", "email", "course", "message", "consent"] as FieldName[]).forEach((name) => {
+      if (name === "course" && !needsCourse) return;
       const control = controls.current[name];
       if (!control) return;
       const error = validateControl(control);
@@ -175,8 +179,8 @@ export function ContactForm({ category, onCategoryChange }: ContactFormProps) {
       <div className="contact-field-group"><label className={fieldClass("name")}><FieldLabel>Name</FieldLabel><input ref={(control) => setControlRef("name", control)} className="contact-field__control" required name="name" autoComplete="name" placeholder=" " aria-invalid={Boolean(errors.name)} aria-describedby={describedBy("name")} onBlur={(event) => handleBlur(event.currentTarget)} onInput={(event) => handleInput(event.currentTarget)} /></label>{errors.name && <p className="contact-field-feedback" id={`${formId}-name-error`}>{errors.name}</p>}</div>
       <div className="contact-field-group"><label className={fieldClass("email")}><FieldLabel>Email</FieldLabel><input ref={(control) => setControlRef("email", control)} className="contact-field__control" required type="email" name="email" autoComplete="email" inputMode="email" placeholder=" " aria-invalid={Boolean(errors.email)} aria-describedby={describedBy("email")} onBlur={(event) => handleBlur(event.currentTarget)} onInput={(event) => handleInput(event.currentTarget)} /></label>{errors.email && <p className="contact-field-feedback" id={`${formId}-email-error`}>{errors.email}</p>}</div>
     </div>
-    <div className="form-pair">
-      <div className="contact-field-group"><label className={fieldClass("course")}><FieldLabel>Course</FieldLabel><input ref={(control) => setControlRef("course", control)} required className="contact-field__control" name="course" autoComplete="organization-title" placeholder=" " aria-invalid={Boolean(errors.course)} aria-describedby={describedBy("course")} onBlur={(event) => handleBlur(event.currentTarget)} onInput={(event) => handleInput(event.currentTarget)} /></label>{errors.course && <p className="contact-field-feedback" id={`${formId}-course-error`}>{errors.course}</p>}</div>
+    <div className={`form-pair ${needsCourse ? "" : "form-pair--single"}`}>
+      {needsCourse && <div className="contact-field-group"><label className={fieldClass("course")}><FieldLabel>Course</FieldLabel><input ref={(control) => setControlRef("course", control)} required className="contact-field__control" name="course" placeholder=" " aria-invalid={Boolean(errors.course)} aria-describedby={describedBy("course")} onBlur={(event) => handleBlur(event.currentTarget)} onInput={(event) => handleInput(event.currentTarget)} /></label>{errors.course && <p className="contact-field-feedback" id={`${formId}-course-error`}>{errors.course}</p>}</div>}
       <div className="contact-field-group"><label className="contact-field contact-field--select"><FieldLabel>Enquiry category</FieldLabel><select className="contact-field__control" name="category" value={category} onChange={(event) => onCategoryChange(event.target.value)}>{categories.map((option) => <option key={option}>{option}</option>)}</select></label></div>
     </div>
     <div className="contact-field-group"><label className={fieldClass("message", "contact-field--textarea")}><FieldLabel>Message</FieldLabel><textarea ref={(control) => setControlRef("message", control)} className="contact-field__control" required name="message" rows={6} maxLength={5000} placeholder=" " aria-invalid={Boolean(errors.message)} aria-describedby={describedBy("message")} onBlur={(event) => handleBlur(event.currentTarget)} onInput={(event) => handleInput(event.currentTarget)} /></label>{errors.message && <p className="contact-field-feedback" id={`${formId}-message-error`}>{errors.message}</p>}</div>

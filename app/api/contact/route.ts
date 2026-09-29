@@ -32,7 +32,9 @@ export async function POST(request: Request) {
   if (!sameOrigin(request)) return NextResponse.json({ message: "This request must come from the MADS website.", configured: false }, { status: 403 });
   let body: Record<string, unknown>; try { body = await request.json() as Record<string, unknown>; } catch { return NextResponse.json({ message: "We could not read that form submission.", configured: false }, { status: 400 }); }
   const name = text(body.name, 120); const email = text(body.email, 254); const message = text(body.message, 5000);
-  if (!name || !emailPattern.test(email) || !text(body.course, 100) || !message || !body.consent) return NextResponse.json({ message: "Complete every required field and provide a valid email address.", configured: false }, { status: 400 });
+  const category = text(body.category, 100) || "General enquiry";
+  const course = text(body.course, 100);
+  if (!name || !emailPattern.test(email) || (category !== "Outreach collaboration" && !course) || !message || !body.consent) return NextResponse.json({ message: "Complete every required field and provide a valid email address.", configured: false }, { status: 400 });
   const emailStatus = await checkEmail(email);
   if (emailStatus !== "valid") return NextResponse.json({
     message: emailStatus === "invalid" ? "Check your email address: its format or domain is not valid for receiving email." : "We could not check your email domain just now. Please try again shortly.",
@@ -42,8 +44,6 @@ export async function POST(request: Request) {
   const webhook = webhookSettings();
   const brevo = brevoSettings();
   if (!webhook && !brevo) return NextResponse.json({ message: "Enquiry delivery has not been configured. Your message was not sent.", configured: false }, { status: 503 });
-  const category = text(body.category, 100) || "General enquiry";
-  const course = text(body.course, 100);
   const subject = `MADS WEBSITE CONTACT FORM — ${category}`;
   let response: Response;
   try {
@@ -58,7 +58,7 @@ export async function POST(request: Request) {
           to: [{ email: brevo!.recipient, name: "MADS" }],
           replyTo: { email, name },
           subject,
-          textContent: `Name: ${name}\nEmail: ${email}\nCourse: ${course}\nCategory: ${category}\n\nMessage:\n${message}`,
+          textContent: `Name: ${name}\nEmail: ${email}\n${course ? `Course: ${course}\n` : ""}Category: ${category}\n\nMessage:\n${message}`,
         }),
         cache: "no-store",
         signal: AbortSignal.timeout(10000),

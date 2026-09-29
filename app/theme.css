@@ -66,7 +66,7 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
  padding:64px max(40px,calc((100vw - 1360px)/2));
 }
 .opening-copy{width:auto;margin:0;display:block;padding:0}
-.opening-copy .eyebrow{color:#d7bd8c;max-width:32ch;margin-bottom:25px;font-size:clamp(1.4rem,1.95vw,1.85rem);line-height:1.35}
+.opening-copy .eyebrow{color:#d7bd8c;max-width:32ch;margin-bottom:25px;font-size:clamp(1.6rem,2.25vw,2.1rem);line-height:1.35}
 .opening-copy h1{font-size:clamp(2.7rem,4.25vw,4.1rem);line-height:1.17;letter-spacing:-.025em}
 .opening-description{max-width:44ch;padding:0;margin-top:27px}
 .opening-description p{color:#d4e2e7;font-size:1rem;line-height:1.85}
@@ -104,6 +104,16 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .welcome-links span{font-size:.82rem}
 .welcome-links strong{font-family:var(--utility);font-size:1.08rem;font-weight:600}
 .welcome-links svg{color:var(--teal)}
+.welcome-links .welcome-social{padding-inline:32px 0}
+.welcome-links>a>span,.welcome-links .welcome-social>span{font-size:.92rem}
+.welcome-social__row{display:flex;align-items:center;justify-content:flex-start;gap:4px}
+.welcome-links .welcome-social__row>strong{display:block;white-space:nowrap}
+.welcome-links .welcome-social .social-links{display:flex;align-items:center;gap:0;margin:0}
+.welcome-links .welcome-social .social-links a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;border-radius:6px;color:var(--teal);transition:background-color .2s ease,color .2s ease,transform .2s ease}
+.welcome-links .welcome-social .social-links a:hover,.welcome-links .welcome-social .social-links a:focus-visible{background:var(--pale);color:var(--teal-dark);transform:translateY(-2px)}
+.welcome-links .welcome-social .social-links a:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.welcome-links .welcome-social .social-links__separator{display:inline;margin:0;color:var(--muted);font-size:1rem}
+@media(prefers-reduced-motion:reduce){.welcome-links .welcome-social .social-links a:is(:hover,:focus-visible){transform:none}}
 
 .section{padding-block:64px}
 .home-events{gap:56px;align-items:center;padding-block:48px}
@@ -121,6 +131,7 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .community-copy .dental-detail{float:left;margin:0 10px 0 0;width:28px;height:28px}
 .community-copy .eyebrow{margin-bottom:12px;min-height:28px}
 .section-heading .text-link{padding-bottom:5px;border-bottom:1px solid var(--gold)}
+.section-heading .faculty-life-label{font-size:clamp(1.2rem,1.7vw,1.45rem);line-height:1.3;margin-bottom:16px}
 .story .photo{aspect-ratio:1.4}
 .story-caption{padding-top:24px}
 .story-caption .eyebrow{margin-bottom:8px}
@@ -137,6 +148,8 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .newsletter input,.newsletter select{border-color:#d2ded9;background:#fafbf8}
 .newsletter .button{background:var(--teal);color:white;border-color:#5caaa1}
 .newsletter p{color:#d7e2e6}
+.newsletter .newsletter-title{font-size:clamp(3rem,4.5vw,4.75rem);line-height:1.02;color:#dec18e;margin:0 0 14px}
+.newsletter .newsletter-tagline{font-family:var(--serif);font-size:clamp(1.5rem,2.2vw,2rem);line-height:1.22;color:#fff;margin:0 0 16px}
 
 /* Interior pages keep their existing content and order, with consistent framing. */
 .page-hero{padding-block:46px 34px;border-bottom:1px solid var(--line);margin-bottom:32px}
@@ -201,13 +214,16 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .event-date{background:var(--pale)}
 .event-date strong{font-family:var(--serif)}
 .event-card h3{font-size:1.4rem}
+.section-heading .upcoming-label{font-size:clamp(1.3rem,2vw,1.65rem);letter-spacing:.045em;margin-bottom:12px}
 .round-link{background:var(--teal)}
 .round-link.muted{background:#637780}
 .contact-section{background:var(--paper)}
 .contact-router aside{background:var(--teal-dark);border-top:3px solid var(--gold)}
 .contact-router aside span{color:#e5cb9f}
 .contact-router aside .text-link{color:white}
-.contact-router aside h3{font-family:var(--serif);font-weight:400}
+.contact-router aside h3{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,2.5vw,2.45rem);line-height:1.15;margin:0 0 18px}
+.contact-router aside p{font-size:1.06rem;line-height:1.65;margin:0 0 22px;max-width:43ch}
+.contact-router aside .text-link{font-size:1rem}
 .contact-form .checkbox,.newsletter .checkbox{display:flex;align-items:flex-start;gap:10px;line-height:1.65}
 .contact-form .checkbox input,.newsletter .checkbox input{position:static;width:18px;height:18px;min-height:18px;flex:0 0 18px;font-size:inherit;margin:calc((1em * 1.65 - 18px) / 2) 0 0;padding:0}
 .route-options button.selected{color:var(--teal)}
@@ -287,6 +303,7 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
  .photo-caption h2{font-size:1.45rem}
  .committee-photo-link{font-size:.95rem}
  .welcome-links a{padding-inline:18px}
+ .welcome-links .welcome-social{padding-inline:18px 0}
  .section{padding-block:44px}
  .compact-section{padding-top:0}
  .home-events{gap:24px;padding-block:36px}
@@ -304,7 +321,7 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 @media(max-width:480px){
  .home-opening{padding:34px 20px 28px}
  .opening-copy h1{font-size:2.7rem;line-height:1.2}
- .opening-copy .eyebrow{font-size:1.4rem;max-width:28ch}
+ .opening-copy .eyebrow{font-size:1.6rem;max-width:28ch}
  .opening-description p{font-size:.94rem}
  .opening-copy .hero-actions{gap:20px}
  .opening-copy .button{padding-inline:18px}
@@ -315,6 +332,7 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
  .committee-photo-link svg{width:15px}
  .welcome-links{padding-block:10px}
  .welcome-links a,.welcome-links a:first-child,.welcome-links a:last-child{padding:17px 0;border-right:0}
+ .welcome-links .welcome-social{padding:17px 0}
  .welcome-links strong{font-size:1.07rem}
  .story-caption h3,.gallery-grid h2{font-size:1.25rem}
  .committee-grid h3{font-size:1.05rem}
@@ -557,6 +575,7 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .form-privacy-link a,.newsletter small a{text-decoration:underline;text-underline-offset:3px}
 .form-privacy-link a:hover,.newsletter small a:hover{text-decoration-thickness:2px}
 .contact-form .form-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.contact-form .form-pair--single{grid-template-columns:minmax(0,1fr)}
 .contact-field-group{display:grid;gap:6px;min-width:0}
 .form-requirements{margin:0 0 2px;color:var(--muted);font:500 .9rem/1.5 var(--utility)}
 .contact-field{--field-border:#a7beb4;--field-border-width:2px;--field-label-inset:24px;--field-label-gap:8px;--field-label-size:.84rem;--label-shift:-28px;position:relative;display:block;min-width:0;height:56px;isolation:isolate;background:#fff;border-radius:24px;color:var(--ink);-webkit-text-size-adjust:100%;text-size-adjust:100%}
