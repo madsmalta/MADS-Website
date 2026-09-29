@@ -25,7 +25,7 @@ Visitors use the public site to learn about MADS, find events and opportunities,
 ## Capabilities and Constraints
 
 - Existing routes cover Home, Events, Opportunities, Outreach, News & Photos, About MADS, Contact, and Privacy. Keep these routes, their core information, and working behaviors during the visual redesign.
-- The site's event calendar and opportunity, news, representative, and link areas contain sample or pending-confirmation content. Preserve clear labels; do not imply that unverified items are real or current.
+- Events contain clearly labelled sample calendar entries until MADS approves real events. Opportunities show a clear empty state until verified listings exist. News, representative, and link areas may still contain pending-confirmation content; do not imply that unverified items are real or current.
 - Contact and newsletter forms show a configuration boundary and privacy-review note. Do not claim successful delivery or remove consent and privacy information without verified configuration and approval.
 - Event registration, when present, opens the named external provider. This website does not process event payments.
 - MADS does not replace official Faculty, University, medical, wellbeing, or emergency services.
@@ -41,7 +41,7 @@ Visitors use the public site to learn about MADS, find events and opportunities,
 ## Evidence on Hand
 
 - User-provided MADS purpose and mission text in this conversation.
-- Existing site pages, data, event placeholders, opportunity placeholders, contact guide, newsletter and contact forms.
+- Existing site pages, data, event samples and opportunity empty state, contact guide, newsletter and contact forms.
 - MADS committee and event photographs in the project assets and user-provided folders.
 - A user-provided shareable Google Calendar URL in the site's calendar data.
 - No verified live event feed, opportunity source feed, newsletter delivery status, or contact-form delivery commitment is established by the current source content.

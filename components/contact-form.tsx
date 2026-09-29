@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useId, useRef, useState } from "react";
+import Link from "next/link";
 
 const categories = [
   "General enquiry",
@@ -28,6 +29,11 @@ function validateControl(control: Control): string | undefined {
   if (control.name === "email") return !control.value.trim() ? "Enter your email address." : emailPattern.test(control.value.trim()) ? undefined : "Enter an email address in the format name@example.com.";
   if (control.name === "message") return !control.value.trim() ? "Write a message so MADS knows how to help." : undefined;
   return control.required && !control.value.trim() ? `Enter your ${control.name}.` : undefined;
+}
+
+function resizeMessage(control: HTMLTextAreaElement) {
+  control.style.height = "auto";
+  control.style.height = `${Math.max(170, control.scrollHeight)}px`;
 }
 
 function readResponse(value: unknown) {
@@ -59,7 +65,7 @@ export function ContactForm({ category, onCategoryChange }: ContactFormProps) {
     const controller = new AbortController();
     fetch("/api/contact", { signal: controller.signal, cache: "no-store" })
       .then(async (response) => {
-        const result = await response.json() as { configured?: unknown; fallbackEmail?: unknown };
+        const result = await response.json() as { configured?: unknown };
         if (!response.ok || typeof result.configured !== "boolean") throw new Error("Invalid availability response");
         setDelivery(result.configured ? "ready" : "unavailable");
       })
@@ -67,6 +73,15 @@ export function ContactForm({ category, onCategoryChange }: ContactFormProps) {
         if (!controller.signal.aborted) setDelivery("unknown");
       });
     return () => controller.abort();
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const message = controls.current.message;
+      if (message instanceof HTMLTextAreaElement) resizeMessage(message);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   function setControlRef(name: FieldName, control: Control | null) {
@@ -91,8 +106,7 @@ export function ContactForm({ category, onCategoryChange }: ContactFormProps) {
     const name = control.name as FieldName;
     if (touched[name] || errors[name]) updateError(control, true);
     if (control instanceof HTMLTextAreaElement) {
-      control.style.height = "auto";
-      control.style.height = `${Math.max(170, control.scrollHeight)}px`;
+      resizeMessage(control);
     }
   }
 
@@ -112,6 +126,7 @@ export function ContactForm({ category, onCategoryChange }: ContactFormProps) {
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (state === "loading" || delivery === "unavailable") return;
+    const form = event.currentTarget;
 
     setState("idle");
     setMessage("");
@@ -128,14 +143,14 @@ export function ContactForm({ category, onCategoryChange }: ContactFormProps) {
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        body: JSON.stringify(Object.fromEntries(new FormData(event.currentTarget))),
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
         headers: { "Content-Type": "application/json" },
         signal: controller.signal,
       });
       const result = readResponse(await response.json().catch(() => null));
       if (!result) throw new Error("Invalid form response");
       if (response.ok && result.configured) {
-        event.currentTarget.reset();
+        form.reset();
         setErrors({});
         setTouched({});
         setState("success");
@@ -155,6 +170,7 @@ export function ContactForm({ category, onCategoryChange }: ContactFormProps) {
   const describedBy = (name: FieldName) => errors[name] ? `${formId}-${name}-error` : undefined;
 
   return <form onSubmit={submit} className="contact-form" noValidate>
+    <fieldset className="contact-form__fields" disabled={delivery === "checking" || delivery === "unavailable"}>
     <div className="form-pair">
       <div className="contact-field-group"><label className={fieldClass("name")}><FieldLabel>Name</FieldLabel><input ref={(control) => setControlRef("name", control)} className="contact-field__control" required name="name" autoComplete="name" placeholder=" " aria-invalid={Boolean(errors.name)} aria-describedby={describedBy("name")} onBlur={(event) => handleBlur(event.currentTarget)} onInput={(event) => handleInput(event.currentTarget)} /></label>{errors.name && <p className="contact-field-feedback" id={`${formId}-name-error`}>{errors.name}</p>}</div>
       <div className="contact-field-group"><label className={fieldClass("email")}><FieldLabel>Email</FieldLabel><input ref={(control) => setControlRef("email", control)} className="contact-field__control" required type="email" name="email" autoComplete="email" inputMode="email" placeholder=" " aria-invalid={Boolean(errors.email)} aria-describedby={describedBy("email")} onBlur={(event) => handleBlur(event.currentTarget)} onInput={(event) => handleInput(event.currentTarget)} /></label>{errors.email && <p className="contact-field-feedback" id={`${formId}-email-error`}>{errors.email}</p>}</div>
@@ -166,6 +182,8 @@ export function ContactForm({ category, onCategoryChange }: ContactFormProps) {
     <div className="contact-field-group"><label className={fieldClass("message", "contact-field--textarea")}><FieldLabel>Message</FieldLabel><textarea ref={(control) => setControlRef("message", control)} className="contact-field__control" required name="message" rows={6} maxLength={5000} placeholder=" " aria-invalid={Boolean(errors.message)} aria-describedby={describedBy("message")} onBlur={(event) => handleBlur(event.currentTarget)} onInput={(event) => handleInput(event.currentTarget)} /></label>{errors.message && <p className="contact-field-feedback" id={`${formId}-message-error`}>{errors.message}</p>}</div>
     <label className={`checkbox ${errors.consent ? "checkbox--error" : ""}`}><input ref={(control) => setControlRef("consent", control)} required type="checkbox" name="consent" aria-invalid={Boolean(errors.consent)} aria-describedby={describedBy("consent")} onChange={(event) => updateError(event.currentTarget, true)} /> <span>I agree that MADS may use these details to respond to this enquiry.</span></label>
     {errors.consent && <p className="contact-field-feedback" id={`${formId}-consent-error`}>{errors.consent}</p>}
+    </fieldset>
+    <p className="form-privacy-link">How we handle your details: <Link href="/privacy">Privacy notice</Link>.</p>
     <button className="button button--dark" disabled={state === "loading" || delivery === "unavailable"}>{state === "loading" ? "Sending…" : delivery === "checking" ? "Checking availability…" : delivery === "unavailable" ? "Enquiries unavailable" : "Send enquiry"}</button>
     {state !== "idle" && <p aria-live="polite" className={state === "success" ? "form-success" : "form-error"}>{message}</p>}
   </form>;

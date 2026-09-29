@@ -1,5 +1,6 @@
 "use client";
 import { FormEvent, useState } from "react";
+import Link from "next/link";
 import { FieldLabel } from "./contact-form";
 
 export function Newsletter() {
@@ -33,7 +34,7 @@ export function Newsletter() {
       <label className="checkbox"><input required type="checkbox" name="consent" /> <span>I agree to receive The Molar and understand I can unsubscribe at any time.</span></label>
       <button className="button button--light" disabled={state === "loading"}>{state === "loading" ? "Checking…" : "Subscribe"}</button>
       {state !== "idle" && <p aria-live="polite" className={state === "success" ? "form-success" : "form-error"}>{message}</p>}
-      <small>Privacy wording requires formal review before live use.</small>
+      <small>Subscriptions are not available yet. Read our <Link href="/privacy">Privacy notice</Link>.</small>
     </form>
   </section>;
 }

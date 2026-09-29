@@ -12,11 +12,8 @@ export const sampleEvents: EventItem[] = [
   { slug: "sample-student-forum", title: "Sample: student forum", date: "2026-11-12T18:00:00", category: "Academic", location: "Location to be confirmed", status: "Upcoming", description: "Calendar demonstration — awaiting official MADS event details.", longDescription: "This is sample content only, and is not an announcement of a MADS activity." },
 ];
 
-export const opportunities = [
-  { title: "Opportunity listings are being prepared", type: "International", eligibility: "To be confirmed", deadline: "No verified deadline", location: "To be confirmed", funding: "To be confirmed", description: "A clearly sourced opportunity will appear here once it is approved for publication.", source: "MADS source pending", checked: "Not yet checked" },
-  { title: "Volunteering opportunities", type: "Volunteering", eligibility: "To be confirmed", deadline: "No verified deadline", location: "Malta / to be confirmed", funding: "Not applicable / to be confirmed", description: "MADS will share verified ways to contribute to outreach and community activity here.", source: "MADS source pending", checked: "Not yet checked" },
-  { title: "Conferences and training", type: "Training", eligibility: "To be confirmed", deadline: "No verified deadline", location: "To be confirmed", funding: "To be confirmed", description: "A holding place for verified courses, workshops and conferences.", source: "MADS source pending", checked: "Not yet checked" },
-];
+// Listings return when MADS can publish a source, deadline and last-checked date.
+export const opportunities: { title: string; type: string; eligibility: string; deadline: string; location: string; funding: string; description: string; source: string; checked: string }[] = [];
 
 export const articles = [
   { title: "News will appear here once approved", category: "Announcement", date: "Publication date pending", excerpt: "A source-backed home for MADS announcements, recaps and student notices." },
@@ -25,7 +22,7 @@ export const articles = [
 ];
 
 export const contacts = [
-  { need: "General enquiry", role: "MADS general enquiries", note: "We will route your message to the suitable MADS contact once the delivery service is configured.", action: "Ask MADS" },
+  { need: "General enquiry", role: "MADS general enquiries", note: "Students, schools and dental professionals can start here.", action: "Ask MADS" },
   { need: "Academic concern", role: "Relevant course representative", note: "Course representation details await confirmation. For urgent academic matters, use the Faculty's official channels.", action: "Ask MADS" },
   { need: "Event suggestion", role: "MADS events team", note: "Tell us what you would like MADS to create or improve.", action: "Send an idea" },
   { need: "Volunteering", role: "MADS outreach contact", note: "Share your interests and availability; opportunities are listed when verified.", action: "Volunteer interest" },

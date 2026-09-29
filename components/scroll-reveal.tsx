@@ -5,11 +5,11 @@ import { useEffect } from "react";
 
 const selector = "[data-scroll-reveal]";
 const motion = {
-  duration: 480,
-  easing: "cubic-bezier(0.16, 1, 0.3, 1)",
-  distance: 18,
-  mobileDistance: 10,
-  triggerOffset: 64,
+  duration: 760,
+  easing: "cubic-bezier(0.22, 0.8, 0.25, 1)",
+  distance: 44,
+  mobileDistance: 28,
+  triggerInset: 96,
 };
 
 export function ScrollReveal() {
@@ -29,9 +29,11 @@ export function ScrollReveal() {
     const reveal = (element: HTMLElement, animate = true) => {
       if (!pending.delete(element)) return;
       observer.unobserve(element);
-      element.classList.remove("scroll-reveal-pending");
-      element.style.removeProperty("--scroll-reveal-distance");
-      if (!animate || reducedMotion.matches) return;
+      if (!animate || reducedMotion.matches) {
+        element.classList.remove("scroll-reveal-pending");
+        element.style.removeProperty("--scroll-reveal-distance");
+        return;
+      }
 
       const animation = element.animate(
         [
@@ -40,6 +42,8 @@ export function ScrollReveal() {
         ],
         { duration: motion.duration, easing: motion.easing, fill: "none" },
       );
+      element.classList.remove("scroll-reveal-pending");
+      element.style.removeProperty("--scroll-reveal-distance");
       animations.add(animation);
       animation.finished.then(() => animations.delete(animation)).catch(() => animations.delete(animation));
     };
@@ -48,13 +52,13 @@ export function ScrollReveal() {
       for (const entry of entries) {
         if (entry.isIntersecting) reveal(entry.target as HTMLElement);
       }
-    }, { rootMargin: `0px 0px ${motion.triggerOffset}px 0px`, threshold: 0 });
+    }, { rootMargin: `0px 0px -${motion.triggerInset}px 0px`, threshold: 0 });
 
     const active = document.activeElement;
     for (const element of main.querySelectorAll<HTMLElement>(selector)) {
       const bounds = element.getBoundingClientRect();
       // The first screen, restored scroll positions and focused content stay ready to use.
-      if (bounds.top <= window.innerHeight + motion.triggerOffset || bounds.bottom <= 0 || (active && element.contains(active)) || (hashTarget && (hashTarget.contains(element) || element.contains(hashTarget)))) continue;
+      if (bounds.top <= window.innerHeight - motion.triggerInset || bounds.bottom <= 0 || (active && element.contains(active)) || (hashTarget && (hashTarget.contains(element) || element.contains(hashTarget)))) continue;
       element.style.setProperty("--scroll-reveal-distance", `${distance}px`);
       element.classList.add("scroll-reveal-pending");
       pending.add(element);
