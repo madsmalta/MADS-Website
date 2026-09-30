@@ -27,8 +27,8 @@ export const articles = [
 
 export const contacts = [
   { need: "General enquiry", role: "MADS general enquiries", note: "Students, schools and dental professionals can start here.", action: "Ask MADS" },
-  { need: "Academic concern", role: "Relevant course representative", note: "Course representation details await confirmation. For urgent academic matters, use the Faculty's official channels.", action: "Ask MADS" },
-  { need: "Event suggestion", role: "MADS events team", note: "Tell us what you would like MADS to create or improve.", action: "Send an idea" },
+  { need: "Student concern", role: "Bring a concern to MADS", note: "Whether it’s about your course or student life, tell us what’s going on. We can raise concerns with the faculty when appropriate.", action: "Raise a concern" },
+  { need: "Event suggestion", role: "MADS events team", note: "Have an idea for a MADS event? Tell us what you’d like to see.", action: "Send an idea" },
   { need: "Outreach collaboration", role: "MADS outreach contact", note: "Schools, organisations and dental professionals can contact us about a joint oral-health activity or community project.", action: "Discuss an activity" },
-  { need: "International opportunity", role: "MADS opportunities contact", note: "Share the original source and deadline so it can be considered for publication.", action: "Share an opportunity" },
+  { need: "International opportunity", role: "MADS opportunities contact", note: "Know of an opportunity dental students should hear about? Send us the link and application deadline.", action: "Share an opportunity" },
 ];

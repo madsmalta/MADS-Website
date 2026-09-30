@@ -34,7 +34,7 @@ export async function POST(request: Request) {
   const name = text(body.name, 120); const email = text(body.email, 254); const message = text(body.message, 5000);
   const category = text(body.category, 100) || "General enquiry";
   const course = text(body.course, 100);
-  if (!name || !emailPattern.test(email) || (category !== "Outreach collaboration" && !course) || !message || !body.consent) return NextResponse.json({ message: "Complete every required field and provide a valid email address.", configured: false }, { status: 400 });
+  if (!name || !emailPattern.test(email) || !message || !body.consent) return NextResponse.json({ message: "Complete every required field and provide a valid email address.", configured: false }, { status: 400 });
   const emailStatus = await checkEmail(email);
   if (emailStatus !== "valid") return NextResponse.json({
     message: emailStatus === "invalid" ? "Check your email address: its format or domain is not valid for receiving email." : "We could not check your email domain just now. Please try again shortly.",
