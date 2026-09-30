@@ -16,18 +16,23 @@ export function ScrollReveal() {
 
   useEffect(() => {
     const main = document.querySelector("main");
-    if (!main || !("IntersectionObserver" in window) || !("animate" in HTMLElement.prototype)) return;
+    if (!main || !("animate" in HTMLElement.prototype)) return;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (reducedMotion.matches) return;
     const hashTarget = document.getElementById(window.location.hash.slice(1));
     const distance = motion.distance;
+    const visibleRange = () => {
+      const top = window.visualViewport?.offsetTop ?? 0;
+      const height = window.visualViewport?.height ?? window.innerHeight;
+      return { top, bottom: top + height - Math.min(motion.triggerInset, height * 0.2) };
+    };
 
     const pending = new Set<HTMLElement>();
     const animations = new Set<Animation>();
+    let frame = 0;
     const reveal = (element: HTMLElement, animate = true) => {
       if (!pending.delete(element)) return;
-      observer.unobserve(element);
       if (!animate || reducedMotion.matches) {
         element.classList.remove("scroll-reveal-pending");
         element.style.removeProperty("--scroll-reveal-distance");
@@ -47,22 +52,34 @@ export function ScrollReveal() {
       animation.finished.then(() => animations.delete(animation)).catch(() => animations.delete(animation));
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) reveal(entry.target as HTMLElement);
+    const checkPending = () => {
+      frame = 0;
+      const { top, bottom } = visibleRange();
+      for (const element of Array.from(pending)) {
+        const bounds = element.getBoundingClientRect();
+        if (bounds.bottom <= top) reveal(element, false);
+        else if (bounds.top <= bottom) reveal(element);
       }
-    }, { rootMargin: `0px 0px -${motion.triggerInset}px 0px`, threshold: 0 });
+    };
+    const scheduleCheck = () => {
+      if (!frame) frame = window.requestAnimationFrame(checkPending);
+    };
 
     const active = document.activeElement;
+    const { top, bottom } = visibleRange();
     for (const element of main.querySelectorAll<HTMLElement>(selector)) {
       const bounds = element.getBoundingClientRect();
       // The first screen, restored scroll positions and focused content stay ready to use.
-      if (bounds.top <= window.innerHeight - motion.triggerInset || bounds.bottom <= 0 || (active && element.contains(active)) || (hashTarget && (hashTarget.contains(element) || element.contains(hashTarget)))) continue;
+      if ((bounds.top <= bottom && bounds.bottom > top) || bounds.bottom <= top || (active && element.contains(active)) || (hashTarget && (hashTarget.contains(element) || element.contains(hashTarget)))) continue;
       element.style.setProperty("--scroll-reveal-distance", `${distance}px`);
       element.classList.add("scroll-reveal-pending");
       pending.add(element);
-      observer.observe(element);
     }
+    window.addEventListener("scroll", scheduleCheck, { passive: true });
+    window.addEventListener("resize", scheduleCheck);
+    window.visualViewport?.addEventListener("scroll", scheduleCheck, { passive: true });
+    window.visualViewport?.addEventListener("resize", scheduleCheck);
+    scheduleCheck();
 
     const revealFocused = (event: FocusEvent) => {
       const target = event.target;
@@ -86,11 +103,15 @@ export function ScrollReveal() {
     reducedMotion.addEventListener("change", revealAll);
 
     return () => {
+      window.removeEventListener("scroll", scheduleCheck);
+      window.removeEventListener("resize", scheduleCheck);
+      window.visualViewport?.removeEventListener("scroll", scheduleCheck);
+      window.visualViewport?.removeEventListener("resize", scheduleCheck);
       document.removeEventListener("focusin", revealFocused);
       window.removeEventListener("hashchange", revealHashTarget);
       reducedMotion.removeEventListener("change", revealAll);
+      window.cancelAnimationFrame(frame);
       revealAll();
-      observer.disconnect();
     };
   }, [pathname]);
 
