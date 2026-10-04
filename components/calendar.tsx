@@ -5,13 +5,9 @@ import type { EventMountArg } from "@fullcalendar/core";
 import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import type { EventItem } from "@/data/site";
+import { formatEventTimeRange } from "@/lib/event-format";
 
 type Preview = { event: EventItem; anchor: HTMLElement };
-type EventGroup = "Social" | "Community" | "Learning";
-const eventGroups: Record<EventItem["category"], EventGroup> = {
- Academic: "Learning", Social: "Social", Freshers: "Social",
- Outreach: "Community", International: "Learning", Wellbeing: "Community",
-};
 
 function EventPreview({ preview, id, keepOpen, leave }: {
  preview: Preview; id: string; keepOpen: () => void; leave: () => void;
@@ -33,24 +29,21 @@ function EventPreview({ preview, id, keepOpen, leave }: {
  const event = preview.event;
  const date = new Date(event.date);
  const day = new Intl.DateTimeFormat("en-GB", { weekday:"long", day:"numeric", month:"long", year:"numeric" });
- const time = new Intl.DateTimeFormat("en-GB", { hour:"2-digit", minute:"2-digit" });
  const timed = event.date.includes("T");
  return createPortal(
   <div ref={panel} id={id} role="tooltip" className="calendar-tooltip" onPointerEnter={keepOpen} onPointerLeave={leave}>
    <p className="calendar-tooltip-category">{event.category} · {event.status}</p>
    <h3>{event.title}</h3>
-   <dl>
-    <div><dt>When</dt><dd>{day.format(date)}<br/>{timed ? time.format(date) + (event.end ? " – " + (event.end.slice(0,10) !== event.date.slice(0,10) ? day.format(new Date(event.end)) + ", " : "") + time.format(new Date(event.end)) : "") : "All day"}</dd></div>
-    <div><dt>Where</dt><dd>{event.location || "Location to be confirmed"}</dd></div>
-   </dl>
+   <div className="calendar-tooltip-details">
+    <p>{day.format(date)}<br/>{timed ? formatEventTimeRange(event) : "All day"}</p>
+    <p>{event.location || "Location to be confirmed"}</p>
+   </div>
    <p className="calendar-tooltip-description">{event.description}</p>
-   <span className="calendar-tooltip-hint">Click the event to open its page</span>
   </div>, document.body
  );
 }
 
 export function Calendar({ events }: { events: EventItem[] }) {
- const [category, setCategory] = useState("All");
  const [preview, setPreview] = useState<Preview | null>(null);
  const id = useId();
  const openTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -115,25 +108,21 @@ export function Calendar({ events }: { events: EventItem[] }) {
    window.removeEventListener("resize", dismiss);
   };
  }, [cancelTimers, dismiss]);
- const categories = ["All", ...(["Social", "Community", "Learning"] as const).filter(group => events.some(event => eventGroups[event.category] === group))];
- const visible = useMemo(() => category === "All" ? events : events.filter(event => eventGroups[event.category] === category), [category, events]);
- const calendarEvents = useMemo(() => visible.map(event => ({
+ const calendarEvents = useMemo(() => events.map(event => ({
   id: event.slug, title: event.title, start: event.date, end: event.end,
   url: `/events/${event.slug}`, classNames: [`category-${event.category.toLowerCase()}`],
   extendedProps: { details: event },
- })), [visible]);
+ })), [events]);
  const unmount = useCallback((info: EventMountArg) => {
   cleanups.current.get(info.el)?.();
   cleanups.current.delete(info.el);
   dismiss();
  }, [dismiss]);
  return <div className="calendar-wrap">
-  <div className="calendar-filters" aria-label="Filter calendar events"><span>Show</span>{categories.map(item =>
-   <button key={item} onClick={() => { dismiss(); setCategory(item); }} className={category === item ? "active" : ""} aria-pressed={category === item}>{item}</button>
-  )}</div>
   <FullCalendar
    plugins={[dayGridPlugin]} initialDate={events[0]?.date} initialView="dayGridMonth"
    headerToolbar={{ left:"title", center:"", right:"prev,next" }}
+   eventTimeFormat={{ hour: "2-digit", minute: "2-digit", hour12: false }}
    events={calendarEvents}
    eventDidMount={mount}
    eventWillUnmount={unmount}

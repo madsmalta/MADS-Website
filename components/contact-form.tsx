@@ -186,7 +186,7 @@ export function ContactForm({ category, onCategoryChange }: ContactFormProps) {
     <label className={`checkbox ${errors.consent ? "checkbox--error" : ""}`}><input ref={(control) => setControlRef("consent", control)} required type="checkbox" name="consent" aria-invalid={Boolean(errors.consent)} aria-describedby={describedBy("consent")} onChange={(event) => updateError(event.currentTarget, true)} /> <span>I agree that MADS may use these details to respond to this enquiry.</span></label>
     {errors.consent && <p className="contact-field-feedback" id={`${formId}-consent-error`}>{errors.consent}</p>}
     </fieldset>
-    <p className="form-privacy-link">How we handle your details: <Link href="/privacy">Privacy notice</Link>.</p>
+    <p className="form-privacy-link"><Link href="/privacy">Privacy policy</Link></p>
     <button className="button button--dark" disabled={state === "loading" || delivery === "unavailable"}>{state === "loading" ? "Sending…" : delivery === "checking" ? "Checking availability…" : delivery === "unavailable" ? "Enquiries unavailable" : "Send enquiry"}</button>
     {state !== "idle" && <p aria-live="polite" className={state === "success" ? "form-success" : "form-error"}>{message}</p>}
   </form>;
