@@ -15,6 +15,7 @@ export function ScrollReveal() {
   const pathname = usePathname();
 
   useEffect(() => {
+    const setup = () => {
     const main = document.querySelector("main");
     if (!main || !("animate" in HTMLElement.prototype)) return;
 
@@ -112,6 +113,22 @@ export function ScrollReveal() {
       reducedMotion.removeEventListener("change", revealAll);
       window.cancelAnimationFrame(frame);
       revealAll();
+    };
+    };
+
+    // On phones, arm the reveals after RouteScroll's two-frame scroll reset.
+    // Otherwise the previous page's scroll position can mark new content as seen.
+    // Keep the existing synchronous desktop setup and motion values unchanged.
+    if (!window.matchMedia("(max-width: 600px)").matches) return setup();
+    let secondFrame = 0;
+    let cleanup: (() => void) | undefined;
+    const firstFrame = window.requestAnimationFrame(() => {
+      secondFrame = window.requestAnimationFrame(() => { cleanup = setup(); });
+    });
+    return () => {
+      window.cancelAnimationFrame(firstFrame);
+      window.cancelAnimationFrame(secondFrame);
+      cleanup?.();
     };
   }, [pathname]);
 

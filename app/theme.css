@@ -462,6 +462,19 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
  .listing-empty{grid-template-columns:1fr;gap:12px;padding:25px 23px}
 }
 @media(max-width:600px){.committee-grid{grid-template-columns:1fr;gap:30px}.committee-grid article{max-width:460px;width:100%;margin-inline:auto}}
+/* Phone-only refinements; tablet and desktop rules remain unchanged. */
+@media(max-width:600px){
+ .opening-copy h1{font-size:clamp(2.9rem,8.1vw,3.2rem)}
+ .welcome-links{padding-block:12px}
+ .welcome-links>a,.welcome-links>a:first-child,.welcome-links>a:nth-of-type(3){min-height:72px;padding-block:8px}
+ .welcome-links .welcome-social{min-height:72px;padding-block:8px}
+ .about-group{width:100%}
+ .event-card{position:relative}
+ .event-card .round-link{position:absolute;top:8px;right:12px;grid-column:auto}
+ .event-card-copy .tag{padding-right:50px}
+ .contact-section{gap:26px}
+ .contact-section-title{font-size:1.5rem;margin-bottom:10px}
+}
 @media(prefers-reduced-motion:reduce){.back-to-top{transition:none}}
 
 .calendar-tooltip{position:fixed;z-index:80;left:12px;top:12px;visibility:hidden;width:min(300px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:auto;padding:16px 18px;background:#fbfcf8;color:var(--ink);border:1px solid #cbdad2;border-top:4px solid var(--teal);border-radius:5px;box-shadow:0 12px 36px #102c4626;font:400 14px/1.55 var(--sans);animation:tooltip-in .16s ease-out}
