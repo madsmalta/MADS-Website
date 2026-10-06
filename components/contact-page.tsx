@@ -6,6 +6,13 @@ import { ContactForm } from "@/components/contact-form";
 import { contacts } from "@/data/site";
 
 const routeCategory: Record<string, string> = Object.fromEntries(contacts.map((contact) => [contact.need, contact.need]));
+const enquiryGuidance: Record<string, string> = {
+  "General enquiry": "Have a question about MADS or something you’d like to share? Tell us a little about it below so we can help.",
+  "Student concern": "Tell us what’s happening and how it affects you or other students. Share only the details you’re comfortable including, and let us know what support you’re looking for.",
+  "Event suggestion": "What would you like MADS to organise? Share your idea, who it would be for and any dates or activities you have in mind.",
+  "Outreach collaboration": "For outreach projects, it helps to mention who the activity is for, where it could take place and any dates you’re considering.",
+  "Opportunities": "Know of a course, exchange, conference or volunteering opportunity? Include a link, who can apply and any deadlines so we can find out more.",
+};
 
 export function ContactPage({ outreach = false }: { outreach?: boolean }) {
   const initialContact = outreach ? contacts.find((contact) => contact.need === "Outreach collaboration") ?? contacts[0] : contacts[0];
@@ -32,7 +39,7 @@ export function ContactPage({ outreach = false }: { outreach?: boolean }) {
       <aside><h3>{selected.role}</h3><p>{selected.note}</p><a className="text-link" href="#ask-mads" onClick={() => setCategory(routeCategory[selected.need] ?? "General enquiry")}>{selected.action} <ChevronRight size={16} /></a></aside>
     </section>
     <section className="shell section contact-section" id="ask-mads">
-      <div data-scroll-reveal><h2 className="contact-section-title">Ask MADS</h2>{category === "Outreach collaboration" && <p>For outreach projects, it helps to mention who the activity is for, where it could take place and any dates you’re considering.</p>}</div>
+      <div data-scroll-reveal><h2 className="contact-section-title">Ask MADS</h2><p>{enquiryGuidance[category] ?? enquiryGuidance["General enquiry"]}</p></div>
       <ContactForm category={category} onCategoryChange={setCategory} />
     </section>
   </PageShell>;

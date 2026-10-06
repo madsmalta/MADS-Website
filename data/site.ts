@@ -40,7 +40,7 @@ export const articles = [
 ];
 
 export const contacts = [
-  { need: "General enquiry", role: "MADS general enquiries", note: "Have a question or something you’d like to share? We’d love to hear from you.", action: "Ask MADS" },
+  { need: "General enquiry", role: "General enquiries", note: "Have a question or something you’d like to share? We’d love to hear from you.", action: "Ask MADS" },
   { need: "Student concern", role: "Bring a concern to MADS", note: "Whether it’s about your course or student life, tell us what’s going on. We can raise concerns with the faculty when appropriate.", action: "Raise a concern" },
   { need: "Event suggestion", role: "MADS events team", note: "Have an idea for a MADS event? Tell us what you’d like to see.", action: "Send an idea" },
   { need: "Outreach collaboration", role: "MADS outreach contact", note: "Schools, organisations and dental professionals can contact us about a joint oral-health activity or community project.", action: "Discuss an activity" },
