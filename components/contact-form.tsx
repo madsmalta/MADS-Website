@@ -8,7 +8,7 @@ const categories = [
   "Student concern",
   "Event suggestion",
   "Outreach collaboration",
-  "International opportunity",
+  "Opportunities",
   "Privacy or photo request",
 ] as const;
 

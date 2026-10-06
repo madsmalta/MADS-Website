@@ -23,7 +23,7 @@ type PageMetadata = {
   imageAlt?: string;
 };
 
-export function pageMetadata({ title, description, path, image = "/media/mads-social.jpg", imageAlt = "Malta Association of Dental Students — MADS" }: PageMetadata): Metadata {
+export function pageMetadata({ title, description, path, image = "/media/mads-social-v2.jpg", imageAlt = "Malta Association of Dental Students — MADS" }: PageMetadata): Metadata {
   const fullTitle = path === "/" ? title : `${title} | MADS`;
   return {
     title: { absolute: fullTitle },

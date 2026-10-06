@@ -44,5 +44,5 @@ export const contacts = [
   { need: "Student concern", role: "Bring a concern to MADS", note: "Whether it’s about your course or student life, tell us what’s going on. We can raise concerns with the faculty when appropriate.", action: "Raise a concern" },
   { need: "Event suggestion", role: "MADS events team", note: "Have an idea for a MADS event? Tell us what you’d like to see.", action: "Send an idea" },
   { need: "Outreach collaboration", role: "MADS outreach contact", note: "Schools, organisations and dental professionals can contact us about a joint oral-health activity or community project.", action: "Discuss an activity" },
-  { need: "International opportunity", role: "MADS opportunities contact", note: "Know of an opportunity dental students should hear about? Send it to us.", action: "Share an opportunity" },
+  { need: "Opportunities", role: "MADS opportunities contact", note: "Know of an opportunity dental students should hear about? Send it to us.", action: "Share an opportunity" },
 ];
