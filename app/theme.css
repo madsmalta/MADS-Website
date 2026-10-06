@@ -469,6 +469,7 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
  .welcome-links>a,.welcome-links>a:first-child,.welcome-links>a:nth-of-type(3){min-height:72px;padding-block:8px}
  .welcome-links .welcome-social{min-height:72px;padding-block:8px}
  .welcome-links>a:nth-of-type(3)>strong{align-items:center;position:relative;top:4px}
+ .welcome-links>a:nth-of-type(2){padding-left:20px}
  .welcome-links .welcome-social{display:flex;align-items:center;justify-content:center;padding-inline:12px;text-align:center}
  .welcome-links .welcome-social__row{align-items:center;justify-content:center;position:relative;top:8px}
  .welcome-links .welcome-social .social-links{justify-content:center}
