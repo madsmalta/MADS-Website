@@ -468,9 +468,15 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
  .welcome-links{padding-block:12px}
  .welcome-links>a,.welcome-links>a:first-child,.welcome-links>a:nth-of-type(3){min-height:72px;padding-block:8px}
  .welcome-links .welcome-social{min-height:72px;padding-block:8px}
+ .welcome-links>a:nth-of-type(3)>strong{align-items:center}
+ .welcome-links .welcome-social{display:flex;align-items:center;justify-content:center;padding-inline:12px;text-align:center}
+ .welcome-links .welcome-social__row{align-items:center;justify-content:center}
+ .welcome-links .welcome-social .social-links{justify-content:center}
  .about-group{width:100%}
  .event-card{position:relative}
  .event-card .round-link{position:absolute;top:8px;right:12px;grid-column:auto}
+ .event-card .round-link{background:radial-gradient(circle,var(--navy) 20px,transparent 20.5px)}
+ .event-card .round-link svg{width:18px;height:18px}
  .event-card-copy .tag{padding-right:50px}
  .contact-section{gap:26px}
  .contact-section-title{font-size:1.5rem;margin-bottom:10px}
