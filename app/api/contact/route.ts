@@ -5,7 +5,12 @@ export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 
 const emailPattern = /^\S+@\S+\.\S+$/;
-const sameOrigin = (request: Request) => { const origin = request.headers.get("origin"); return !origin || new URL(origin).host === new URL(request.url).host; };
+const sameOrigin = (request: Request) => {
+  const origin = request.headers.get("origin");
+  if (!origin) return true;
+  try { return new URL(origin).host === (request.headers.get("host") || new URL(request.url).host); }
+  catch { return false; }
+};
 const text = (value: unknown, max = 160) => typeof value === "string" ? value.trim().slice(0, max) : "";
 const webhookSettings = () => {
   try {
@@ -22,9 +27,30 @@ const brevoSettings = () => {
     : null;
 };
 
-export function GET() {
+// Local previews can reuse MADS's configured public service without copying its credentials.
+// Deployed environments always use their own delivery settings.
+function previewService(request: Request) {
+  if (process.env.VERCEL || !["localhost", "127.0.0.1", "[::1]"].includes(new URL(request.url).hostname)) return null;
+  try {
+    const url = new URL(process.env.CONTACT_PREVIEW_SERVICE_URL || "");
+    return url.href === "https://www.mads.org.mt/api/contact" ? url : null;
+  } catch { return null; }
+}
+
+export async function GET(request: Request) {
+  const configured = Boolean(webhookSettings() || brevoSettings());
+  const service = configured ? null : previewService(request);
+  if (service) {
+    try {
+      const response = await fetch(service, { cache: "no-store", signal: AbortSignal.timeout(10000) });
+      const result = await response.json();
+      return NextResponse.json({ configured: response.ok && result.configured === true }, { headers: { "Cache-Control": "no-store" } });
+    } catch {
+      return NextResponse.json({ configured: false }, { headers: { "Cache-Control": "no-store" } });
+    }
+  }
   return NextResponse.json({
-    configured: Boolean(webhookSettings() || brevoSettings()),
+    configured,
   }, { headers: { "Cache-Control": "no-store" } });
 }
 
@@ -43,6 +69,21 @@ export async function POST(request: Request) {
   }, { status: emailStatus === "invalid" ? 400 : 503 });
   const webhook = webhookSettings();
   const brevo = brevoSettings();
+  const service = !webhook && !brevo ? previewService(request) : null;
+  if (service) {
+    try {
+      const response = await fetch(service, {
+        method: "POST", headers: { "Content-Type": "application/json", Origin: service.origin },
+        body: JSON.stringify({ name, email, message, category, course, consent: true }),
+        cache: "no-store", signal: AbortSignal.timeout(10000),
+      });
+      const result = await response.json();
+      if (typeof result.message !== "string" || typeof result.configured !== "boolean") throw new Error("Invalid enquiry response");
+      return NextResponse.json({ message: result.message, configured: result.configured }, { status: response.status });
+    } catch {
+      return NextResponse.json({ message: "The enquiry service could not accept your message. Please try again later.", configured: true }, { status: 502 });
+    }
+  }
   if (!webhook && !brevo) return NextResponse.json({ message: "Enquiry delivery has not been configured. Your message was not sent.", configured: false }, { status: 503 });
   const subject = `MADS WEBSITE CONTACT FORM — ${category}`;
   let response: Response;

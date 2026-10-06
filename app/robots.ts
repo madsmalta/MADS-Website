@@ -1,2 +1,7 @@
 import type { MetadataRoute } from "next";
-export default function robots(): MetadataRoute.Robots { return { rules: { userAgent: "*", allow: "/" }, sitemap: "https://mads-malta.example/sitemap.xml" }; }
+import { absoluteUrl, isPreview } from "@/lib/seo";
+
+export default function robots(): MetadataRoute.Robots {
+  // Keep pages and rendering resources crawlable so robots meta tags can be read.
+  return { rules: { userAgent: "*", allow: "/", disallow: "/api/" }, sitemap: isPreview ? undefined : absoluteUrl("/sitemap.xml") };
+}

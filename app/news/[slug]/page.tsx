@@ -4,9 +4,17 @@ import {notFound} from "next/navigation";
 import {PageShell} from "@/components/page-shell";
 import {Photo} from "@/components/photo";
 import {galleries} from "@/data/gallery";
+import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
+import { StructuredData } from "@/components/structured-data";
+export const dynamicParams = false;
+export function generateStaticParams() {
+ return galleries.map(gallery => ({ slug: gallery.slug }));
+}
 export async function generateMetadata({params}:{params:Promise<{slug:string}>}) {
  const {slug}=await params;
- return {title:galleries.find(g=>g.slug===slug)?.title||"Photos"};
+ const gallery = galleries.find(g=>g.slug===slug);
+ if (!gallery) notFound();
+ return pageMetadata({ title: `${gallery.title} — Photos`, description: gallery.description, path: `/news/${gallery.slug}`, image: gallery.image, imageAlt: gallery.alt });
 }
 
 export default async function GalleryPage({params}:{params:Promise<{slug:string}>}) {
@@ -15,6 +23,7 @@ export default async function GalleryPage({params}:{params:Promise<{slug:string}
  if(!gallery) notFound();
 
  return <PageShell><article className="shell gallery-detail">
+  <StructuredData data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "News & Photos", path: "/news" }, { name: gallery.title, path: `/news/${gallery.slug}` }])} />
   <Link className="back-link" href="/news">Back to News &amp; Photos</Link>
   <p className="eyebrow">{gallery.category}</p>
   <h1>{gallery.title}</h1>

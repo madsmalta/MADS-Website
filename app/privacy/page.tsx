@@ -1,10 +1,12 @@
 import { PageShell } from "@/components/page-shell";
+import { sectionMetadata } from "@/lib/seo";
+export const metadata = sectionMetadata.privacy;
 
 export default function Privacy() {
   return <PageShell>
     <section className="shell legal-page">
       <h1>Privacy</h1>
-      <p>This notice explains how the Malta Association of Dental Students (MADS) handles personal information through this website. It covers visits, enquiries, newsletter sign-ups and published photographs. Last updated: 30 September 2026.</p>
+      <p>This notice explains how the Malta Association of Dental Students (MADS) handles personal information through this website. It covers visits, enquiries, newsletter sign-ups and published photographs. Last updated: 6 October 2026.</p>
 
       <h2 data-scroll-reveal>Who is responsible?</h2>
       <p>MADS decides how personal information submitted to or published on this website is used. For privacy questions, access requests or photo-removal requests, email <a href="mailto:madsmalta@gmail.com">madsmalta@gmail.com</a>.</p>
@@ -22,7 +24,7 @@ export default function Privacy() {
       <p>Before subscriptions are enabled, MADS must confirm the mailing provider, how subscription consent is recorded, whether confirmation by email is used, and how you can unsubscribe. If you later subscribe, you may withdraw consent at any time; withdrawal will not affect earlier lawful processing.</p>
 
       <h2 data-scroll-reveal>Committee and event photographs</h2>
-      <p>This website publishes committee portraits and photographs of MADS events and outreach. Some outreach photographs show children. MADS has documented publication permissions for the people shown. Photographs, names and committee roles are public and may be viewed, copied or indexed by others; removal from this website cannot guarantee removal of copies elsewhere. MADS does not currently provide expiring photo-download links.</p>
+      <p>This website publishes committee portraits and photographs of MADS events and outreach. Some outreach photographs show children. MADS has documented publication permissions for the people shown. Photographs, names and committee roles are public and may be viewed, copied or indexed by others; removal from this website cannot guarantee removal of copies elsewhere.</p>
       <p>If you appear in a photograph and want to ask about its use, object to publication, or request review or removal, email <a href="mailto:madsmalta@gmail.com">madsmalta@gmail.com</a> and identify the image or page. MADS will assess the request and any applicable rights. For a child, a parent or guardian may contact MADS on the child&apos;s behalf.</p>
 
       <h2 data-scroll-reveal>Who receives information?</h2>

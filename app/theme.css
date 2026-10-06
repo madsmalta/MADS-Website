@@ -394,6 +394,8 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .opportunity-list article:nth-child(odd){background:var(--paper)}
 .opportunity-list dt{color:var(--teal);font-weight:600}
 .calendar-wrap{background:var(--paper);padding:24px;border-top:3px solid var(--gold)}
+.calendar-wrap .fc-toolbar-title{font-size:clamp(1.8rem,2.6vw,2.25rem);line-height:1.2;margin-left:10px}
+@media(max-width:600px){.calendar-wrap .fc-toolbar-title{font-size:1.65rem;margin-left:6px}}
 .fc .fc-view-harness{background:white}
 .fc .fc-col-header-cell{background:var(--teal-dark);color:white}
 .fc .fc-list-day-cushion{background:var(--pale);color:var(--ink)}

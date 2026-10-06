@@ -7,7 +7,9 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "seo:assets": "node scripts/prepare-seo-assets.mjs",
+    "seo:audit": "node scripts/audit-seo.mjs"
   },
   "dependencies": {
     "@fullcalendar/core": "latest",

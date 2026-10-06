@@ -3,12 +3,20 @@ import "./globals.css";
 import "./theme.css";
 import { Intro } from "@/components/intro";
 import { RouteScroll } from "@/components/route-scroll";
+import { isPreview, siteDescription, siteName, siteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: { default: "MADS | Malta Association of Dental Students", template: "%s | MADS" },
-  description: "The public home of the Malta Association of Dental Students.",
-  metadataBase: new URL("https://mads-malta.example"),
-  openGraph: { title: "MADS | Malta Association of Dental Students", description: "Students, representation and community.", type: "website" },
+  description: siteDescription,
+  metadataBase: new URL(siteUrl),
+  applicationName: "MADS",
+  publisher: siteName,
+  robots: { index: !isPreview, follow: true, "max-image-preview": "large" },
+  icons: {
+    icon: [{ url: "/media/mads-icon-48.png", sizes: "48x48", type: "image/png" }, { url: "/media/mads-icon-192.png", sizes: "192x192", type: "image/png" }],
+    apple: { url: "/media/mads-apple-icon.png", sizes: "180x180", type: "image/png" },
+  },
+  verification: process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : undefined,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

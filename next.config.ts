@@ -3,6 +3,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: { remotePatterns: [], qualities: [75, 90] },
   turbopack: { root: process.cwd() },
+  async redirects() {
+    // Resolve this legacy URL before rendering, so crawlers receive a real 308.
+    return [{ source: "/new-students", destination: "/", permanent: true }];
+  },
   async headers() {
     return [{ source: "/(.*)", headers: [
       { key: "X-Content-Type-Options", value: "nosniff" },
