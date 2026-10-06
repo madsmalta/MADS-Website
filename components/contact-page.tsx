@@ -26,7 +26,7 @@ export function ContactPage({ outreach = false }: { outreach?: boolean }) {
   }
 
   return <PageShell>
-    <section className="page-hero shell" data-dental-icon="message"><p className="eyebrow">Contact MADS</p><h1>We’re here to listen.</h1><p>For questions, event ideas or outreach projects, choose a topic below to get started.</p></section>
+    <section className="page-hero shell" data-dental-icon="message"><p className="eyebrow">Contact MADS</p><h1>We’re here to listen</h1><p>For questions, event ideas or outreach projects, choose a topic below to get started.</p></section>
     <section className="shell contact-router">
       <div><div data-scroll-reveal><h2>What do you need help with?</h2></div><div className="route-options" aria-label="Choose an enquiry route">{contacts.map((contact) => <button key={contact.need} type="button" className={selected.need === contact.need ? "selected" : ""} aria-current={selected.need === contact.need ? "true" : undefined} onClick={() => selectRoute(contact)}>{contact.need}<ChevronRight size={17} /></button>)}</div></div>
       <aside><h3>{selected.role}</h3><p>{selected.note}</p><a className="text-link" href="#ask-mads" onClick={() => setCategory(routeCategory[selected.need] ?? "General enquiry")}>{selected.action} <ChevronRight size={16} /></a></aside>

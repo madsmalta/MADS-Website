@@ -27,7 +27,7 @@ export function Newsletter() {
   }
 
   return <section className="newsletter" id="newsletter">
-    <div data-scroll-reveal><h2 className="newsletter-title">The Molar</h2><p className="newsletter-tagline">Keep the useful things close.</p><p>Updates on MADS events, opportunities and news.</p></div>
+    <div data-scroll-reveal><h2 className="newsletter-title">The Molar</h2><p className="newsletter-tagline">Keep the useful things close</p><p>Updates on MADS events, opportunities and news.</p></div>
     <form onSubmit={submit}>
       <label className={`contact-field ${validity.name === undefined ? "" : validity.name ? "contact-field--valid" : "contact-field--error"}`}><FieldLabel>Name</FieldLabel><input className="contact-field__control" required name="name" autoComplete="name" placeholder=" " aria-invalid={validity.name === false} onBlur={event => validate(event.currentTarget)} onInput={event => { if (validity.name !== undefined) validate(event.currentTarget); }} /></label>
       <label className={`contact-field ${validity.email === undefined ? "" : validity.email ? "contact-field--valid" : "contact-field--error"}`}><FieldLabel>Email</FieldLabel><input className="contact-field__control" required type="email" name="email" autoComplete="email" placeholder=" " aria-invalid={validity.email === false} onBlur={event => validate(event.currentTarget)} onInput={event => { if (validity.email !== undefined) validate(event.currentTarget); }} /></label>
