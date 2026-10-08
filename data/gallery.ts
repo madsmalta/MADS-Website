@@ -1,3 +1,5 @@
+import { octoberGallerySelections } from "./gallery-october";
+
 export type GalleryPhoto = { src: string; alt: string };
 export type Gallery = { slug: string; title: string; category: string; image: string; alt: string; description: string; photos?: GalleryPhoto[] };
 
@@ -76,14 +78,21 @@ const volleyballPhotos = photos("volleyball", [224,28,49,56,63,70,77,84,91,98,10
  "Students playing beach volleyball at the MADS tournament"
 );
 
+function curatedPhotos(existing: GalleryPhoto[], selection: {replacements: Record<string, GalleryPhoto>; omit: string[]; additions: GalleryPhoto[]}): GalleryPhoto[] {
+ const selected = [...existing.filter(photo => !selection.omit.includes(photo.src)).map(photo => selection.replacements[photo.src] ?? photo), ...selection.additions];
+ return selected.map((photo, index) => ({...photo, alt: `${photo.alt.replace(/ \(photo \d+ of \d+\)$/, "")} (photo ${index + 1} of ${selected.length})`}));
+}
+const curatedSitcPhotos = curatedPhotos([...sitcPhotos,...sitcAdditionalPhotos,...sitcFolderPhotos,...sitcBatchPhotos], octoberGallerySelections.sitc);
+const curatedVolleyballPhotos = curatedPhotos(volleyballPhotos, octoberGallerySelections.volleyball);
+
 export const galleries: Gallery[] = [
  {slug:"pembroke",title:"Pembroke Skola Sajf",category:"Outreach",image:"/media/pembroke.webp",alt:"MADS volunteers demonstrating brushing with a dental model at the Pembroke talk",description:"A look at the MADS oral-health outreach talk in Pembroke.",photos:pembrokePhotos},
  {slug:"mosta",title:"Mosta Skola Sajf",category:"Outreach",image:"/media/mosta.webp",alt:"MADS volunteers delivering an oral-health presentation in Mosta",description:"Moments from the MADS oral-health outreach talk in Mosta.",photos:mostaPhotos},
  {slug:"scouts",title:"Scouts talk",category:"Outreach",image:"/media/scouts.webp",alt:"MADS presenters speaking to a group of Scouts",description:"MADS students talking with Scouts about looking after their teeth.",photos:scoutsPhotos},
  {slug:"attard",title:"Attard Skola Sajf",category:"Outreach",image:attardPhotos[0].src,alt:attardPhotos[0].alt,description:"Photographs from the MADS oral-health outreach talk in Attard.",photos:attardPhotos},
- {slug:"sitc",title:"Science in the City",category:"Outreach",image:sitcPhotos[0].src,alt:"MADS volunteers speaking with visitors at Science in the City",description:"MADS students sharing oral-health activities and conversations with visitors at Science in the City.",photos:[...sitcPhotos,...sitcAdditionalPhotos,...sitcFolderPhotos,...sitcBatchPhotos]},
+ {slug:"sitc",title:"Science in the City",category:"Outreach",image:curatedSitcPhotos[0].src,alt:"MADS volunteers speaking with visitors at Science in the City",description:"MADS students sharing oral-health activities and conversations with visitors at Science in the City.",photos:curatedSitcPhotos},
  {slug:"open-wide",title:"Open Wide Open Bar",category:"Student life",image:openWidePhotos[0].src,alt:"MADS volunteers together at Open Wide Open Bar",description:"Photos from Open Wide Open Bar, a MADS social event.",photos:openWidePhotos},
- {slug:"volleyball",title:"MADS Volleyball Tournament",category:"Student life",image:volleyballPhotos[0].src,alt:"Students playing beach volleyball at the MADS tournament",description:"Beach volleyball and moments together at the MADS Volleyball Tournament.",photos:volleyballPhotos},
+ {slug:"volleyball",title:"MADS Volleyball Tournament",category:"Student life",image:curatedVolleyballPhotos[0].src,alt:"Students playing beach volleyball at the MADS tournament",description:"Beach volleyball and moments together at the MADS Volleyball Tournament.",photos:curatedVolleyballPhotos},
 ];
 export const committee: {file:string;name:string;role?:string}[]=[
  {file:"edited-andreya",name:"Andreya Gauci",role:"President"},
