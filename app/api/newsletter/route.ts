@@ -77,6 +77,7 @@ export async function POST(request: Request) {
         includeListIds: [brevo.listId],
         templateId: brevo.templateId,
         redirectionUrl: brevo.redirect,
+        contactPixelTrackingConsent: false,
       }),
       cache: "no-store",
       signal: AbortSignal.timeout(10000),

@@ -15,15 +15,20 @@ export function Newsletter() {
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setState("loading");
-    const form = new FormData(event.currentTarget);
-    const response = await fetch("/api/newsletter", {
-      method: "POST",
-      body: JSON.stringify(Object.fromEntries(form)),
-      headers: { "Content-Type": "application/json" },
-    });
-    const result = await response.json() as { message: string; configured: boolean };
-    setState(response.ok && result.configured ? "success" : "error");
-    setMessage(result.message);
+    try {
+      const form = new FormData(event.currentTarget);
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        body: JSON.stringify(Object.fromEntries(form)),
+        headers: { "Content-Type": "application/json" },
+      });
+      const result = await response.json() as { message: string; configured: boolean };
+      setState(response.ok && result.configured ? "success" : "error");
+      setMessage(result.message);
+    } catch {
+      setState("error");
+      setMessage("We could not start your subscription. Please try again later.");
+    }
   }
 
   return <section className="newsletter" id="newsletter">
