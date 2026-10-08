@@ -87,6 +87,14 @@ export async function POST(request: Request) {
   }
 
   if (!response.ok) {
+    const error = await response.json().catch(() => null) as { code?: unknown; message?: unknown } | null;
+    console.error("Brevo DOI failed", {
+      status: response.status,
+      code: typeof error?.code === "string" ? error.code : undefined,
+      message: typeof error?.message === "string"
+        ? error.message.replace(/[\w.+-]+@[\w.-]+/g, "[email]").slice(0, 300)
+        : undefined,
+    });
     return json("We could not start your subscription. Please try again later.", true, 502);
   }
 
