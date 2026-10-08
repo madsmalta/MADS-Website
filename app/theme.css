@@ -375,6 +375,8 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .page-hero>p:not(.eyebrow){color:#d7e2e6}
 .page-hero .button--dark{background:var(--gold);color:var(--navy)}
 .page-hero .button--outline{color:white;border-color:#91aab6}
+.newsletter-confirmed-hero{margin-bottom:0}
+.newsletter-confirmed-hero>p a{text-decoration:underline;text-underline-offset:4px}
 .committee-section{background:var(--pale);border-top:1px solid #cadcd4;padding-top:68px;padding-bottom:28px}
 .committee-section+.split-section{padding-top:32px}
 .committee-section+.split-section>h2{align-self:center;margin-bottom:0}
