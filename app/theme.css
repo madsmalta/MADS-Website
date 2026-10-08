@@ -148,6 +148,8 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .newsletter .button{background:var(--teal);color:white;border-color:#5caaa1}
 .newsletter p{color:#d7e2e6}
 .newsletter .newsletter-title{font-size:clamp(3rem,4.5vw,4.75rem);line-height:1.02;color:#dec18e;margin:0 0 14px}
+.newsletter .newsletter-confirmation{max-width:none;font-size:1.05rem!important;line-height:1.55}
+.newsletter .newsletter-confirmation span{font-family:var(--serif);color:#dec18e;font-size:1.25em;white-space:nowrap}
 .newsletter .newsletter-tagline{font-family:var(--serif);font-size:clamp(1.5rem,2.2vw,2rem);line-height:1.22;color:#fff;margin:0 0 16px}
 
 /* Interior pages keep their existing content and order, with consistent framing. */

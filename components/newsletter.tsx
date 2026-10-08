@@ -38,7 +38,8 @@ export function Newsletter() {
       <label className={`contact-field ${validity.email === undefined ? "" : validity.email ? "contact-field--valid" : "contact-field--error"}`}><FieldLabel>Email</FieldLabel><input className="contact-field__control" required type="email" name="email" autoComplete="email" placeholder=" " aria-invalid={validity.email === false} onBlur={event => validate(event.currentTarget)} onInput={event => { if (validity.email !== undefined) validate(event.currentTarget); }} /></label>
       <label className="checkbox"><input required type="checkbox" name="consent" /> <span>I agree to receive The Molar and understand I can unsubscribe at any time.</span></label>
       <button className="button button--light" disabled={state === "loading"}>{state === "loading" ? "Checking…" : "Subscribe"}</button>
-      {state !== "idle" && <p aria-live="polite" className={state === "success" ? "form-success" : "form-error"}>{message}</p>}
+      {state === "success" && <p aria-live="polite" className="form-success newsletter-confirmation">Check your inbox to confirm <span>The Molar.</span></p>}
+      {state === "error" && <p aria-live="polite" className="form-error">{message}</p>}
       <small>Read our <Link href="/privacy">Privacy notice</Link>.</small>
     </form>
   </section>;
