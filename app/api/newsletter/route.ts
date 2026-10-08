@@ -73,7 +73,7 @@ export async function POST(request: Request) {
       headers: { "api-key": brevo.apiKey, "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({
         email,
-        attributes: { FNAME: name },
+        attributes: { FIRSTNAME: name },
         includeListIds: [brevo.listId],
         templateId: brevo.templateId,
         redirectionUrl: brevo.redirect,
