@@ -97,7 +97,7 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .photo-caption h2 br::after{content:" "}
 .committee-year{font-size:.8rem;letter-spacing:.03em;color:#e1d4bc}
 .committee-photo-link{font-size:.9rem;gap:7px;color:white}
-.welcome-links{grid-template-columns:repeat(4,minmax(0,1fr));padding-block:32px;gap:0;border-bottom:1px solid var(--line)}
+.welcome-links{grid-template-columns:repeat(4,minmax(0,1fr));padding-block:32px 24px;gap:0;border-bottom:1px solid var(--line)}
 .welcome-links>a{padding-inline:24px;border-right:1px solid var(--line)}
 .welcome-links>a:first-child{padding-left:0}
 .welcome-links span{font-size:.82rem}
@@ -115,7 +115,7 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 @media(prefers-reduced-motion:reduce){.welcome-links .welcome-social .social-links a:is(:hover,:focus-visible){transform:none}}
 
 .section{padding-block:64px}
-.home-events{gap:56px;align-items:center;padding-block:28px 48px}
+.home-events{gap:56px;align-items:center;padding-block:40px}
 .home-events>div:first-child{text-align:center;align-self:center}
 .quiet-state{background:var(--paper);border:0;border-left:3px solid var(--gold);padding:32px 36px}
 .quiet-state svg{color:var(--teal);margin-bottom:14px}
@@ -142,13 +142,18 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .student-band h2{font-size:clamp(1.8rem,2.7vw,2.6rem);margin-bottom:12px}
 .student-band p:last-child{margin-bottom:0}
 .opportunity-intro{align-items:center;border-top:1px solid var(--line)}
-.newsletter{background:var(--navy);border-top:1px solid #ffffff15;padding-block:48px}
+.newsletter{background:var(--navy);border-top:1px solid #ffffff15;padding-block:40px}
+.newsletter>div>p:last-child{margin-bottom:0}
+.newsletter form{gap:12px 18px}
+.newsletter .newsletter-action-row{grid-column:1/-1;display:flex;align-items:center;flex-wrap:wrap;gap:12px 20px}
+.newsletter .newsletter-action-row p{margin:0}
+.newsletter form>small{margin-top:2px}
 .newsletter .eyebrow{color:#dec18e}
 .newsletter input,.newsletter select{border-color:#d2ded9;background:#fafbf8}
 .newsletter .button{background:var(--teal);color:white;border-color:#5caaa1}
 .newsletter p{color:#d7e2e6}
 .newsletter .newsletter-title{font-size:clamp(3rem,4.5vw,4.75rem);line-height:1.02;color:#dec18e;margin:0 0 14px}
-.newsletter .newsletter-confirmation{max-width:none;font-size:1.05rem!important;line-height:1.55}
+.newsletter .newsletter-confirmation{max-width:none;font-size:1.05rem!important;line-height:1.55;transform:translateY(6px)}
 .newsletter .newsletter-confirmation span{font-family:var(--serif);color:#dec18e;font-size:1.25em;white-space:nowrap}
 .newsletter .newsletter-tagline{font-family:var(--serif);font-size:clamp(1.5rem,2.2vw,2rem);line-height:1.22;color:#fff;margin:0 0 16px}
 
@@ -377,7 +382,9 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .page-hero>p:not(.eyebrow){color:#d7e2e6}
 .page-hero .button--dark{background:var(--gold);color:var(--navy)}
 .page-hero .button--outline{color:white;border-color:#91aab6}
-.newsletter-confirmed-hero{margin-bottom:0}
+body:has(.newsletter-confirmed-hero){display:flex;flex-direction:column;min-height:100dvh}
+body:has(.newsletter-confirmed-hero) #main-content{display:flex;flex:1;flex-direction:column}
+.newsletter-confirmed-hero{flex:1;margin-bottom:0}
 .newsletter-confirmed-hero>p a{text-decoration:underline;text-underline-offset:4px}
 .committee-section{background:var(--pale);border-top:1px solid #cadcd4;padding-top:68px;padding-bottom:28px}
 .committee-section+.split-section{padding-top:32px}
