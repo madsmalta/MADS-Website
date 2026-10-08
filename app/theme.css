@@ -115,7 +115,7 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 @media(prefers-reduced-motion:reduce){.welcome-links .welcome-social .social-links a:is(:hover,:focus-visible){transform:none}}
 
 .section{padding-block:64px}
-.home-events{gap:56px;align-items:center;padding-block:48px}
+.home-events{gap:56px;align-items:center;padding-block:28px 48px}
 .home-events>div:first-child{text-align:center;align-self:center}
 .quiet-state{background:var(--paper);border:0;border-left:3px solid var(--gold);padding:32px 36px}
 .quiet-state svg{color:var(--teal);margin-bottom:14px}
