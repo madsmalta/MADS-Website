@@ -1,4 +1,5 @@
 import { PageShell } from "@/components/page-shell";
+import { MOLAR_UNSUBSCRIBE_URL } from "@/lib/newsletter";
 import { sectionMetadata } from "@/lib/seo";
 export const metadata = sectionMetadata.privacy;
 
@@ -6,7 +7,7 @@ export default function Privacy() {
   return <PageShell>
     <section className="shell legal-page">
       <h1>Privacy</h1>
-      <p>This notice explains how the Malta Association of Dental Students (MADS) handles personal information through this website. It covers visits, enquiries, newsletter sign-ups and published photographs. Last updated: 8 October 2026.</p>
+      <p>This notice explains how the Malta Association of Dental Students (MADS) handles personal information through this website. It covers visits, enquiries, newsletter sign-ups and published photographs. Last updated: 10 October 2026.</p>
 
       <h2 data-scroll-reveal>Who is responsible?</h2>
       <p>MADS decides how personal information submitted to or published on this website is used. For privacy questions, access requests or photo-removal requests, email <a href="mailto:info@mads.org.mt">info@mads.org.mt</a>.</p>
@@ -21,7 +22,7 @@ export default function Privacy() {
 
       <h2 data-scroll-reveal>The Molar newsletter</h2>
       <p>The Molar form asks for your name, email address and your agreement to receive MADS updates about events, opportunities and news. The website checks your email address, including whether its domain can receive email. If you submit the form, it sends your name and email address to Brevo, which emails you a confirmation link. You are added to The Molar mailing list only after you click that link. MADS sends the newsletter on the basis of your consent.</p>
-      <p>Brevo records the confirmation email and subscription activity to help MADS show when you confirmed. MADS uses your details to send The Molar and manage the subscription. Each newsletter includes an unsubscribe link; you can also ask <a href="mailto:info@mads.org.mt">info@mads.org.mt</a> to remove you. You may withdraw consent at any time, without affecting earlier lawful processing.</p>
+      <p>Brevo records confirmation, delivery, list membership and unsubscribe activity to help MADS manage and evidence subscriptions. Individual email opens and clicks are tracked only when separate tracking consent has been recorded. MADS uses your details to send The Molar and manage the subscription. Each newsletter includes an unsubscribe link. You can also <a href={MOLAR_UNSUBSCRIBE_URL}>unsubscribe online</a> at any time, including before the first issue, or ask <a href="mailto:info@mads.org.mt">info@mads.org.mt</a> to remove you. Withdrawing consent does not affect earlier lawful processing.</p>
 
       <h2 data-scroll-reveal>Committee and event photographs</h2>
       <p>This website publishes committee portraits and photographs of MADS events and outreach. Some outreach photographs show children. MADS has documented publication permissions for the people shown. Photographs, names and committee roles are public and may be viewed, copied or indexed by others; removal from this website cannot guarantee removal of copies elsewhere.</p>

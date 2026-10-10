@@ -386,6 +386,8 @@ body:has(.newsletter-confirmed-hero){display:flex;flex-direction:column;min-heig
 body:has(.newsletter-confirmed-hero) #main-content{display:flex;flex:1;flex-direction:column}
 .newsletter-confirmed-hero{flex:1;margin-bottom:0}
 .newsletter-confirmed-hero>p a{text-decoration:underline;text-underline-offset:4px}
+.newsletter-confirmed-actions{display:flex;flex-wrap:wrap;gap:12px}
+@media(max-width:600px){.newsletter-confirmed-actions>.button{width:100%;text-align:center}}
 .committee-section{background:var(--pale);border-top:1px solid #cadcd4;padding-top:68px;padding-bottom:28px}
 .committee-section+.split-section{padding-top:32px}
 .committee-section+.split-section>h2{align-self:center;margin-bottom:0}

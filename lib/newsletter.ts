@@ -1,0 +1,2 @@
+export const MOLAR_UNSUBSCRIBE_URL =
+  "https://ac0e9b22.sibforms.com/serve/MUIFAGupuPMlnbck73-ZpFpEus3Ptf1B8h9ozZHW_Hdo-unaFPyZCbgTOdkvPCyipRRDPaeIhfdBL3l1XvFF1NUDPvD69vK-6R5Np-dPsv1NQ8NrIfBJa0DazW32IZTrQbd43haM-nMjndbCYmjIQFQfXoUBzPdUK35uMs0s96LPt_86UK0NE51HtaeRN6aA1emrDosKvGB5py3C9Q==";
