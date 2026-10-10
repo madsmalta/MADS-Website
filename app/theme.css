@@ -405,6 +405,7 @@ body:has(.newsletter-confirmed-hero) #main-content{display:flex;flex:1;flex-dire
 .page-hero>.eyebrow,.legal-page>.eyebrow,.gallery-detail>.eyebrow,.event-detail>.eyebrow{font-size:1.1rem}
 .committee-grid article{border-bottom:1px solid #b6cec3;padding-bottom:20px}
 .committee-grid p{color:var(--teal-dark)}
+.committee-email{display:inline-block;color:var(--teal-dark);font:600 .94rem/1.5 var(--utility);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
 .outreach-story>div:not(.photo){padding:30px;border-left:3px solid var(--gold);background:var(--paper)}
 .gallery-grid .story{background:var(--paper);border-bottom:2px solid var(--teal)}
 .gallery-grid .story-caption{padding:4px 24px 20px}
@@ -463,6 +464,9 @@ body:has(.newsletter-confirmed-hero) #main-content{display:flex;flex:1;flex-dire
 .contact-section-title{font:700 clamp(1.35rem,1.7vw,1.55rem)/1.35 var(--utility);letter-spacing:normal;color:var(--teal-dark);margin-bottom:18px}
 .contact-alternative{margin-top:18px;font:500 .95rem/1.6 var(--utility);color:var(--teal-dark)}
 .contact-alternative a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.contact-router aside .contact-route-email{margin-top:18px;margin-bottom:0;font-size:.94rem;overflow-wrap:anywhere}
+.contact-route-email a{color:white;text-decoration:underline;text-underline-offset:3px}
+.footer-grid a[href^="mailto:"]{overflow-wrap:anywhere}
 .form-honeypot{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .contact-form label{color:var(--teal-dark)}
 .contact-form input,.contact-form select,.contact-form textarea{border-color:#b2c6bb}

@@ -38,18 +38,8 @@ export const publicEvents: EventItem[] = [
   },
 ];
 
-// Category examples only: these are not open applications or verified listings.
-export const opportunities: { title: string; type: string; eligibility: string; deadline: string; location: string }[] = [
-  { title: "Opportunity listings are being prepared", type: "International", eligibility: "To be confirmed", deadline: "No verified deadline", location: "To be confirmed" },
-  { title: "Volunteering opportunities", type: "Volunteering", eligibility: "To be confirmed", deadline: "No verified deadline", location: "Malta / to be confirmed" },
-  { title: "Courses and conferences", type: "Courses", eligibility: "To be confirmed", deadline: "No verified deadline", location: "To be confirmed" },
-];
-
-export const articles = [
-  { title: "News will appear here once approved", category: "Announcement", date: "Publication date pending", excerpt: "A source-backed home for MADS announcements, recaps and student notices." },
-  { title: "Photo collections are handled with care", category: "Photos", date: "Information pending", excerpt: "Eligible event galleries will show a download expiry and link only to a MADS-owned Drive folder." },
-  { title: "The Molar", category: "Newsletter", date: "Current issue pending", excerpt: "A concise route to events, opportunities and verified student information." },
-];
+// Publish only source-checked listings. The page has an honest empty state meanwhile.
+export const opportunities: { title: string; type: string; eligibility: string; deadline: string; location: string }[] = [];
 
 export const contacts = [
   { need: "General enquiry", role: "General enquiries", note: "Have a question or something you’d like to share? We’d love to hear from you.", action: "Ask MADS" },
