@@ -24,6 +24,18 @@ export const publicEvents: EventItem[] = [
       alt: "Primary Impressions poster featuring Valletta and a dental impression tray.",
     },
   },
+  {
+    slug: "christmas-gala-2026",
+    title: "MADS Christmas Gala",
+    date: "2026-12-19T20:00:00",
+    end: "2026-12-20T00:00:00",
+    utcOffset: "+01:00", // Malta is on standard time in December.
+    category: "Social",
+    location: "Haywharf, Floriana",
+    status: "Upcoming",
+    description: "Join MADS for the annual Christmas Gala at Haywharf. Ticketing and booking details will follow.",
+    longDescription: "The MADS annual Christmas Gala brings dental students and lecturers together at Haywharf in Floriana on Saturday 19 December. Join us from 20:00 to midnight for a festive evening. Ticketing and booking details will be shared closer to the event.",
+  },
 ];
 
 // Category examples only: these are not open applications or verified listings.
