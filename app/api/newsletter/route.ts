@@ -1,11 +1,11 @@
 import "server-only";
 import { NextResponse } from "next/server";
 import { checkEmail } from "@/lib/email-validation";
+import { boundedText, hasOnlyFields, isSameOrigin, readLimitedJson } from "@/lib/form-security";
+import { localLimit, releaseLocalLimit, visitorKey } from "@/lib/local-form-limit";
+import { checkBotId } from "botid/server";
 
 export const runtime = "nodejs";
-
-const text = (value: unknown, max = 160) =>
-  typeof value === "string" ? value.trim().slice(0, max) : "";
 
 const positiveId = (value: string | undefined) => {
   const id = Number(value);
@@ -32,23 +32,34 @@ const json = (message: string, configured: boolean, status = 200) =>
   NextResponse.json({ message, configured }, { status, headers: { "Cache-Control": "no-store" } });
 
 export async function POST(request: Request) {
-  const origin = request.headers.get("origin");
-  if (origin && new URL(origin).host !== new URL(request.url).host) {
+  if (!isSameOrigin(request)) {
     return json("This request must come from the MADS website.", false, 403);
   }
-
-  let body: Record<string, unknown>;
-  try {
-    body = await request.json() as Record<string, unknown>;
-  } catch {
+  const parsed = await readLimitedJson(request, 2048);
+  if ("status" in parsed) return json("We could not read that form submission.", false, parsed.status);
+  const body = parsed.body;
+  if (!hasOnlyFields(body, ["name", "email", "consent", "mads_hp_url"]) ||
+      (body.mads_hp_url !== undefined && body.mads_hp_url !== "")) {
     return json("We could not read that form submission.", false, 400);
   }
-
-  const name = text(body.name, 120);
-  const email = text(body.email, 254).toLowerCase();
-  if (!name || !email || body.consent !== "on") {
+  const name = boundedText(body.name, 120);
+  const email = boundedText(body.email, 254)?.toLowerCase();
+  if (!name || !email || body.consent !== "on" || /[\r\n\x00-\x1f]/.test(name)) {
     return json("Enter your name, a valid email and consent to continue.", false, 400);
   }
+
+  if (process.env.VERCEL) {
+    try {
+      if ((await checkBotId()).isBot) return json("We could not verify this request. Please try again later.", false, 403);
+    } catch {
+      return json("We could not verify this request. Please try again later.", false, 503);
+    }
+  }
+
+  const visitor = localLimit("newsletter-ip", visitorKey(request), 20, 10 * 60_000);
+  if (!visitor.allowed) return NextResponse.json({
+    message: "Too many subscription attempts were made recently. Please try again later.", configured: true,
+  }, { status: 429, headers: { "Cache-Control": "no-store", "Retry-After": String(visitor.retryAfter) } });
 
   const emailStatus = await checkEmail(email);
   if (emailStatus !== "valid") {
@@ -65,6 +76,10 @@ export async function POST(request: Request) {
   if (!brevo) {
     return json("The Molar is not connected to Brevo yet. Your details were not saved.", false, 503);
   }
+  const recipient = localLimit("newsletter-email", email, 1, 10 * 60_000);
+  if (!recipient.allowed) return NextResponse.json({
+    message: "A confirmation email was requested recently. Please check your inbox before trying again.", configured: true,
+  }, { status: 429, headers: { "Cache-Control": "no-store", "Retry-After": String(recipient.retryAfter) } });
 
   let response: Response;
   try {
@@ -83,18 +98,14 @@ export async function POST(request: Request) {
       signal: AbortSignal.timeout(10000),
     });
   } catch {
+    releaseLocalLimit("newsletter-email", email);
     return json("We could not start your subscription. Please try again later.", true, 502);
   }
 
   if (!response.ok) {
-    const error = await response.json().catch(() => null) as { code?: unknown; message?: unknown } | null;
-    console.error("Brevo DOI failed", {
-      status: response.status,
-      code: typeof error?.code === "string" ? error.code : undefined,
-      message: typeof error?.message === "string"
-        ? error.message.replace(/[\w.+-]+@[\w.-]+/g, "[email]").slice(0, 300)
-        : undefined,
-    });
+    releaseLocalLimit("newsletter-email", email);
+    // The provider may echo submitted details. Log only the status, never its body.
+    console.error("Brevo DOI failed", { status: response.status });
     return json("We could not start your subscription. Please try again later.", true, 502);
   }
 

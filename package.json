@@ -16,6 +16,7 @@
     "@fullcalendar/daygrid": "latest",
     "@fullcalendar/list": "latest",
     "@fullcalendar/react": "6.1.21",
+    "botid": "^1.5.11",
     "lucide-react": "latest",
     "motion": "latest",
     "next": "16.4.0",

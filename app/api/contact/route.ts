@@ -1,17 +1,14 @@
 import "server-only";
 import { checkEmail } from "@/lib/email-validation";
+import { isContactCategory } from "@/lib/contact-categories";
+import { boundedText, hasOnlyFields, isSameOrigin, readLimitedJson } from "@/lib/form-security";
+import { localLimit, visitorKey } from "@/lib/local-form-limit";
+import { checkBotId } from "botid/server";
 
 export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 
 const emailPattern = /^\S+@\S+\.\S+$/;
-const sameOrigin = (request: Request) => {
-  const origin = request.headers.get("origin");
-  if (!origin) return true;
-  try { return new URL(origin).host === (request.headers.get("host") || new URL(request.url).host); }
-  catch { return false; }
-};
-const text = (value: unknown, max = 160) => typeof value === "string" ? value.trim().slice(0, max) : "";
 const webhookSettings = () => {
   try {
     const url = new URL(process.env.CONTACT_FORM_WEBHOOK_URL || "");
@@ -55,12 +52,34 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  if (!sameOrigin(request)) return NextResponse.json({ message: "This request must come from the MADS website.", configured: false }, { status: 403 });
-  let body: Record<string, unknown>; try { body = await request.json() as Record<string, unknown>; } catch { return NextResponse.json({ message: "We could not read that form submission.", configured: false }, { status: 400 }); }
-  const name = text(body.name, 120); const email = text(body.email, 254); const message = text(body.message, 5000);
-  const category = text(body.category, 100) || "General enquiry";
-  const course = text(body.course, 100);
-  if (!name || !emailPattern.test(email) || !message || !body.consent) return NextResponse.json({ message: "Complete every required field and provide a valid email address.", configured: false }, { status: 400 });
+  if (!isSameOrigin(request)) return NextResponse.json({ message: "This request must come from the MADS website.", configured: false }, { status: 403 });
+  const parsed = await readLimitedJson(request, 8192);
+  if ("status" in parsed) return NextResponse.json({ message: "We could not read that form submission.", configured: false }, { status: parsed.status });
+  const body = parsed.body;
+  if (!hasOnlyFields(body, ["name", "email", "message", "category", "course", "consent", "mads_hp_url"]) ||
+      (body.mads_hp_url !== undefined && body.mads_hp_url !== "")) {
+    return NextResponse.json({ message: "We could not read that form submission.", configured: false }, { status: 400 });
+  }
+  const name = boundedText(body.name, 120);
+  const email = boundedText(body.email, 254);
+  const message = boundedText(body.message, 5000);
+  const course = body.course === undefined ? "" : boundedText(body.course, 100);
+  const category = body.category;
+  if (!name || !email || !emailPattern.test(email) || !message || course === null ||
+      !isContactCategory(category) || body.consent !== "on" || /[\r\n\x00-\x1f]/.test(name + course)) {
+    return NextResponse.json({ message: "Complete every required field and provide a valid email address.", configured: false }, { status: 400 });
+  }
+  if (process.env.VERCEL) {
+    try {
+      if ((await checkBotId()).isBot) return NextResponse.json({ message: "We could not verify this submission. Please email MADS directly.", configured: false }, { status: 403 });
+    } catch {
+      return NextResponse.json({ message: "We could not verify this submission. Please email MADS directly.", configured: false }, { status: 503 });
+    }
+  }
+  const visitor = localLimit("contact-ip", visitorKey(request), 12, 10 * 60_000);
+  if (!visitor.allowed) return NextResponse.json({
+    message: "Too many enquiries were sent recently. Please wait or email MADS directly.", configured: false,
+  }, { status: 429, headers: { "Retry-After": String(visitor.retryAfter) } });
   const emailStatus = await checkEmail(email);
   if (emailStatus !== "valid") return NextResponse.json({
     message: emailStatus === "invalid" ? "Check your email address: its format or domain is not valid for receiving email." : "We could not check your email domain just now. Please try again shortly.",

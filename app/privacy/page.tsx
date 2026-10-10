@@ -14,6 +14,7 @@ export default function Privacy() {
 
       <h2 data-scroll-reveal>Visiting the website</h2>
       <p>Vercel hosts the site and may process technical information needed to deliver and protect it, such as your IP address, browser, requested pages and request times. MADS uses this processing to operate and secure the website, relying on its legitimate interests in providing a reliable public site. The site does not currently include MADS advertising pixels or an embedded analytics service. Hosting-provider records and settings are separate from the website code.</p>
+      <p>Form submissions use Vercel BotID to check technical browser signals for automated abuse. Short-lived, locally held hashed identifiers also help limit repeated submissions. These checks are used to protect the forms, not for advertising.</p>
       <p>A first-party session-storage setting remembers that you have seen the opening logo animation, so it normally appears only once per browser session. It is not used to follow you across sites. The site does not currently set its own marketing cookies.</p>
 
       <h2 data-scroll-reveal>Contacting MADS</h2>

@@ -443,6 +443,7 @@ body:has(.newsletter-confirmed-hero) #main-content{display:flex;flex:1;flex-dire
 .contact-section-title{font:700 clamp(1.35rem,1.7vw,1.55rem)/1.35 var(--utility);letter-spacing:normal;color:var(--teal-dark);margin-bottom:18px}
 .contact-alternative{margin-top:18px;font:500 .95rem/1.6 var(--utility);color:var(--teal-dark)}
 .contact-alternative a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.form-honeypot{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .contact-form label{color:var(--teal-dark)}
 .contact-form input,.contact-form select,.contact-form textarea{border-color:#b2c6bb}
 .route-options button.selected{background:var(--pale);border-left:3px solid var(--gold);padding-left:16px}

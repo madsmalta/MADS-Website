@@ -2,15 +2,7 @@
 
 import { FormEvent, useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
-
-const categories = [
-  "General enquiry",
-  "Student concern",
-  "Event suggestion",
-  "Outreach collaboration",
-  "Opportunities",
-  "Privacy or photo request",
-] as const;
+import { contactCategories } from "@/lib/contact-categories";
 
 type FieldName = "name" | "email" | "course" | "message" | "consent";
 type FieldErrors = Partial<Record<FieldName, string>>;
@@ -180,6 +172,7 @@ export function ContactForm({ category, onCategoryChange }: ContactFormProps) {
   const describedBy = (name: FieldName) => errors[name] ? `${formId}-${name}-error` : undefined;
 
   return <form onSubmit={submit} className="contact-form" noValidate>
+    <div className="form-honeypot" aria-hidden="true"><label>Leave this blank<input name="mads_hp_url" tabIndex={-1} autoComplete="off" /></label></div>
     <fieldset className="contact-form__fields" disabled={delivery === "checking" || delivery === "unavailable"}>
     <div className="form-pair">
       <div className="contact-field-group"><label className={fieldClass("name")}><FieldLabel>Name</FieldLabel><input ref={(control) => setControlRef("name", control)} className="contact-field__control" required name="name" autoComplete="name" placeholder=" " aria-invalid={Boolean(errors.name)} aria-describedby={describedBy("name")} onBlur={(event) => handleBlur(event.currentTarget)} onInput={(event) => handleInput(event.currentTarget)} /></label>{errors.name && <p className="contact-field-feedback" id={`${formId}-name-error`}>{errors.name}</p>}</div>
@@ -187,7 +180,7 @@ export function ContactForm({ category, onCategoryChange }: ContactFormProps) {
     </div>
     <div className={`form-pair ${needsCourse ? "" : "form-pair--single"}`}>
       {needsCourse && <div className="contact-field-group"><label className={fieldClass("course")}><FieldLabel>Course (optional)</FieldLabel><input ref={(control) => setControlRef("course", control)} className="contact-field__control" name="course" maxLength={100} placeholder=" " aria-invalid={Boolean(errors.course)} aria-describedby={describedBy("course")} onBlur={(event) => handleBlur(event.currentTarget)} onInput={(event) => handleInput(event.currentTarget)} /></label>{errors.course && <p className="contact-field-feedback" id={`${formId}-course-error`}>{errors.course}</p>}</div>}
-      <div className="contact-field-group"><label className="contact-field contact-field--select"><FieldLabel>Enquiry category</FieldLabel><select className="contact-field__control" name="category" value={category} onChange={(event) => onCategoryChange(event.target.value)}>{categories.map((option) => <option key={option}>{option}</option>)}</select></label></div>
+      <div className="contact-field-group"><label className="contact-field contact-field--select"><FieldLabel>Enquiry category</FieldLabel><select className="contact-field__control" name="category" value={category} onChange={(event) => onCategoryChange(event.target.value)}>{contactCategories.map((option) => <option key={option}>{option}</option>)}</select></label></div>
     </div>
     <div className="contact-field-group"><label className={fieldClass("message", "contact-field--textarea")}><FieldLabel>Message</FieldLabel><textarea ref={(control) => setControlRef("message", control)} className="contact-field__control" required name="message" rows={6} maxLength={5000} placeholder=" " aria-invalid={Boolean(errors.message)} aria-describedby={describedBy("message")} onBlur={(event) => handleBlur(event.currentTarget)} onInput={(event) => handleInput(event.currentTarget)} /></label>{errors.message && <p className="contact-field-feedback" id={`${formId}-message-error`}>{errors.message}</p>}</div>
     <label className={`checkbox ${errors.consent ? "checkbox--error" : ""}`}><input ref={(control) => setControlRef("consent", control)} required type="checkbox" name="consent" aria-invalid={Boolean(errors.consent)} aria-describedby={describedBy("consent")} onChange={(event) => updateError(event.currentTarget, true)} /> <span>I agree that MADS may use these details to respond to this enquiry.</span></label>
