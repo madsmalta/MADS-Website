@@ -2,7 +2,8 @@ import "server-only";
 import { NextResponse } from "next/server";
 import { checkEmail } from "@/lib/email-validation";
 import { boundedText, hasOnlyFields, isSameOrigin, readLimitedJson } from "@/lib/form-security";
-import { localLimit, releaseLocalLimit, visitorKey } from "@/lib/local-form-limit";
+import { visitorKey } from "@/lib/local-form-limit";
+import { formRateLimit, reserveConfirmation } from "@/lib/form-rate-limit";
 import { checkBotId } from "botid/server";
 
 export const runtime = "nodejs";
@@ -56,7 +57,12 @@ export async function POST(request: Request) {
     }
   }
 
-  const visitor = localLimit("newsletter-ip", visitorKey(request), 20, 10 * 60_000);
+  let visitor;
+  try {
+    visitor = await formRateLimit("newsletter-ip", visitorKey(request));
+  } catch {
+    return json("The Molar sign-up form is temporarily unavailable. Please try again later.", false, 503);
+  }
   if (!visitor.allowed) return NextResponse.json({
     message: "Too many subscription attempts were made recently. Please try again later.", configured: true,
   }, { status: 429, headers: { "Cache-Control": "no-store", "Retry-After": String(visitor.retryAfter) } });
@@ -76,7 +82,12 @@ export async function POST(request: Request) {
   if (!brevo) {
     return json("The Molar is not connected to Brevo yet. Your details were not saved.", false, 503);
   }
-  const recipient = localLimit("newsletter-email", email, 1, 10 * 60_000);
+  let recipient;
+  try {
+    recipient = await reserveConfirmation(email);
+  } catch {
+    return json("The Molar sign-up form is temporarily unavailable. Please try again later.", false, 503);
+  }
   if (!recipient.allowed) return NextResponse.json({
     message: "A confirmation email was requested recently. Please check your inbox before trying again.", configured: true,
   }, { status: 429, headers: { "Cache-Control": "no-store", "Retry-After": String(recipient.retryAfter) } });
@@ -98,12 +109,12 @@ export async function POST(request: Request) {
       signal: AbortSignal.timeout(10000),
     });
   } catch {
-    releaseLocalLimit("newsletter-email", email);
+    await recipient.release().catch(() => undefined);
     return json("We could not start your subscription. Please try again later.", true, 502);
   }
 
   if (!response.ok) {
-    releaseLocalLimit("newsletter-email", email);
+    await recipient.release().catch(() => undefined);
     // The provider may echo submitted details. Log only the status, never its body.
     console.error("Brevo DOI failed", { status: response.status });
     return json("We could not start your subscription. Please try again later.", true, 502);

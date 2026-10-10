@@ -2,7 +2,8 @@ import "server-only";
 import { checkEmail } from "@/lib/email-validation";
 import { isContactCategory } from "@/lib/contact-categories";
 import { boundedText, hasOnlyFields, isSameOrigin, readLimitedJson } from "@/lib/form-security";
-import { localLimit, visitorKey } from "@/lib/local-form-limit";
+import { visitorKey } from "@/lib/local-form-limit";
+import { formRateLimit } from "@/lib/form-rate-limit";
 import { checkBotId } from "botid/server";
 
 export const runtime = "nodejs";
@@ -76,7 +77,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: "We could not verify this submission. Please email MADS directly.", configured: false }, { status: 503 });
     }
   }
-  const visitor = localLimit("contact-ip", visitorKey(request), 12, 10 * 60_000);
+  let visitor;
+  try {
+    visitor = await formRateLimit("contact-ip", visitorKey(request));
+  } catch {
+    return NextResponse.json({ message: "The enquiry form is temporarily unavailable. Please email MADS directly.", configured: false }, { status: 503 });
+  }
   if (!visitor.allowed) return NextResponse.json({
     message: "Too many enquiries were sent recently. Please wait or email MADS directly.", configured: false,
   }, { status: 429, headers: { "Retry-After": String(visitor.retryAfter) } });

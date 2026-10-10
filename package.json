@@ -16,6 +16,8 @@
     "@fullcalendar/daygrid": "latest",
     "@fullcalendar/list": "latest",
     "@fullcalendar/react": "6.1.21",
+    "@upstash/ratelimit": "^2.2.0",
+    "@upstash/redis": "^1.39.0",
     "botid": "^1.5.11",
     "lucide-react": "latest",
     "motion": "latest",
