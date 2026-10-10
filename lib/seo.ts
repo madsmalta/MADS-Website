@@ -52,7 +52,7 @@ export function organizationSchema() {
   return {
     "@type": "Organization", "@id": absoluteUrl("/#organization"), name: siteName,
     alternateName: "MADS", url: absoluteUrl(), logo: absoluteUrl("/media/mads-logo.png"),
-    description: siteDescription, email: "madsmalta@gmail.com",
+    description: siteDescription, email: "info@mads.org.mt",
     sameAs: ["https://www.instagram.com/mads.malta", "https://www.facebook.com/madsonline", "https://www.um.edu.mt/ds/students/mads/"],
   };
 }
