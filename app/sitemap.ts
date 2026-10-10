@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   if (isPreview) return [];
   return [
     ...siteRoutes.map((route) => ({ url: absoluteUrl(route.href) })),
+    { url: absoluteUrl("/events/subscribe") },
     { url: absoluteUrl("/privacy") },
     ...publicEvents.map((event) => ({ url: absoluteUrl(`/events/${event.slug}`), images: event.poster ? [absoluteUrl(event.poster.src)] : undefined })),
     ...galleries.map((gallery) => ({ url: absoluteUrl(`/news/${gallery.slug}`), images: (gallery.photos ?? [{ src: gallery.image }]).map((photo) => absoluteUrl(photo.src)) })),

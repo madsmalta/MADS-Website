@@ -2,7 +2,8 @@ import Link from "next/link";
 import { CalendarPlus, ChevronLeft } from "lucide-react";
 import { PageShell } from "@/components/page-shell";
 import { googleCalendarSubscriptionUrl } from "@/data/calendar";
-import { pageMetadata } from "@/lib/seo";
+import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
+import { StructuredData } from "@/components/structured-data";
 
 export const metadata = pageMetadata({
   title: "Follow the MADS Google Calendar",
@@ -12,6 +13,7 @@ export const metadata = pageMetadata({
 
 export default function SubscribeToEvents() {
   return <PageShell>
+    <StructuredData data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Events", path: "/events" }, { name: "Follow our Google Calendar", path: "/events/subscribe" }])} />
     <section className="page-hero shell">
       <p className="eyebrow">MADS events</p>
       <h1>Follow our Google Calendar</h1>
