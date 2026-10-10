@@ -109,7 +109,7 @@ export function Calendar({ events, initialDate }: { events: EventItem[]; initial
  }, [cancelTimers, dismiss]);
  const calendarEvents = useMemo(() => events.map(event => ({
   id: event.slug, title: event.status === "Cancelled" ? `${event.title} — Cancelled` : event.title, start: `${event.date}${event.utcOffset}`, end: event.end ? `${event.end}${event.utcOffset}` : undefined,
-  url: `/events/${event.slug}`, classNames: [`category-${event.category.toLowerCase()}`],
+  url: `/events/${event.slug}`, classNames: [`category-${event.category.toLowerCase()}`, ...(event.slug === "christmas-gala-2026" ? ["calendar-event-centered"] : [])],
   extendedProps: { details: event },
  })), [events]);
  const unmount = useCallback((info: EventMountArg) => {
