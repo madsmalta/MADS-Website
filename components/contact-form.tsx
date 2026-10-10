@@ -64,16 +64,23 @@ export function ContactForm({ category, onCategoryChange }: ContactFormProps) {
 
   useEffect(() => {
     const controller = new AbortController();
+    let active = true;
+    const timeout = window.setTimeout(() => controller.abort(), 8000);
     fetch("/api/contact", { signal: controller.signal, cache: "no-store" })
       .then(async (response) => {
         const result = await response.json() as { configured?: unknown };
         if (!response.ok || typeof result.configured !== "boolean") throw new Error("Invalid availability response");
-        setDelivery(result.configured ? "ready" : "unavailable");
+        if (active) setDelivery(result.configured ? "ready" : "unavailable");
       })
       .catch(() => {
-        if (!controller.signal.aborted) setDelivery("unknown");
-      });
-    return () => controller.abort();
+        if (active) setDelivery("unknown");
+      })
+      .finally(() => window.clearTimeout(timeout));
+    return () => {
+      active = false;
+      controller.abort();
+      window.clearTimeout(timeout);
+    };
   }, []);
 
   useEffect(() => {

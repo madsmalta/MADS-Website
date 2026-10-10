@@ -441,6 +441,8 @@ body:has(.newsletter-confirmed-hero) #main-content{display:flex;flex:1;flex-dire
 .event-card--poster .event-card-copy{min-width:0}
 .contact-section{border-top:3px solid var(--gold);padding:48px;margin-bottom:65px}
 .contact-section-title{font:700 clamp(1.35rem,1.7vw,1.55rem)/1.35 var(--utility);letter-spacing:normal;color:var(--teal-dark);margin-bottom:18px}
+.contact-alternative{margin-top:18px;font:500 .95rem/1.6 var(--utility);color:var(--teal-dark)}
+.contact-alternative a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .contact-form label{color:var(--teal-dark)}
 .contact-form input,.contact-form select,.contact-form textarea{border-color:#b2c6bb}
 .route-options button.selected{background:var(--pale);border-left:3px solid var(--gold);padding-left:16px}

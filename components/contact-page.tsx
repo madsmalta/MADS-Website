@@ -39,7 +39,7 @@ export function ContactPage({ outreach = false }: { outreach?: boolean }) {
       <aside><h3>{selected.role}</h3><p>{selected.note}</p><a className="text-link" href="#ask-mads" onClick={() => setCategory(routeCategory[selected.need] ?? "General enquiry")}>{selected.action} <ChevronRight size={16} /></a></aside>
     </section>
     <section className="shell section contact-section" id="ask-mads">
-      <div data-scroll-reveal><h2 className="contact-section-title">Ask MADS</h2><p>{enquiryGuidance[category] ?? enquiryGuidance["General enquiry"]}</p></div>
+      <div data-scroll-reveal><h2 className="contact-section-title">Ask MADS</h2><p>{enquiryGuidance[category] ?? enquiryGuidance["General enquiry"]}</p><p className="contact-alternative">Having trouble with the form? Email <a href="mailto:info@mads.org.mt">info@mads.org.mt</a> directly.</p></div>
       <ContactForm category={category} onCategoryChange={setCategory} />
     </section>
   </PageShell>;
