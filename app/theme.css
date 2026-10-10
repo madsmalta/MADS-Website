@@ -382,6 +382,16 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .page-hero>p:not(.eyebrow){color:#d7e2e6}
 .page-hero .button--dark{background:var(--gold);color:var(--navy)}
 .page-hero .button--outline{color:white;border-color:#91aab6}
+.calendar-subscribe{padding-top:48px}
+.calendar-subscribe-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:24px}
+.calendar-subscribe-card{min-width:0;padding:28px;background:var(--paper);border-top:3px solid var(--gold)}
+.calendar-subscribe-card .eyebrow{margin-bottom:10px}
+.calendar-subscribe-card h2{font-size:clamp(1.7rem,2.4vw,2.25rem);margin-bottom:16px}
+.calendar-subscribe-card .button{margin-top:8px}
+.calendar-subscribe-note,.calendar-subscribe-footer{color:var(--muted);font-size:.94rem}
+.calendar-subscribe-note{margin-top:20px}
+.calendar-subscribe-footer{margin-top:24px}
+@media(max-width:700px){.calendar-subscribe-grid{grid-template-columns:1fr}.calendar-subscribe-card{padding:24px}.calendar-subscribe-card:last-child{order:-1}}
 body:has(.newsletter-confirmed-hero){display:flex;flex-direction:column;min-height:100dvh}
 body:has(.newsletter-confirmed-hero) #main-content{display:flex;flex:1;flex-direction:column}
 .newsletter-confirmed-hero{flex:1;margin-bottom:0}

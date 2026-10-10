@@ -1,5 +1,5 @@
-import { googleCalendarSubscriptionUrl } from "@/data/calendar";
-import { CalendarPlus, Download } from "lucide-react";
+import Link from "next/link";
+import { CalendarPlus } from "lucide-react";
 import { PageShell } from "@/components/page-shell";
 import { Calendar } from "@/components/calendar";
 import { EventCard } from "@/components/event-card";
@@ -16,10 +16,9 @@ export default function Events() {
     <section className="page-hero shell" data-dental-icon="syringe">
       <p className="eyebrow">Events & calendar</p>
       <h1>See what’s on</h1>
-      <p>Find the next MADS gathering below.<br/>Add the MADS Google Calendar to keep up with what’s coming.</p>
+      <p>Find the next MADS gathering below.<br/>Follow the MADS Google Calendar to keep up with what’s coming.</p>
       <div className="hero-actions">
-        <a className="button button--dark" href={process.env.NEXT_PUBLIC_MADS_CALENDAR_SUBSCRIPTION_URL || googleCalendarSubscriptionUrl} target="_blank" rel="noopener noreferrer"><CalendarPlus size={17} /> Add to Google Calendar</a>
-        {process.env.NEXT_PUBLIC_MADS_CALENDAR_ICS_URL && <a className="button button--outline" href={process.env.NEXT_PUBLIC_MADS_CALENDAR_ICS_URL}><Download size={17} /> Apple & Outlook (ICS)</a>}
+        <Link className="button button--dark" href="/events/subscribe"><CalendarPlus size={17} /> Follow our Google Calendar</Link>
       </div>
     </section>
     <section className="shell section compact-section" id="calendar-status"><Calendar events={[...upcoming, ...updates.filter(event => event.status === "Cancelled"), ...past]} initialDate={upcoming[0]?.date.slice(0, 10)} /></section>

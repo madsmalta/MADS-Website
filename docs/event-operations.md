@@ -2,6 +2,10 @@
 
 The website event list lives in `data/site.ts`. The homepage automatically features the first future event from that list. Once an event ends, it moves from **Upcoming** to **Past events** on the Events page; it is no longer featured on the homepage. The site calendar keeps past events visible for reference.
 
+The **MADS website editor** updates `data/site.ts`; the **MADS events officer** updates the separate public Google Calendar, **MADS | Official Events**, owned by `madsmalta@gmail.com`. The calendar is publicly readable, but the committee's internal calendar is separate. These two editors should cross-check title, date, Malta time, venue, status and any event-page link before publishing, and again whenever any detail changes. If one editor is unavailable, another committee member can perform the update, but both public surfaces must be checked. The website does not sync with Google automatically.
+
+The site's **Follow our Google Calendar** link opens `/events/subscribe`. Google subscriptions must be added from a computer browser using the Google account that is also on the person's phone. The old direct subscription link sent iPhone visitors to an obsolete mobile web calendar without an add action. Apple/Outlook subscription is not advertised yet.
+
 ## Add or change an event
 
 1. Confirm the title, Malta date and start time, venue, attendance or booking details, and any poster with the event organiser. Do not publish an unconfirmed finish time or booking link.
