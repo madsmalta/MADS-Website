@@ -425,6 +425,13 @@ body:has(.newsletter-confirmed-hero) #main-content{display:flex;flex:1;flex-dire
 .fc .fc-daygrid-event:active{transform:translateY(0)}
 @media(prefers-reduced-motion:reduce){.fc .fc-daygrid-event,.fc .fc-list-event.fc-event{transition:none}.fc .fc-daygrid-event:is(:hover,:focus-visible,:active){transform:none}}
 .fc .fc-button{min-height:44px}
+.fc .fc-button:focus:not(:focus-visible){box-shadow:none}
+.fc .fc-button:focus-visible{outline:3px solid var(--gold);outline-offset:3px;box-shadow:none}
+.fc .fc-daygrid-event{min-height:30px;align-items:center}
+.fc .fc-daygrid-event .fc-event-title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.event-empty-state{padding:24px 28px;background:var(--paper);border-top:1px solid var(--line)}
+.event-empty-state p{margin:0;max-width:65ch}
+.event-status{display:inline-block;padding:4px 9px;margin:0 0 10px!important;background:var(--pale);color:var(--teal-dark);font:700 .78rem/1.3 var(--utility)}
 .listing-empty-section{padding-block:24px 52px}
 .listing-empty{display:grid;grid-template-columns:32px minmax(0,1fr);align-items:start;gap:22px;max-width:880px;padding:32px 36px;background:var(--paper);border-top:3px solid var(--gold)}
 .listing-empty>svg{color:var(--teal);margin-top:5px}

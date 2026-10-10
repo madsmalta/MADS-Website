@@ -1,5 +1,5 @@
 export type Category = "Academic" | "Social" | "Freshers" | "Outreach" | "International" | "Wellbeing";
-export type EventItem = { slug: string; title: string; date: string; end?: string; utcOffset?: "+01:00" | "+02:00"; category: Category; location: string; locationUrl?: string; venue?: { name: string; streetAddress: string; addressLocality: string; addressCountry: string }; status: "Upcoming" | "Postponed" | "Cancelled" | "Sold out"; description: string; longDescription: string; poster?: { src: string; alt: string }; registrationLabel?: string; registrationUrl?: string };
+export type EventItem = { slug: string; title: string; date: string; end?: string; utcOffset: "+01:00" | "+02:00"; category: Category; location: string; locationUrl?: string; venue?: { name: string; streetAddress: string; addressLocality: string; addressCountry: string }; status: "Upcoming" | "Postponed" | "Cancelled" | "Sold out"; description: string; longDescription: string; poster?: { src: string; alt: string }; registrationLabel?: string; registrationUrl?: string };
 
 export const siteRoutes = [
   { href: "/", label: "Home" }, { href: "/events", label: "Events" }, { href: "/opportunities", label: "Opportunities" }, { href: "/outreach", label: "Outreach" }, { href: "/news", label: "News & Photos" }, { href: "/about", label: "About MADS" }, { href: "/contact", label: "Contact" },

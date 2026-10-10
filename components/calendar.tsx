@@ -6,6 +6,7 @@ import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useSta
 import { createPortal } from "react-dom";
 import type { EventItem } from "@/data/site";
 import { formatEventTimeRange } from "@/lib/event-format";
+import { eventDisplayStatus, formatEventDate } from "@/lib/events";
 
 type Preview = { event: EventItem; anchor: HTMLElement };
 
@@ -27,15 +28,13 @@ function EventPreview({ preview, id, keepOpen, leave }: {
   el.style.visibility = "visible";
  }, [preview]);
  const event = preview.event;
- const date = new Date(event.date);
- const day = new Intl.DateTimeFormat("en-GB", { weekday:"long", day:"numeric", month:"long", year:"numeric" });
  const timed = event.date.includes("T");
  return createPortal(
   <div ref={panel} id={id} role="tooltip" className="calendar-tooltip" onPointerEnter={keepOpen} onPointerLeave={leave}>
-   <p className="calendar-tooltip-category">{event.category} · {event.status}</p>
+   <p className="calendar-tooltip-category">{event.category} · {eventDisplayStatus(event)}</p>
    <h3>{event.title}</h3>
    <div className="calendar-tooltip-details">
-    <p>{day.format(date)}<br/>{timed ? formatEventTimeRange(event) : "All day"}</p>
+    <p>{formatEventDate(event, { weekday:"long", day:"numeric", month:"long", year:"numeric" })}<br/>{timed ? `${formatEventTimeRange(event)} Malta time` : "All day"}</p>
     <p>{event.location || "Location to be confirmed"}</p>
    </div>
    <p className="calendar-tooltip-description">{event.description}</p>
@@ -43,7 +42,7 @@ function EventPreview({ preview, id, keepOpen, leave }: {
  );
 }
 
-export function Calendar({ events }: { events: EventItem[] }) {
+export function Calendar({ events, initialDate }: { events: EventItem[]; initialDate?: string }) {
  const [preview, setPreview] = useState<Preview | null>(null);
  const id = useId();
  const openTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -109,7 +108,7 @@ export function Calendar({ events }: { events: EventItem[] }) {
   };
  }, [cancelTimers, dismiss]);
  const calendarEvents = useMemo(() => events.map(event => ({
-  id: event.slug, title: event.title, start: event.date, end: event.end,
+  id: event.slug, title: event.status === "Cancelled" ? `${event.title} — Cancelled` : event.title, start: `${event.date}${event.utcOffset}`, end: event.end ? `${event.end}${event.utcOffset}` : undefined,
   url: `/events/${event.slug}`, classNames: [`category-${event.category.toLowerCase()}`],
   extendedProps: { details: event },
  })), [events]);
@@ -120,9 +119,9 @@ export function Calendar({ events }: { events: EventItem[] }) {
  }, [dismiss]);
  return <div className="calendar-wrap">
   <FullCalendar
-   plugins={[dayGridPlugin]} initialDate={events[0]?.date} initialView="dayGridMonth"
+   plugins={[dayGridPlugin]} initialDate={initialDate} initialView="dayGridMonth" timeZone="Europe/Malta"
    headerToolbar={{ left:"title", center:"", right:"prev,next" }}
-   eventTimeFormat={{ hour: "2-digit", minute: "2-digit", hour12: false }}
+   displayEventTime={false}
    events={calendarEvents}
    eventDidMount={mount}
    eventWillUnmount={unmount}

@@ -6,10 +6,12 @@ import { PageShell } from "@/components/page-shell";
 import { publicEvents } from "@/data/site";
 import { formatEventTimeRange } from "@/lib/event-format";
 import { getEventLocationUrl } from "@/lib/event-location";
+import { eventDisplayStatus, formatEventDate } from "@/lib/events";
 import { absoluteUrl, breadcrumbSchema, pageMetadata, siteName } from "@/lib/seo";
 import { StructuredData } from "@/components/structured-data";
 
 export const dynamicParams = false;
+export const dynamic = "force-dynamic";
 export function generateStaticParams() {
   return publicEvents.map((event) => ({ slug: event.slug }));
 }
@@ -26,12 +28,11 @@ export default async function EventDetail({ params }: { params: Promise<{ slug: 
   const event = publicEvents.find((item) => item.slug === slug);
   if (!event) notFound();
 
-  const date = new Date(event.date);
   const locationUrl = getEventLocationUrl(event);
-  const withOffset = (value: string) => /(?:Z|[+-]\d{2}:\d{2})$/.test(value) ? value : `${value}${event.utcOffset ?? ""}`;
+  const withOffset = (value: string) => /(?:Z|[+-]\d{2}:\d{2})$/.test(value) ? value : `${value}${event.utcOffset}`;
   const eventSchema = {
     "@type": "Event", "@id": absoluteUrl(`/events/${event.slug}#event`),
-    name: event.title, description: event.longDescription, url: absoluteUrl(`/events/${event.slug}`),
+    name: event.title, description: event.status === "Postponed" ? "A new date and time will be announced." : event.longDescription, url: absoluteUrl(`/events/${event.slug}`),
     startDate: withOffset(event.date), endDate: event.end ? withOffset(event.end) : undefined,
     eventStatus: `https://schema.org/${event.status === "Cancelled" ? "EventCancelled" : event.status === "Postponed" ? "EventPostponed" : "EventScheduled"}`,
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
@@ -44,11 +45,11 @@ export default async function EventDetail({ params }: { params: Promise<{ slug: 
     <Link href="/events" className="back-link"><ChevronLeft size={17} /> All events</Link>
     <p className="eyebrow">{event.category}</p>
     <h1>{event.title}</h1>
-    <p className="lede">{event.longDescription}</p>
+    <p className="lede">{event.status === "Postponed" ? "This event has been postponed. We’ll share the new date and details once they’re confirmed." : event.longDescription}</p>
     <div className="event-info" data-scroll-reveal>
-      <div><span>Date & time</span><strong>{date.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" })} · {formatEventTimeRange(event)}</strong></div>
+      <div><span>Date & time</span><strong>{event.status === "Postponed" ? "New date to be confirmed" : `${formatEventDate(event, { weekday: "long", day: "numeric", month: "long", year: "numeric" })} · ${formatEventTimeRange(event)} Malta time`}</strong></div>
       <div><span>Location</span><strong><MapPin size={16} /> {locationUrl ? <a className="event-location-link" href={locationUrl} target="_blank" rel="noopener noreferrer">{event.location}</a> : event.location}</strong></div>
-      <div><span>Status</span><strong>{event.status}</strong></div>
+      <div><span>Status</span><strong>{eventDisplayStatus(event)}</strong></div>
     </div>
     {event.poster && <figure className="event-poster" data-scroll-reveal><Image src={event.poster.src} alt={event.poster.alt} width={1254} height={1254} sizes="(max-width: 600px) calc(100vw - 40px), 520px" /></figure>}
   </article></PageShell>;
