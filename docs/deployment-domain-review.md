@@ -5,7 +5,7 @@ This records the checks for the current public release. Recheck after a hosting,
 ## Hosting and release
 
 - The Vercel project `madsmalta/mads-website` is accessible from the MADS account. Jeremy confirmed that MADS owns `mads.org.mt`; Vercel lists its registrar as a third party and its nameservers as Vercel. Record the registrar account and renewal owner in the committee handover notes.
-- Vercel Production tracks `main` from `github.com/madsmalta/MADS-Website`. Release `087e331` was marked Ready and Current on 11 October 2026. The Vercel build log shows a fresh Git clone of that commit and a successful `npm run build` on Vercel's build machine. It used a dependency cache, but no local Desktop or temporary files.
+- Vercel Production tracks `main` from `github.com/madsmalta/MADS-Website`. Release `c497a1c` was listed as Ready in the Production deployment history on 11 October 2026; the immediately previous `444cfe5` deployment was also Ready. The earlier `087e331` build log showed a fresh Git clone and a successful `npm run build` on Vercel's build machine. It used a dependency cache, but no local Desktop or temporary files. See [launch handover](launch-handover.md) for release and rollback steps.
 - All 462 files in `public/media` are Git tracked. Representative committee portraits, the Primary Impressions poster and a gallery image returned HTTP 200 from the live site. Photo preparation scripts refer to local source folders, but the production build command does not run them.
 - The cloud build reported one non-blocking package install-script warning for `unrs-resolver`; the Next.js build completed successfully.
 
