@@ -122,10 +122,19 @@ if (!preview) {
   for (const link of links) fail(link, paths.includes(link), "public linked page is missing from the sitemap");
   for (const path of paths.filter((path) => path !== "/")) fail(path, links.has(path), "sitemap page has no internal link");
 }
-for (const path of resources) {
-  const response = await fetch(new URL(path, base), { method: "HEAD", redirect: "manual", signal: AbortSignal.timeout(20000) });
-  fail(path, response.status === 200, `image/icon resource returned HTTP ${response.status}`);
-}
+const resourcePaths = [...resources];
+let nextResource = 0;
+await Promise.all(Array.from({ length: Math.min(8, resourcePaths.length) }, async () => {
+  while (nextResource < resourcePaths.length) {
+    const path = resourcePaths[nextResource++];
+    try {
+      const response = await fetch(new URL(path, base), { method: "HEAD", redirect: "manual", signal: AbortSignal.timeout(20000) });
+      fail(path, response.status === 200, `image/icon resource returned HTTP ${response.status}`);
+    } catch (error) {
+      failures.push(`${path}: image/icon resource could not be checked (${error.cause?.code || error.name})`);
+    }
+  }
+}));
 for (const path of ["/seo-audit-missing-page", "/events/seo-audit-missing-event", "/news/seo-audit-missing-gallery"]) {
   const { response, html } = await get(path);
   fail(path, response.status === 404, `unknown content returned HTTP ${response.status} instead of 404`);

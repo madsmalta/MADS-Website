@@ -11,7 +11,8 @@ import { absoluteUrl, breadcrumbSchema, pageMetadata, siteName } from "@/lib/seo
 import { StructuredData } from "@/components/structured-data";
 
 export const dynamicParams = false;
-export const dynamic = "force-dynamic";
+// Keep known event pages fresh as their status changes, while unknown slugs stay real 404s.
+export const revalidate = 3600;
 export function generateStaticParams() {
   return publicEvents.map((event) => ({ slug: event.slug }));
 }
