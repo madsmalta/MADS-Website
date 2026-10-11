@@ -13,11 +13,12 @@ export default function NewsletterConfirmed() {
     <section className="shell page-hero newsletter-confirmed-hero" data-dental-icon="tooth" aria-labelledby="newsletter-confirmed-title">
       <p className="eyebrow">The Molar</p>
       <h1 id="newsletter-confirmed-title">You’re subscribed</h1>
-      <p>Thanks for confirming. You’ll now receive MADS events, opportunities and news by email. Every issue will include a link to unsubscribe.<br />To leave before the first issue, <a href="mailto:info@mads.org.mt?subject=Unsubscribe%20from%20The%20Molar">Email MADS</a> or use the button below.</p>
+      <p>Thanks for confirming. You’ll now receive MADS events, opportunities and news by email. Every issue will include a link to unsubscribe. You can also leave before the first issue below.</p>
       <div className="newsletter-confirmed-actions">
-        <a className="button button--light" href={MOLAR_UNSUBSCRIBE_URL}>Unsubscribe</a>
+        <Link className="button button--light" href={MOLAR_UNSUBSCRIBE_URL}>Unsubscribe</Link>
         <Link className="button button--dark" href="/">Back to MADS</Link>
       </div>
+      <p className="newsletter-confirmed-email">Prefer to email us? <a href="mailto:info@mads.org.mt?subject=Unsubscribe%20from%20The%20Molar">Use your default email app</a> or <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info%40mads.org.mt&su=Unsubscribe%20from%20The%20Molar" target="_blank" rel="noopener noreferrer">open Gmail</a>.</p>
     </section>
   </PageShell>;
 }

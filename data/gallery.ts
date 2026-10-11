@@ -99,9 +99,9 @@ export const committee: {file:string;name:string;role?:string}[]=[
  {file:"edited-nicole",name:"Nicole Caruana",role:"Vice President"},
  {file:"edited-jeremy",name:"Jeremy Austin",role:"Secretary General"},
  {file:"edited-maria",name:"Maria Sammut",role:"Financial Officer"},
- {file:"edited-kylie",name:"Kylie Zerafa",role:"Education Officer"},
+ {file:"edited-judith",name:"Judith Zammit",role:"PR & Marketing Officer"},
  {file:"edited-kayleigh",name:"Kayleigh Vella Barberi",role:"Leisure Officer"},
  {file:"edited-adam",name:"Adam Demajo",role:"Public Relations Officer"},
- {file:"edited-judith",name:"Judith Zammit",role:"PR & Marketing Officer"},
+ {file:"edited-kylie",name:"Kylie Zerafa",role:"Education Officer"},
  {file:"edited-shakira",name:"Shakira Yusuf",role:"Social Policy Officer"}
 ];

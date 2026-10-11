@@ -21,21 +21,12 @@ export default function SubscribeToEvents() {
     </section>
     <div className="shell section calendar-subscribe">
       <Link href="/events" className="back-link"><ChevronLeft size={17} /> Back to events</Link>
-      <div className="calendar-subscribe-grid">
-        <section className="calendar-subscribe-card">
-          <p className="eyebrow">On a computer</p>
-          <h2>Add the calendar</h2>
-          <p>Sign in to the Google account you use for your calendar, then open the link below and confirm that you want to add <strong>MADS | Official Events</strong>.</p>
-          <a className="button button--dark" href={googleCalendarSubscriptionUrl} target="_blank" rel="noopener noreferrer"><CalendarPlus size={17} /> Open Google Calendar</a>
-          <p className="calendar-subscribe-note">If Google asks you to sign in, use the account where you want MADS events to appear.</p>
-        </section>
-        <section className="calendar-subscribe-card">
-          <p className="eyebrow">On an iPhone or Android phone</p>
-          <h2>See events on your phone</h2>
-          <p>Google does not let you add this subscription from its phone app or mobile website. Add it on a computer first using the same Google account you use on your phone.</p>
-          <p>Then open Google Calendar on your phone. If MADS events are hidden, open the app menu and tick <strong>MADS | Official Events</strong> in the calendar list.</p>
-        </section>
-      </div>
+      <section className="calendar-subscribe-card calendar-subscribe-card--single">
+        <h2>Add the MADS calendar</h2>
+        <p>Open the link below and sign in to the Google account you use for your calendar. If Google offers to add <strong>MADS | Official Events</strong>, confirm it there.</p>
+        <a className="button button--dark" href={googleCalendarSubscriptionUrl} target="_blank" rel="noopener noreferrer"><CalendarPlus size={17} /> Open Google Calendar</a>
+        <p className="calendar-subscribe-note">On a phone, the Google Calendar app cannot add a new subscription. If the link opens the app without an Add option, open it in a computer browser using the same Google account. The calendar will then appear in the phone app; check the app’s calendar list if it is hidden.</p>
+      </section>
       <p className="calendar-subscribe-footer">The website calendar and Google Calendar are updated separately by MADS. Check the event page for the latest details.</p>
     </div>
   </PageShell>;
