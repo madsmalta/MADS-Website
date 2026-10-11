@@ -36,6 +36,9 @@ function previewService(request: Request) {
 }
 
 export async function GET(request: Request) {
+  if (process.env.VERCEL_ENV === "preview") {
+    return NextResponse.json({ configured: false }, { headers: { "Cache-Control": "no-store" } });
+  }
   const configured = Boolean(webhookSettings() || brevoSettings());
   const service = configured ? null : previewService(request);
   if (service) {
@@ -53,6 +56,9 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  if (process.env.VERCEL_ENV === "preview") {
+    return NextResponse.json({ message: "Enquiries are unavailable on preview sites. Please use the public MADS website.", configured: false }, { status: 503, headers: { "Cache-Control": "no-store" } });
+  }
   if (!isSameOrigin(request)) return NextResponse.json({ message: "This request must come from the MADS website.", configured: false }, { status: 403 });
   const parsed = await readLimitedJson(request, 8192);
   if ("status" in parsed) return NextResponse.json({ message: "We could not read that form submission.", configured: false }, { status: parsed.status });

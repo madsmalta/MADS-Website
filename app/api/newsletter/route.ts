@@ -33,6 +33,9 @@ const json = (message: string, configured: boolean, status = 200) =>
   NextResponse.json({ message, configured }, { status, headers: { "Cache-Control": "no-store" } });
 
 export async function POST(request: Request) {
+  if (process.env.VERCEL_ENV === "preview") {
+    return json("The Molar sign-up is unavailable on preview sites. Please use the public MADS website.", false, 503);
+  }
   if (!isSameOrigin(request)) {
     return json("This request must come from the MADS website.", false, 403);
   }
