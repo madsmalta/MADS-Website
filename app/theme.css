@@ -565,7 +565,7 @@ body:has(.newsletter-confirmed-hero) #main-content{display:flex;flex:1;flex-dire
 .unsubscribe-result{margin:18px 0 0;padding:16px 18px;border-left:3px solid var(--gold);background:#e8efe8;color:var(--teal-dark)}
 .unsubscribe-result--error{background:#f7e9e6;border-left-color:#9d3c32;color:#742820}
 .unsubscribe-result--error a{color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:3px}
-.error-page.shell{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1fr);align-items:center;gap:clamp(28px,7vw,100px);min-height:clamp(500px,72vh,760px);padding-block:60px}
+.error-page.shell{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1fr);align-items:center;gap:clamp(28px,6vw,84px);min-height:clamp(480px,68vh,700px);padding-block:52px}
 .error-page-mark{position:relative;justify-self:center;color:var(--teal-dark);font:400 clamp(8rem,19vw,17rem)/.9 var(--serif);letter-spacing:-.08em;white-space:nowrap}
 .error-page-mark-line{display:block;width:62%;height:5px;margin:17px 0 0 auto;background:var(--gold);transform:skew(-18deg)}
 .error-page-copy{max-width:540px}
