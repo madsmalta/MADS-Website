@@ -16,7 +16,7 @@ export function CopyCalendarLink({ url }: { url: string }) {
   }
 
   return <div className="calendar-subscribe-copy">
-    <button className="button button--outline" type="button" onClick={copy}>
+    <button className="button button--dark" type="button" onClick={copy}>
       {status === "copied" ? <Check size={17} aria-hidden="true" /> : <Copy size={17} aria-hidden="true" />}
       {status === "copied" ? "Link copied" : "Copy subscription link"}
     </button>

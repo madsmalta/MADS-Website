@@ -384,18 +384,17 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 .page-hero .button--outline{color:white;border-color:#91aab6}
 .calendar-subscribe{padding-top:28px}
 .calendar-subscribe .back-link{margin-bottom:20px}
-.calendar-subscribe-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:20px}
+.calendar-subscribe-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:20px}
 .calendar-subscribe-card{min-width:0;padding:28px;background:var(--paper);border-top:3px solid var(--gold)}
 .calendar-subscribe-card .eyebrow{margin-bottom:10px}
 .calendar-subscribe-card h2{font-size:clamp(1.7rem,2.4vw,2.25rem);margin-bottom:16px}
 .calendar-subscribe-card .button{margin-top:8px}
 .calendar-subscribe-note{color:var(--muted);font-size:.94rem}
 .calendar-subscribe-note{margin-top:20px}
-.calendar-subscribe-follow{margin-top:25px;padding-top:20px;border-top:1px solid var(--line)}
-.calendar-subscribe-follow h3{font-size:1.05rem;margin-bottom:7px}
+.calendar-subscribe-follow{margin-top:20px}
 .calendar-subscribe-follow p{font-size:.94rem;color:var(--muted);margin-bottom:10px}
 .calendar-subscribe-copy{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
-.calendar-subscribe-copy .button{display:inline-flex;align-items:center;gap:9px;background:transparent;cursor:pointer}
+.calendar-subscribe-copy .button{display:inline-flex;align-items:center;gap:9px;cursor:pointer}
 .calendar-subscribe-copy-status{color:var(--muted);font-size:.88rem}
 .calendar-subscribe-copy-status:empty{display:none}
 .calendar-subscribe-copy>a{font-size:.9rem;text-decoration:underline;text-underline-offset:3px}

@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { CalendarPlus, ChevronLeft, ExternalLink } from "lucide-react";
+import { CalendarPlus, ChevronLeft } from "lucide-react";
 import { PageShell } from "@/components/page-shell";
 import { CopyCalendarLink } from "@/components/copy-calendar-link";
-import { googleCalendarSubscriptionUrl, outlookCalendarPublicUrl, outlookCalendarSubscriptionUrl } from "@/data/calendar";
+import { googleCalendarSubscriptionUrl, outlookCalendarSubscriptionUrl } from "@/data/calendar";
 import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
 import { StructuredData } from "@/components/structured-data";
 
@@ -31,11 +31,10 @@ export default function SubscribeToEvents() {
         </section>
         <section className="calendar-subscribe-card">
           <h2>Outlook &amp; Apple Calendar</h2>
-          <p>View our public calendar in Outlook, or subscribe to updates in Outlook, Apple Calendar, and other calendar apps.</p>
-          <a className="button button--dark" href={outlookCalendarPublicUrl} target="_blank" rel="noopener noreferrer"><ExternalLink size={17} aria-hidden="true" /> View Outlook calendar</a>
+          <p>Add our events to your Outlook or Apple Calendar.</p>
           <div className="calendar-subscribe-follow">
-            <h3>Subscribe for updates</h3>
-            <p>Copy the link, then choose <strong>Add calendar → Subscribe from web</strong> in Outlook or <strong>Add Calendar → Add Subscription Calendar</strong> in Apple Calendar.</p>
+            <p><strong>Outlook:</strong> Add calendar → Subscribe from web, then paste the link</p>
+            <p><strong>Apple Calendar:</strong> Add Calendar → Add Subscription Calendar, then paste the link</p>
             <CopyCalendarLink url={outlookCalendarSubscriptionUrl} />
           </div>
         </section>
