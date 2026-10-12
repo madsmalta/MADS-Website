@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const siteName = "Malta Association of Dental Students";
-export const siteDescription = "MADS represents and connects dental students in Malta. Discover student events, oral-health outreach, opportunities and the MADS committee.";
+export const siteDescription = "MADS represents Dental Surgery, Hygiene, Technology and Assistance students at the University of Malta. Explore student events, oral-health outreach and your committee.";
 
 // Keep this origin consistent with Vercel's primary-domain redirect.
 const configuredUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.mads.org.mt");

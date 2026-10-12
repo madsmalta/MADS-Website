@@ -8,6 +8,7 @@ const links = new Set();
 const resources = new Set();
 const titles = new Map();
 const descriptions = new Map();
+const utilityPaths = ["/newsletter/confirmed", "/newsletter/unsubscribe"];
 const fail = (path, condition, message) => { if (!condition) failures.push(`${path}: ${message}`); };
 const decode = (value = "") => value.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#x27;|&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 const attrs = (tag) => Object.fromEntries([...tag.matchAll(/([\w:-]+)="([^"]*)"/g)].map((match) => [match[1], decode(match[2])]));
@@ -44,6 +45,7 @@ const queue = preview ? ["/"] : [...new Set(paths)];
 const visited = new Set();
 while (queue.length) {
   const path = queue.shift();
+  if (utilityPaths.includes(path)) continue;
   if (visited.has(path)) continue;
   visited.add(path);
   const { response, html } = await get(path);
@@ -119,8 +121,14 @@ while (queue.length) {
 }
 
 if (!preview) {
-  for (const link of links) fail(link, paths.includes(link), "public linked page is missing from the sitemap");
+  for (const link of links) fail(link, utilityPaths.includes(link) || paths.includes(link), "public linked page is missing from the sitemap");
   for (const path of paths.filter((path) => path !== "/")) fail(path, links.has(path), "sitemap page has no internal link");
+}
+for (const path of utilityPaths) {
+  fail(path, !paths.includes(path), "noindex utility must not appear in the sitemap");
+  const { response, html } = await get(path);
+  fail(path, response.status === 200, `utility page returned HTTP ${response.status}`);
+  fail(path, /<meta\b[^>]*name="robots"[^>]*content="[^"]*noindex/.test(html), "utility page must be noindex");
 }
 const resourcePaths = [...resources];
 let nextResource = 0;
