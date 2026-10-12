@@ -56,7 +56,7 @@ The website has been publicly reachable during preparation. “Launch” here me
 ### Smoke check observed on 11 October 2026
 
 - The refreshed homepage featured **MADS Christmas Gala**. Home, Events, Contact, About, News & Photos, Privacy and the Gala detail page returned HTTP 200. The social image and icon returned HTTP 200; the earlier complete production audit checked all 18 public pages and 687 image/icon URLs.
-- The live calendar moved between November and December and showed the Gala on 19 December. The separate **MADS | Official Events** Google Calendar listed it as confirmed for 19 December 20:00 to 20 December 00:00 Malta time at Haywharf, Floriana, matching the website.
+- The live calendar moved between November and December and showed the Gala on 19 December. The separate **MADS | Official Events** Google Calendar listed it as confirmed for 19 December 20:00 to 20 December 00:00 Malta time at Haywharf, Floriana, matching the website at the time. Jeremy later revised the end time to 01:00 on 20 December; this bullet remains a record of the 11 October check.
 - `GET /api/contact` reported `configured:true`. An unknown event returned HTTP 404. HTTP and non-`www` requests redirected with HTTP 308 to the canonical HTTPS `www` address while preserving the contact path and query.
 - The newsletter form rendered. Its live endpoint rejected an invalid, non-consented request with HTTP 400 without sending mail.
 - An automated, clearly labelled contact submission was rejected by the production bot check. Jeremy then submitted a normal-browser contact enquiry and confirmed it reached `info@mads.org.mt` and that Reply addressed the sender correctly.

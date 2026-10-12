@@ -28,13 +28,13 @@ export const publicEvents: EventItem[] = [
     slug: "christmas-gala-2026",
     title: "MADS Christmas Gala",
     date: "2026-12-19T20:00:00",
-    end: "2026-12-20T00:00:00",
+    end: "2026-12-20T01:00:00",
     utcOffset: "+01:00", // Malta is on standard time in December.
     category: "Social",
     location: "Haywharf, Floriana",
     status: "Upcoming",
     description: "Join MADS for the annual Christmas Gala at Haywharf. Ticketing and booking details will follow.",
-    longDescription: "The MADS annual Christmas Gala brings dental students and lecturers together at Haywharf in Floriana on Saturday 19 December. Join us from 20:00 to midnight for a festive evening. Ticketing and booking details will be shared closer to the event.",
+    longDescription: "The MADS annual Christmas Gala brings dental students and lecturers together at Haywharf in Floriana on Saturday 19 December. Join us from 20:00 until 01:00 the next morning for a festive evening. Ticketing and booking details will be shared closer to the event.",
   },
 ];
 

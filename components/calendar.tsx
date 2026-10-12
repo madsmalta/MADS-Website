@@ -120,6 +120,7 @@ export function Calendar({ events, initialDate }: { events: EventItem[]; initial
  return <div className="calendar-wrap">
   <FullCalendar
    plugins={[dayGridPlugin]} initialDate={initialDate} initialView="dayGridMonth" timeZone="Europe/Malta"
+   nextDayThreshold="09:00:00"
    headerToolbar={{ left:"title", center:"", right:"prev,next" }}
    displayEventTime={false}
    events={calendarEvents}

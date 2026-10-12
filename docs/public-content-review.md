@@ -8,7 +8,7 @@ This records the committee checks completed for the website's public content. It
 - Jeremy confirmed all nine names, spellings and roles in the 2026–2027 committee list on 11 October 2026. Recheck the list and embedded text on portrait images at the next handover.
 - Jeremy confirmed that `instagram.com/mads.malta` and `facebook.com/madsonline` are the current official social accounts.
 - Jeremy approved the descriptions of the seven historical photo galleries: Pembroke, Mosta, Attard, Scouts, Science in the City, Open Wide Open Bar and the Volleyball Tournament. The site does not name a sponsor or institutional partner for those galleries.
-- The Primary Impressions poster agrees with its archived event page on 9 October, 20:00 and Queen Victoria Pub, Valletta. Its printed `madsmalta@gmail.com` is retained as part of the historical poster at Jeremy's request. The MADS Christmas Gala has no poster on the site; its page and the public Google Calendar agree on 19 December 2026, 20:00–00:00 and Haywharf, Floriana.
+- The Primary Impressions poster agrees with its archived event page on 9 October, 20:00 and Queen Victoria Pub, Valletta. Its printed `madsmalta@gmail.com` is retained as part of the historical poster at Jeremy's request. The MADS Christmas Gala has no poster on the site. Jeremy later changed its end time to 01:00 on 20 December 2026 and said he updated both public calendars; the website now reflects that time at Haywharf, Floriana. Recheck the public calendars before publication.
 
 ## Current publication choices
 

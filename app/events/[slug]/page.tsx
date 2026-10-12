@@ -48,7 +48,7 @@ export default async function EventDetail({ params }: { params: Promise<{ slug: 
     <h1>{event.title}</h1>
     <p className="lede">{event.status === "Postponed" ? "This event has been postponed. We’ll share the new date and details once they’re confirmed." : event.longDescription}</p>
     <div className="event-info" data-scroll-reveal>
-      <div><span>Date & time</span><strong>{event.status === "Postponed" ? "New date to be confirmed" : `${formatEventDate(event, { weekday: "long", day: "numeric", month: "long", year: "numeric" })} · ${formatEventTimeRange(event)} Malta time`}</strong></div>
+      <div><span>Date & time</span><strong className="event-info-date-time">{event.status === "Postponed" ? "New date to be confirmed" : <><span>{formatEventDate(event, { weekday: "long", day: "numeric", month: "long", year: "numeric" })}</span><span>{formatEventTimeRange(event)}</span></>}</strong></div>
       <div><span>Location</span><strong><MapPin size={16} /> {locationUrl ? <a className="event-location-link" href={locationUrl} target="_blank" rel="noopener noreferrer">{event.location}</a> : event.location}</strong></div>
       <div><span>Status</span><strong>{eventDisplayStatus(event)}</strong></div>
     </div>
