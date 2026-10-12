@@ -16,13 +16,17 @@ export function EventCard({ event }: { event: EventItem }) {
    <Image src={event.poster.src} alt={event.poster.alt} width={320} height={320} sizes="(max-width: 480px) 96px, 150px" />
   </Link> : <div className="event-date"><span>{postponed ? "Date" : formatEventDate(event, { month: "short" })}</span><strong>{postponed ? "TBD" : formatEventDate(event, { day: "numeric" })}</strong></div>}
   <div className="event-card-copy">
-   <p className="tag">{event.category}</p>
-   <h3><Link href={href} scroll={false}>{event.title}</Link></h3>
-   {status !== "Upcoming" && <p className="event-status">{status}</p>}
-   <p className="event-meta event-card-date"><CalendarDays size={15} aria-hidden="true" /> {postponed ? "New date to be confirmed" : formatEventDate(event, { weekday: "long", day: "numeric", month: "long", year: "numeric" })}</p>
-   {!postponed && <p className="event-meta"><Clock size={15} aria-hidden="true" /> {formatEventTimeRange(event)}</p>}
-   <p className="event-meta"><MapPin size={15} aria-hidden="true" /> {locationUrl ? <a className="event-location-link" href={locationUrl} target="_blank" rel="noopener noreferrer">{event.location}</a> : event.location}</p>
-   <p>{event.description}</p>
+   <div className="event-card-heading">
+    <p className="tag">{event.category}</p>
+    <h3><Link href={href} scroll={false}>{event.title}</Link></h3>
+    {status !== "Upcoming" && <p className="event-status">{status}</p>}
+   </div>
+   <div className="event-card-details">
+    <p className="event-meta event-card-date"><CalendarDays size={15} aria-hidden="true" /> {postponed ? "New date to be confirmed" : formatEventDate(event, { weekday: "long", day: "numeric", month: "long", year: "numeric" })}</p>
+    {!postponed && <p className="event-meta"><Clock size={15} aria-hidden="true" /> {formatEventTimeRange(event)}</p>}
+    <p className="event-meta"><MapPin size={15} aria-hidden="true" /> {locationUrl ? <a className="event-location-link" href={locationUrl} target="_blank" rel="noopener noreferrer">{event.location}</a> : event.location}</p>
+    <p>{event.description}</p>
+   </div>
   </div>
   <Link className="round-link" href={href} scroll={false} aria-label={`View ${event.title}`}><ArrowUpRight size={20} /></Link>
  </article>;

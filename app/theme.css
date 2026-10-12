@@ -469,6 +469,12 @@ body:has(.newsletter-confirmed-hero) #main-content{display:flex;flex:1;flex-dire
 .event-card-poster img{display:block;width:100%;height:100%;object-fit:cover}
 .event-card .event-card-date{margin-bottom:8px;font-weight:600;color:var(--teal-dark)}
 .event-card--poster .event-card-copy{min-width:0}
+@media(min-width:1050px){
+ .event-card{padding-block:22px}
+ .event-card-details{display:grid;grid-template-columns:max-content max-content minmax(0,1fr);align-items:center;gap:4px 22px}
+ .event-card .event-card-details .event-meta{margin-bottom:0}
+ .event-card-details>p:last-child{grid-column:1/-1;max-width:70ch;margin:6px 0 0}
+}
 .contact-section{border-top:3px solid var(--gold);padding:48px;margin-bottom:65px}
 .contact-section-title{font:700 clamp(1.35rem,1.7vw,1.55rem)/1.35 var(--utility);letter-spacing:normal;color:var(--teal-dark);margin-bottom:18px}
 .contact-alternative{margin-top:18px;font:500 .95rem/1.6 var(--utility);color:var(--teal-dark)}
@@ -506,9 +512,20 @@ body:has(.newsletter-confirmed-hero) #main-content{display:flex;flex:1;flex-dire
  .calendar-wrap{padding:15px 10px}
  .filter-row{padding:18px 14px}
  .opportunity-list article{padding-inline:16px}
- .event-card{padding-inline:12px}
- .event-card--poster{grid-template-columns:96px minmax(0,1fr)}
- .event-card-poster{width:96px;align-self:start}
+ .event-card{grid-template-columns:72px minmax(0,1fr);align-items:start;column-gap:16px;row-gap:12px;padding:20px 12px}
+ .event-card--poster{grid-template-columns:72px minmax(0,1fr)}
+ .event-card-poster{width:72px;align-self:start}
+ .event-card .event-date{padding:8px 5px;line-height:1.2}
+ .event-card .event-date strong{font-size:1.6rem;line-height:1.15}
+ .event-card .event-date span{line-height:1.2}
+ .event-card-copy{display:contents}
+ .event-card-heading{grid-column:2;min-width:0;align-self:center}
+ .event-card-copy .event-card-heading .tag{margin-bottom:5px;padding-right:0}
+ .event-card-heading h3{margin-bottom:0}
+ .event-card-heading .event-status{margin-top:8px;margin-bottom:0!important}
+ .event-card-details{grid-column:1/-1;min-width:0}
+ .event-card-details .event-meta{margin-bottom:2px}
+ .event-card-details>p:last-child{margin-top:8px;margin-bottom:0}
  .gallery-grid .story-caption{padding-inline:18px}
  .contact-section{padding:30px 20px}
  .listing-empty{grid-template-columns:1fr;gap:12px;padding:25px 23px}

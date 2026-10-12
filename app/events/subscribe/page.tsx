@@ -8,7 +8,7 @@ import { StructuredData } from "@/components/structured-data";
 
 export const metadata = pageMetadata({
   title: "Follow the MADS events calendar",
-  description: "Follow MADS public events in Google Calendar or Outlook, on your phone or computer.",
+  description: "Follow MADS public events in Google Calendar, Outlook, or Apple Calendar, on your phone or computer.",
   path: "/events/subscribe",
 });
 
@@ -30,12 +30,12 @@ export default function SubscribeToEvents() {
           <p className="calendar-subscribe-note">Can’t add it on your phone? Use a computer with the same Google account. It will then appear on your phone.</p>
         </section>
         <section className="calendar-subscribe-card">
-          <h2>Outlook calendar</h2>
-          <p>View the public calendar, or subscribe to receive its updates in Outlook and other calendar apps that accept an ICS feed.</p>
+          <h2>Outlook &amp; Apple Calendar</h2>
+          <p>View our public calendar in Outlook, or subscribe to updates in Outlook, Apple Calendar, and other calendar apps.</p>
           <a className="button button--dark" href={outlookCalendarPublicUrl} target="_blank" rel="noopener noreferrer"><ExternalLink size={17} aria-hidden="true" /> View Outlook calendar</a>
           <div className="calendar-subscribe-follow">
-            <h3>Want updates in your own calendar?</h3>
-            <p>In Outlook, choose <strong>Add calendar → Subscribe from web</strong>, then paste this link. Opening an ICS file directly may import a one-time copy instead.</p>
+            <h3>Subscribe for updates</h3>
+            <p>Copy the link, then choose <strong>Add calendar → Subscribe from web</strong> in Outlook or <strong>Add Calendar → Add Subscription Calendar</strong> in Apple Calendar.</p>
             <CopyCalendarLink url={outlookCalendarSubscriptionUrl} />
           </div>
         </section>

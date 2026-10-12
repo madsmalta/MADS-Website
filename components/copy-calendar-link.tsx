@@ -23,6 +23,6 @@ export function CopyCalendarLink({ url }: { url: string }) {
     <span className="calendar-subscribe-copy-status" role="status">
       {status === "failed" ? "Couldn’t copy automatically. Use the link below instead." : ""}
     </span>
-    {status === "failed" && <a href={url} target="_blank" rel="noopener noreferrer">Open the ICS link</a>}
+    {status === "failed" && <a href={url} target="_blank" rel="noopener noreferrer">Open subscription link</a>}
   </div>;
 }
