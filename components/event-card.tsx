@@ -19,7 +19,7 @@ export function EventCard({ event }: { event: EventItem }) {
    <div className="event-card-heading">
     <p className="tag">{event.category}</p>
     <h3><Link href={href} scroll={false}>{event.title}</Link></h3>
-    {status !== "Upcoming" && <p className="event-status">{status}</p>}
+    {status !== "Upcoming" && status !== "Past event" && <p className="event-status">{status}</p>}
    </div>
    <div className="event-card-details">
     <p className="event-meta event-card-date"><CalendarDays size={15} aria-hidden="true" /> {postponed ? "New date to be confirmed" : formatEventDate(event, { weekday: "long", day: "numeric", month: "long", year: "numeric" })}</p>
