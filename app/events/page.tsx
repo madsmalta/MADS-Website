@@ -18,7 +18,7 @@ export default function Events() {
       <h1>See what’s on</h1>
       <p>Find the next MADS gathering below.<br/>Follow our public calendar in Google Calendar or Outlook to keep up with what’s coming.</p>
       <div className="hero-actions">
-        <Link className="button button--dark" href="/events/subscribe"><CalendarPlus size={17} /> Follow our calendar</Link>
+        <Link className="button button--dark" href="/events/subscribe"><CalendarPlus size={17} /> Follow our Calendar</Link>
       </div>
     </section>
     <section className="shell section compact-section" id="calendar-status"><Calendar events={[...upcoming, ...updates.filter(event => event.status === "Cancelled"), ...past]} initialDate={upcoming[0]?.date.slice(0, 10)} /></section>
