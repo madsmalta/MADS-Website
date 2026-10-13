@@ -50,7 +50,7 @@ These are proposed search intents, **not measured keyword volumes or promised po
 | Events | MADS events; dental student events Malta | Publish individual real event pages with confirmed date, venue, audience and booking information. Update cancellations and completed events accurately. |
 | Outreach | oral-health outreach Malta; school outreach collaboration | Add approved project dates, participating communities, what happened and how to arrange a collaboration. Useful context should accompany photos, not generic SEO filler. |
 | Opportunities | dental student opportunities Malta | Replace Coming Soon with verified listings when available: organizer, eligibility, location, deadline and an authoritative application link. Do not manufacture listings to target queries. |
-| News & Photos | named MADS events and outreach activities | Add concise first-hand recaps and accurate captions where information and publication permission are available. Preserve meaningful image alternatives. |
+| Student Life | MADS student socials and sport | Add concise first-hand recaps and accurate captions where information and publication permission are available. Preserve meaningful image alternatives. |
 
 Ask the University directory owner to link its MADS entry to the new website, and update MADS-managed social profile website links after publication. Share relevant event and outreach pages through genuine partners. These external updates require account access/coordination and have not been made here. Avoid purchased links, reciprocal-link schemes, mass-generated location pages and keyword stuffing. Do not publish unsupported medical advice merely to attract traffic.
 

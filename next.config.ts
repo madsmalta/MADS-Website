@@ -6,7 +6,12 @@ const nextConfig: NextConfig = {
   turbopack: { root: process.cwd() },
   async redirects() {
     // Resolve this legacy URL before rendering, so crawlers receive a real 308.
-    return [{ source: "/new-students", destination: "/", permanent: true }];
+    return [
+      { source: "/new-students", destination: "/", permanent: true },
+      { source: "/news", destination: "/student-life", permanent: true },
+      ...["pembroke", "mosta", "scouts", "attard", "sitc"].map((slug) => ({ source: `/news/${slug}`, destination: `/outreach/${slug}`, permanent: true })),
+      ...["open-wide", "volleyball"].map((slug) => ({ source: `/news/${slug}`, destination: `/student-life/${slug}`, permanent: true })),
+    ];
   },
   async headers() {
     return [{ source: "/(.*)", headers: [

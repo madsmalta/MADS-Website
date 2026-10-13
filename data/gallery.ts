@@ -90,10 +90,14 @@ export const galleries: Gallery[] = [
  {slug:"mosta",title:"Mosta Skola Sajf",category:"Outreach",image:"/media/mosta.webp",alt:"MADS volunteers delivering an oral-health presentation in Mosta",description:"Moments from the MADS oral-health outreach talk in Mosta.",photos:mostaPhotos},
  {slug:"scouts",title:"Scouts talk",category:"Outreach",image:"/media/scouts.webp",alt:"MADS presenters speaking to a group of Scouts",description:"MADS students talking with Scouts about looking after their teeth.",photos:scoutsPhotos},
  {slug:"attard",title:"Attard Skola Sajf",category:"Outreach",image:attardPhotos[0].src,alt:attardPhotos[0].alt,description:"Photographs from the MADS oral-health outreach talk in Attard.",photos:attardPhotos},
- {slug:"sitc",title:"Science in the City",category:"Outreach",image:curatedSitcPhotos[0].src,alt:"MADS volunteers speaking with visitors at Science in the City",description:"MADS students sharing oral-health activities and conversations with visitors at Science in the City.",photos:curatedSitcPhotos},
- {slug:"open-wide",title:"Open Wide Open Bar",category:"Student life",image:openWidePhotos[0].src,alt:"MADS volunteers together at Open Wide Open Bar",description:"Photos from Open Wide Open Bar, a MADS social event.",photos:openWidePhotos},
- {slug:"volleyball",title:"MADS Volleyball Tournament",category:"Student life",image:curatedVolleyballPhotos[0].src,alt:"Students playing beach volleyball at the MADS tournament",description:"Beach volleyball and moments together at the MADS Volleyball Tournament.",photos:curatedVolleyballPhotos},
+ {slug:"sitc",title:"Science in the City",category:"Outreach",image:curatedSitcPhotos[0].src,alt:"MADS volunteers speaking with visitors at Science in the City",description:"MADS and volunteers spoke with visitors about oral health and led activities, while clinical-year dental students gave check-ups in the Faculty of Dental Surgery’s Mobile Dental Unit (MDU).",photos:curatedSitcPhotos},
+ {slug:"open-wide",title:"Open Wide Open Bar",category:"Student life",image:openWidePhotos[0].src,alt:"MADS volunteers together at Open Wide Open Bar",description:"Photos from Open Wide Open Bar, a MADS party.",photos:openWidePhotos},
+ {slug:"volleyball",title:"MADS Volleyball Tournament",category:"Student life",image:curatedVolleyballPhotos[0].src,alt:"Students playing beach volleyball at the MADS tournament",description:"Photos from a day of beach volleyball with MADS.",photos:curatedVolleyballPhotos},
 ];
+
+export const outreachGalleries = galleries.filter((gallery) => gallery.category === "Outreach");
+export const studentLifeGalleries = galleries.filter((gallery) => gallery.category === "Student life");
+export const galleryPath = (gallery: Gallery) => `${gallery.category === "Outreach" ? "/outreach" : "/student-life"}/${gallery.slug}`;
 export const committee: {file:string;name:string;role?:string}[]=[
  {file:"edited-andreya",name:"Andreya Gauci",role:"President"},
  {file:"edited-nicole",name:"Nicole Caruana",role:"Vice President"},

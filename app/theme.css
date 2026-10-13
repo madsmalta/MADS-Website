@@ -186,14 +186,14 @@ textarea:focus-visible,select:focus-visible,summary:focus-visible{outline-color:
 #calendar-status .calendar-wrap{margin-top:0}
 #calendar-status{padding-bottom:24px}
 #calendar-status+.section{padding-top:16px}
-.outreach-invitation{margin-bottom:40px}
-.page-hero:has(+.outreach-invitation){margin-bottom:0}
-.page-hero+.outreach-invitation{border-top:0}
+.outreach-invitation,.student-life-invitation{margin-bottom:0}
+.page-hero:has(+.outreach-invitation),.page-hero:has(+.student-life-invitation){margin-bottom:0}
+.page-hero+.outreach-invitation,.page-hero+.student-life-invitation{border-top:0}
 .about-group{width:88%;max-width:980px;margin-inline:auto;aspect-ratio:1.3}
 .about-group img{object-fit:cover!important;object-position:50% 45%!important;filter:brightness(.95) saturate(.94)}
 @media(max-width:800px){.about-group{width:94%;aspect-ratio:1.5}.about-group img{object-position:50% 35%!important}}
-.outreach-invitation .student-band-inner{display:grid;grid-template-columns:1fr 1fr;gap:32px}
-.outreach-invitation .button{justify-self:center;margin-left:0}
+.outreach-invitation .student-band-inner,.student-life-invitation .student-band-inner{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.outreach-invitation .button,.student-life-invitation .button{justify-self:center;margin-left:0}
 .outreach-invitation+.outreach-stories{padding-bottom:32px}
 .outreach-invitation+.outreach-stories .outreach-story:last-child{margin-bottom:0}
 .gallery-grid{padding-bottom:32px}
@@ -570,8 +570,8 @@ body:has(.newsletter-confirmed-hero) #main-content{display:flex;flex:1;flex-dire
 @keyframes tooltip-in{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.calendar-tooltip{animation:none}}
 @media(max-width:800px){
- .outreach-invitation .student-band-inner{grid-template-columns:1fr;gap:20px}
- .outreach-invitation .button{justify-self:start;margin-left:0}
+ .outreach-invitation .student-band-inner,.student-life-invitation .student-band-inner{grid-template-columns:1fr;gap:20px}
+ .outreach-invitation .button,.student-life-invitation .button{justify-self:start;margin-left:0}
  .footer-bottom{grid-template-columns:1fr 1fr}
  .developer-credit{grid-column:1/-1;grid-row:2}
 }
@@ -802,3 +802,38 @@ body:has(.newsletter-confirmed-hero) #main-content{display:flex;flex:1;flex-dire
 @media(max-width:480px){.gallery-detail .gallery-cover{aspect-ratio:4/3}.gallery-intro{align-items:flex-start;flex-direction:column;gap:3px}.gallery-photo-grid{gap:8px}.gallery-photo-meta{padding:20px 9px 8px;font-size:.7rem}.gallery-photo-meta>span:last-child{gap:2px}}
 @media(max-width:480px){.opportunity-list article{grid-template-columns:1fr}.fc-daygrid-event .fc-event-time{display:none}}
 @media(prefers-reduced-motion:reduce){.gallery-photo-grid img,.gallery-cover img{transition:none!important}}
+
+/* Distinct collections: a featured community activity and two generous student-life albums. */
+.outreach-collection{padding-block:56px 76px}
+.outreach-feature{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(0,1fr);background:var(--paper);border-top:3px solid var(--gold)}
+.outreach-feature .photo{height:100%;min-height:390px;aspect-ratio:auto}
+.outreach-feature-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:clamp(30px,5vw,70px)}
+.outreach-feature-copy h2{margin-bottom:16px}
+.outreach-feature-copy>p{max-width:45ch;margin-bottom:28px}
+.outreach-talks{margin-top:76px}
+.outreach-talks-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:28px}
+.outreach-talks-heading h2,.outreach-talks-heading p{margin:0}
+.outreach-talks-heading p{max-width:none;white-space:nowrap}
+.outreach-talks-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 30px}
+.outreach-talk{display:block;min-width:0;border-bottom:1px solid var(--line);padding-bottom:18px}
+.outreach-talk .photo{aspect-ratio:16/10;margin-bottom:20px}
+.outreach-talk>div:not(.photo){display:flex;justify-content:space-between;align-items:start;gap:16px}
+.outreach-talk h3{margin:0;font-size:1.5rem}
+.outreach-talk svg{flex:none;color:var(--teal)}
+.student-life-gallery-grid{padding-top:50px;padding-bottom:40px}
+.student-life-gallery-grid .story .photo{aspect-ratio:5/4}
+.student-life-gallery-grid .story-caption{min-height:118px;align-items:start}
+.student-life-gallery-grid .story-caption h2{margin:0 0 8px}
+.student-life-gallery-grid .story-caption p{margin:0;max-width:42ch;font-size:.95rem}
+.student-life-gallery-grid .story-caption>svg{flex:none}
+.student-life-events{position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:32px;padding-top:30px;margin-bottom:76px}
+.student-life-events::before{content:"";position:absolute;top:0;left:15%;right:15%;border-top:1px solid var(--line)}
+.student-life-events>div{padding-left:30%}
+.student-life-events-link{justify-self:center;min-height:44px;padding:8px 0;color:var(--teal-dark)}
+.student-life-events-link:hover{text-decoration:none;color:var(--navy)}
+.student-life-events h2{font-size:2rem;margin:0 0 8px}
+.student-life-events p{margin:0}
+@media(max-width:1050px){.outreach-talks-heading{align-items:start;flex-direction:column;gap:8px}}
+@media(max-width:900px){.student-life-events::before{left:0;right:0}.student-life-events>div{padding-left:0}}
+@media(max-width:800px){.outreach-collection{padding-block:42px 60px}.outreach-feature{grid-template-columns:1fr}.outreach-feature .photo{height:auto;min-height:0;aspect-ratio:3/2}.outreach-feature-copy{padding:30px}.outreach-talks{margin-top:50px}.outreach-talks-grid{gap:28px 20px}.student-life-gallery-grid{padding-top:42px}}
+@media(max-width:600px){.outreach-talks-grid{grid-template-columns:1fr}.outreach-talks-heading p{white-space:normal}.student-life-gallery-grid .story-caption{min-height:0}.student-life-events{grid-template-columns:1fr;gap:14px;padding-top:26px;margin-bottom:60px}.student-life-events-link{justify-self:start}}

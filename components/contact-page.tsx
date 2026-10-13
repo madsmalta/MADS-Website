@@ -18,19 +18,20 @@ const directEmailByNeed: Record<string, string> = {
   "Outreach collaboration": "partnerships@mads.org.mt",
 };
 
-export function ContactPage({ outreach = false }: { outreach?: boolean }) {
-  const initialContact = outreach ? contacts.find((contact) => contact.need === "Outreach collaboration") ?? contacts[0] : contacts[0];
+export function ContactPage({ topic = "general" }: { topic?: "general" | "outreach" | "events" }) {
+  const initialNeed = topic === "outreach" ? "Outreach collaboration" : topic === "events" ? "Event suggestion" : "General enquiry";
+  const initialContact = contacts.find((contact) => contact.need === initialNeed) ?? contacts[0];
   const [selected, setSelected] = useState(initialContact);
   const [category, setCategory] = useState(initialContact.need);
   const formEmail = directEmailByNeed[category] ?? "info@mads.org.mt";
 
   useEffect(() => {
-    if (!outreach && window.location.hash !== "#choose-enquiry") return;
+    if (topic === "general" && window.location.hash !== "#choose-enquiry") return;
     const frame = requestAnimationFrame(() => {
-      document.getElementById(outreach ? "ask-mads" : "choose-enquiry")?.scrollIntoView({ behavior: "instant", block: "start" });
+      document.getElementById(topic === "general" ? "choose-enquiry" : "ask-mads")?.scrollIntoView({ behavior: "instant", block: "start" });
     });
     return () => cancelAnimationFrame(frame);
-  }, [outreach]);
+  }, [topic]);
 
   function selectRoute(contact: typeof contacts[number]) {
     setSelected(contact);

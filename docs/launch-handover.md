@@ -44,7 +44,7 @@ The public contact form sends to `info@mads.org.mt`. The role email addresses st
 
 Run this short check after the final deployment reaches **Ready** and before the President announces the site:
 
-1. Confirm the Vercel Production commit and `www.mads.org.mt` domain. Open Home, Events, Contact, About, News & Photos and Privacy on a phone and computer. Check the featured event, at least one gallery image and an event poster or portrait.
+1. Confirm the Vercel Production commit and `www.mads.org.mt` domain. Open Home, Events, Contact, About, Outreach, Student Life and Privacy on a phone and computer. Check the featured event, an album in each collection and an event poster or portrait. Check that old `/news` album links redirect to their new locations.
 2. Check `https://mads.org.mt/contact?topic=outreach` redirects to `https://www.mads.org.mt/contact?topic=outreach`, and a nonexistent page returns 404.
 3. Check the site calendar moves between months, selects the next event and links to its detail page. Confirm the public Google Calendar shows the same date, Malta time and venue.
 4. Submit one clearly labelled enquiry from a normal browser. Verify it reaches `info@mads.org.mt`, and that Reply addresses the sender. Automated browser submissions may be blocked by the bot check and cannot replace this manual delivery test.

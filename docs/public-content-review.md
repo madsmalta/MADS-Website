@@ -13,7 +13,7 @@ This records the committee checks completed for the website's public content. It
 ## Current publication choices
 
 - Opportunities uses an explicit empty state until a listing has a verified source, eligibility, location, deadline and application route. No sample card should be presented as an open opportunity. The homepage teaser says that listings are coming soon.
-- The News & Photos page contains historical photo galleries, not placeholder news announcements.
+- Outreach now lists the five community activity galleries, while Student Life lists the two social and sport galleries. The old `/news` links redirect to the appropriate current pages; no photographs were deleted as part of this reorganisation.
 - General email is `info@mads.org.mt` in the footer and Contact page. Direct event ideas use `events@mads.org.mt`; outreach collaborations use `partnerships@mads.org.mt`. The contact form itself still delivers to `info@mads.org.mt`. The President and Secretary General's role addresses appear below their portraits. These addresses describe a role, not a personal mailbox belonging permanently to the current officeholder.
 - Jeremy assigned the MADS Events Officer to monitor `events@mads.org.mt` and the PR team to monitor `partnerships@mads.org.mt`. The committee should ensure both groups have mailbox access and agree a response routine.
 - News, events, roles and dates must be revisited whenever they change. At the 2027 committee handover, update committee portraits, names, role-address access and the year in the About page metadata and homepage photo caption. Review event listings after each event and check the public Google Calendar separately.

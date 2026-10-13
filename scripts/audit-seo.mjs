@@ -110,7 +110,7 @@ while (queue.length) {
   const schemaTypes = schema.map((item) => item["@type"]);
   fail(path, !schemaTypes.some((type) => ["FAQPage", "HowTo"].includes(type)), "deprecated rich-result markup must not be added");
   if (path === "/") fail(path, schemaTypes.includes("Organization") && schemaTypes.includes("WebSite"), "homepage identity data missing");
-  if (/^\/(events|news)\//.test(path)) fail(path, schemaTypes.includes("BreadcrumbList"), "detail-page breadcrumb data missing");
+  if (/^\/(events|outreach|student-life)\//.test(path) && path !== "/events/subscribe") fail(path, schemaTypes.includes("BreadcrumbList"), "detail-page breadcrumb data missing");
   for (const event of schema.filter((item) => item["@type"] === "Event")) {
     fail(path, /(?:Z|[+-]\d{2}:\d{2})$/.test(event.startDate), "event start time needs an explicit timezone");
     fail(path, !event.endDate || new Date(event.endDate) > new Date(event.startDate), "event end must be after its start");
@@ -143,13 +143,17 @@ await Promise.all(Array.from({ length: Math.min(8, resourcePaths.length) }, asyn
     }
   }
 }));
-for (const path of ["/seo-audit-missing-page", "/events/seo-audit-missing-event", "/news/seo-audit-missing-gallery"]) {
+for (const path of ["/seo-audit-missing-page", "/events/seo-audit-missing-event", "/outreach/seo-audit-missing-gallery", "/student-life/seo-audit-missing-gallery"]) {
   const { response, html } = await get(path);
   fail(path, response.status === 404, `unknown content returned HTTP ${response.status} instead of 404`);
   fail(path, /name="robots"[^>]*content="[^"]*noindex/.test(html), "missing-page response needs noindex");
 }
 const { response: redirect } = await get("/new-students");
 fail("/new-students", [301, 308].includes(redirect.status) && redirect.headers.get("location") === "/", "legacy route must permanently redirect to the homepage");
+for (const [oldPath, newPath] of [["/news", "/student-life"], ["/news/sitc", "/outreach/sitc"], ["/news/open-wide", "/student-life/open-wide"]]) {
+  const { response } = await get(oldPath);
+  fail(oldPath, [301, 308].includes(response.status) && response.headers.get("location") === newPath, `legacy route must permanently redirect to ${newPath}`);
+}
 const { html: enquiry } = await get("/contact?topic=outreach");
 fail("/contact?topic=outreach", enquiry.includes(`rel="canonical" href="${expectedOrigin}/contact"`), "enquiry parameters must canonicalize to /contact");
 

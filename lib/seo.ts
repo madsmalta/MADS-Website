@@ -43,7 +43,7 @@ export const sectionMetadata = {
   events: pageMetadata({ title: "Dental Student Events & Calendar in Malta", description: "Find MADS dental student events in Malta, including freshers gatherings, dates and venues. Add the public MADS calendar to keep up with upcoming events.", path: "/events" }),
   opportunities: pageMetadata({ title: "Dental Student Opportunities — Coming Soon", description: "MADS is preparing opportunities for dental students in Malta, including exchanges, volunteering, courses and conferences. Verified listings are coming soon.", path: "/opportunities" }),
   outreach: pageMetadata({ title: "Oral-Health Outreach in Malta", description: "Explore MADS oral-health outreach with schools, scouts and other communities in Malta. View activity photos and contact MADS about a collaboration.", path: "/outreach" }),
-  news: pageMetadata({ title: "MADS News, Events & Outreach Photos", description: "Browse MADS photographs from oral-health outreach, Science in the City, Open Wide Open Bar and the MADS Volleyball Tournament.", path: "/news" }),
+  studentLife: pageMetadata({ title: "Student Life at MADS", description: "Explore MADS student life through photos from Open Wide Open Bar and the MADS Volleyball Tournament.", path: "/student-life" }),
   contact: pageMetadata({ title: "Contact the Malta Association of Dental Students", description: "Contact MADS about student concerns, event ideas, oral-health outreach collaborations or dental student opportunities in Malta.", path: "/contact" }),
   privacy: pageMetadata({ title: "Privacy Policy & Photo Requests", description: "Read how MADS handles website visits, enquiries, newsletter sign-ups and event photographs, and how to request a photograph review or removal.", path: "/privacy" }),
 };
