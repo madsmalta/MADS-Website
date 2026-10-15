@@ -55,13 +55,13 @@
     const safeRole = role.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
     const emailLine = email ? `<div style="font-size:11px;line-height:16px;margin-top:3px"><a href="mailto:${email}" style="color:#185da3;text-decoration:none">${email}</a></div>` : "";
     const icon = (name, label, url) => `<a href="${url}" title="${label}" aria-label="${label}" style="display:block;width:20px;height:20px;text-decoration:none"><img src="${assetBase}${name}.png" width="20" height="20" alt="${label}" style="display:block;width:20px;height:20px;border:0"></a>`;
-    return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;width:394px;max-width:100%;font-family:Arial,Helvetica,sans-serif;color:#162c45;background:#ffffff">
+    return `<table role="presentation" width="394" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;table-layout:fixed;width:394px;max-width:100%;font-family:Arial,Helvetica,sans-serif;color:#162c45;background:#ffffff">
       <tr>
         <td width="104" height="104" style="width:104px;height:104px;background:#123d72;vertical-align:middle;text-align:center;padding:0">
           <a href="https://www.mads.org.mt/" style="display:block;width:104px;height:104px;text-decoration:none" aria-label="MADS website"><img src="${assetBase}logo-white.png" width="98" height="98" alt="MADS" style="display:block;width:98px;height:98px;border:0;margin:3px"></a>
         </td>
-        <td style="vertical-align:middle;padding:8px 8px 8px 17px;border-left:3px solid #3179bd;font-size:0;line-height:0">
-          <div style="font-size:16px;line-height:20px;font-weight:700;color:#162c45">${safeName}</div>
+        <td width="248" style="width:248px;vertical-align:middle;padding:8px 8px 8px 17px;border-left:3px solid #3179bd;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:17px;color:#185da3;white-space:normal">
+          <strong style="display:block;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:20px;font-weight:700;color:#185da3">${safeName}</strong>
           ${role ? `<div style="font-size:12px;line-height:17px;font-weight:600;color:#185da3">${safeRole}</div>` : ""}
           ${emailLine}
           <div style="font-size:11px;line-height:16px;margin-top:${email ? 8 : 11}px"><a href="https://www.mads.org.mt/" style="font-weight:600;color:#185da3;text-decoration:none">mads.org.mt</a></div>
