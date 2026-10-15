@@ -33,7 +33,7 @@
 </main>
 <script>
   const people = [
-    ["MADS Team", "General enquiries", "info@mads.org.mt"],
+    ["MADS Team", "", "info@mads.org.mt"],
     ["Andreya Gauci", "President", "president@mads.org.mt"],
     ["Nicole Caruana", "Vice President", "vicepresident@mads.org.mt"],
     ["Jeremy Austin", "Secretary General", "secgen@mads.org.mt"],
@@ -62,7 +62,7 @@
         </td>
         <td style="vertical-align:middle;padding:8px 8px 8px 17px;border-left:3px solid #3179bd;font-size:0;line-height:0">
           <div style="font-size:16px;line-height:20px;font-weight:700;color:#162c45">${safeName}</div>
-          <div style="font-size:12px;line-height:17px;font-weight:600;color:#185da3">${safeRole}</div>
+          ${role ? `<div style="font-size:12px;line-height:17px;font-weight:600;color:#185da3">${safeRole}</div>` : ""}
           ${emailLine}
           <div style="font-size:11px;line-height:16px;margin-top:${email ? 8 : 11}px"><a href="https://www.mads.org.mt/" style="font-weight:600;color:#185da3;text-decoration:none">mads.org.mt</a></div>
         </td>
@@ -78,7 +78,7 @@
 
   async function copySignature(button, name, role, email) {
     const html = signatureMarkup(name, role, email, hostedAssets);
-    const plain = [name, `${role} · MADS`, email, "https://www.mads.org.mt/", "https://www.instagram.com/mads.malta/", "https://www.facebook.com/madsonline/"].filter(Boolean).join("\n");
+    const plain = [name, role ? `${role} · MADS` : "", email, "https://www.mads.org.mt/", "https://www.instagram.com/mads.malta/", "https://www.facebook.com/madsonline/"].filter(Boolean).join("\n");
     try {
       await navigator.clipboard.write([new ClipboardItem({
         "text/html": new Blob([html], {type:"text/html"}),
@@ -111,7 +111,7 @@
     const head = document.createElement("div");
     head.className = "card-head";
     const title = document.createElement("h2");
-    title.textContent = `${name} · ${role}`;
+    title.textContent = role ? `${name} · ${role}` : name;
     const button = document.createElement("button");
     button.type = "button";
     button.textContent = "Checking images…";
