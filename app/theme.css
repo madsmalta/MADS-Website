@@ -413,7 +413,7 @@ body:has(.newsletter-confirmed-hero) #main-content{display:flex;flex:1;flex-dire
 .page-hero>.eyebrow,.legal-page>.eyebrow,.gallery-detail>.eyebrow,.event-detail>.eyebrow{font-size:1.1rem}
 .committee-grid article{border-bottom:1px solid #b6cec3;padding-bottom:20px}
 .committee-grid p{color:var(--teal-dark)}
-.committee-email{display:block;text-align:center;color:var(--teal-dark);font:600 1.02rem/1.5 var(--utility);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere;margin-top:14px}
+.committee-email{display:block;width:fit-content;max-width:100%;text-align:center;color:var(--teal-dark);font:600 1.02rem/1.5 var(--utility);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere;margin:14px auto 0}
 .outreach-story>div:not(.photo){padding:30px;border-left:3px solid var(--gold);background:var(--paper)}
 .gallery-grid .story{background:var(--paper);border-bottom:2px solid var(--teal)}
 .gallery-grid .story-caption{padding:4px 24px 20px}
