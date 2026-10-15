@@ -53,22 +53,22 @@
   function signatureMarkup(name, role, email, assetBase) {
     const safeName = name.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
     const safeRole = role.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
-    const emailLine = email ? `<div style="font-size:11px;line-height:16px;margin-top:3px"><a href="mailto:${email}" style="color:#185da3;text-decoration:none">${email}</a></div>` : "";
-    const icon = (name, label, url) => `<a href="${url}" title="${label}" aria-label="${label}" style="display:block;width:20px;height:20px;text-decoration:none"><img src="${assetBase}${name}.png" width="20" height="20" alt="${label}" style="display:block;width:20px;height:20px;border:0"></a>`;
-    return `<table role="presentation" width="394" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;table-layout:fixed;width:394px;max-width:100%;font-family:Arial,Helvetica,sans-serif;color:#162c45;background:#ffffff">
+    const emailLine = email ? `<div style="font-size:12px;line-height:17px;margin-top:3px"><a href="mailto:${email}" style="color:#185da3;text-decoration:underline">${email}</a></div>` : "";
+    const icon = (name, label, url) => `<a href="${url}" title="${label}" aria-label="${label}" style="display:block;width:25px;height:25px;text-decoration:none"><img src="${assetBase}${name}-contrast.png" width="25" height="25" alt="${label}" style="display:block;width:25px;height:25px;border:0"></a>`;
+    return `<table role="presentation" width="340" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;table-layout:fixed;width:340px;max-width:100%;font-family:Arial,Helvetica,sans-serif;color:#162c45;background:#f2f6fb">
       <tr>
-        <td width="104" height="104" style="width:104px;height:104px;background:#123d72;vertical-align:middle;text-align:center;padding:0">
-          <a href="https://www.mads.org.mt/" style="display:block;width:104px;height:104px;text-decoration:none" aria-label="MADS website"><img src="${assetBase}logo-white.png" width="98" height="98" alt="MADS" style="display:block;width:98px;height:98px;border:0;margin:3px"></a>
+        <td width="96" height="100" bgcolor="#123d72" style="width:96px;height:100px;background:#123d72;vertical-align:middle;text-align:center;padding:0">
+          <a href="https://www.mads.org.mt/" style="display:block;width:96px;height:100px;text-decoration:none" aria-label="MADS website"><img src="${assetBase}logo-white.png" width="90" height="90" alt="MADS" style="display:block;width:90px;height:90px;border:0;margin:5px 3px"></a>
         </td>
-        <td width="248" style="width:248px;vertical-align:middle;padding:8px 8px 8px 17px;border-left:3px solid #3179bd;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:17px;color:#185da3;white-space:normal">
-          <strong style="display:block;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:20px;font-weight:700;color:#185da3">${safeName}</strong>
+        <td width="206" bgcolor="#f2f6fb" style="width:206px;vertical-align:middle;padding:7px 5px 7px 13px;background:#f2f6fb;border-left:3px solid #3179bd;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:17px;color:#185da3;white-space:normal">
+          <strong style="display:block;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:19px;font-weight:700;color:#185da3">${safeName}</strong>
           ${role ? `<div style="font-size:12px;line-height:17px;font-weight:600;color:#185da3">${safeRole}</div>` : ""}
           ${emailLine}
-          <div style="font-size:11px;line-height:16px;margin-top:${email ? 8 : 11}px"><a href="https://www.mads.org.mt/" style="font-weight:600;color:#185da3;text-decoration:none">mads.org.mt</a></div>
+          <div style="font-size:12px;line-height:17px;margin-top:${email ? 7 : 9}px"><a href="https://www.mads.org.mt/" style="font-weight:600;color:#185da3;text-decoration:underline">mads.org.mt</a></div>
         </td>
-        <td width="42" height="104" style="width:42px;height:104px;vertical-align:middle;text-align:center;background:#eaf3fb;border-left:1px solid #d3e4f2;padding:0;font-size:0;line-height:0">
+        <td width="38" height="100" bgcolor="#123d72" style="width:38px;height:100px;vertical-align:middle;text-align:center;background:#123d72;padding:0;font-size:0;line-height:0">
           <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin:0 auto">
-            <tr><td style="padding:0 0 9px;text-align:center;font-size:0;line-height:0">${icon("instagram", "MADS Instagram", "https://www.instagram.com/mads.malta/")}</td></tr>
+            <tr><td style="padding:0 0 8px;text-align:center;font-size:0;line-height:0">${icon("instagram", "MADS Instagram", "https://www.instagram.com/mads.malta/")}</td></tr>
             <tr><td style="padding:0;text-align:center;font-size:0;line-height:0">${icon("facebook", "MADS Facebook", "https://www.facebook.com/madsonline/")}</td></tr>
           </table>
         </td>
@@ -136,7 +136,7 @@
     });
   }
 
-  Promise.all(["logo-white", "instagram", "facebook"].map(name => checkImage(`${hostedAssets}${name}.png`)))
+  Promise.all(["logo-white", "instagram-contrast", "facebook-contrast"].map(name => checkImage(`${hostedAssets}${name}.png`)))
     .then(results => {
       if (results.every(Boolean)) {
         imageStatus.textContent = "Signature images are live. You can now copy a signature into your email app.";
