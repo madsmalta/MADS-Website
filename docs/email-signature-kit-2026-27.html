@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MADS email signatures · 2026–2027</title>
+  <style>
+    :root{color-scheme:light;--ink:#162c45;--blue:#185da3;--muted:#526579;--line:#d9e3ec}
+    *{box-sizing:border-box}
+    body{margin:0;padding:40px 22px 70px;background:#f5f8fb;color:var(--ink);font:15px/1.5 Arial,Helvetica,sans-serif}
+    main{max-width:900px;margin:0 auto}
+    h1{margin:0 0 7px;font-size:30px;line-height:1.2;letter-spacing:-.8px}
+    .intro{max-width:690px;margin:0 0 30px;color:var(--muted)}
+    .card{padding:22px 0 26px;border-top:1px solid var(--line)}
+    .card-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:14px}
+    h2{margin:0;font-size:14px;font-weight:700}
+    button{border:1px solid #abc6df;border-radius:5px;background:#fff;color:#164c83;padding:7px 12px;font:600 12px Arial,Helvetica,sans-serif;cursor:pointer}
+    button:hover{background:#eaf2fa}
+    button:focus-visible{outline:3px solid #4a91d0;outline-offset:2px}
+    button:disabled{background:#edf2f6;color:#667789;border-color:#d4dee7;cursor:not-allowed}
+    .signature{display:inline-block;max-width:100%;padding:15px 17px;background:#fff;border:1px solid #e3e9ef;border-radius:3px;overflow-x:auto}
+    .note{max-width:700px;margin:22px 0 0;color:var(--muted);font-size:13px}
+    @media(max-width:500px){body{padding:26px 14px 55px}.signature{padding:11px}.card-head{align-items:flex-start}}
+  </style>
+</head>
+<body>
+<main>
+  <h1>MADS email signatures</h1>
+  <p class="intro">A compact MADS signature with the white logo and blue accents. The website text and social icons are clickable. Preview each one below, then use “Copy signature” to paste it into Outlook or another mail app.</p>
+  <p class="note" id="image-status" role="status">Checking that the signature images are available on the MADS website…</p>
+  <div id="signatures"></div>
+  <p class="note">The logo and icons in copied signatures use image files hosted on the MADS website. Some recipients’ email apps may initially hide images; the name, role and any email address remain readable. The Molar uses its own Brevo footer.</p>
+</main>
+<script>
+  const people = [
+    ["MADS Team", "General enquiries", "info@mads.org.mt"],
+    ["Andreya Gauci", "President", "president@mads.org.mt"],
+    ["Nicole Caruana", "Vice President", "vicepresident@mads.org.mt"],
+    ["Jeremy Austin", "Secretary General", "secgen@mads.org.mt"],
+    ["Maria Sammut", "Financial Officer", ""],
+    ["Kylie Zerafa", "Education Officer", "education@mads.org.mt"],
+    ["Kayleigh Vella Barberi", "Leisure Officer", "events@mads.org.mt"],
+    ["Adam Demajo", "Public Relations Officer", ""],
+    ["Judith Zammit", "PR & Marketing Officer", "partnerships@mads.org.mt"],
+    ["Shakira Yusuf", "Social Policy Officer", ""]
+  ];
+  const hostedAssets = "https://www.mads.org.mt/media/mads-signature-";
+  const localAssets = "../public/media/mads-signature-";
+  const container = document.getElementById("signatures");
+  const imageStatus = document.getElementById("image-status");
+  const copyButtons = [];
+
+  function signatureMarkup(name, role, email, assetBase) {
+    const safeName = name.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
+    const safeRole = role.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
+    const emailLine = email ? `<div style="font-size:11px;line-height:16px;margin-top:3px"><a href="mailto:${email}" style="color:#185da3;text-decoration:none">${email}</a></div>` : "";
+    const icon = (name, label, url) => `<a href="${url}" title="${label}" aria-label="${label}" style="display:block;width:20px;height:20px;text-decoration:none"><img src="${assetBase}${name}.png" width="20" height="20" alt="${label}" style="display:block;width:20px;height:20px;border:0"></a>`;
+    return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;width:394px;max-width:100%;font-family:Arial,Helvetica,sans-serif;color:#162c45;background:#ffffff">
+      <tr>
+        <td width="104" height="104" style="width:104px;height:104px;background:#123d72;vertical-align:middle;text-align:center;padding:0">
+          <a href="https://www.mads.org.mt/" style="display:block;width:104px;height:104px;text-decoration:none" aria-label="MADS website"><img src="${assetBase}logo-white.png" width="98" height="98" alt="MADS" style="display:block;width:98px;height:98px;border:0;margin:3px"></a>
+        </td>
+        <td style="vertical-align:middle;padding:8px 8px 8px 17px;border-left:3px solid #3179bd;font-size:0;line-height:0">
+          <div style="font-size:16px;line-height:20px;font-weight:700;color:#162c45">${safeName}</div>
+          <div style="font-size:12px;line-height:17px;font-weight:600;color:#185da3">${safeRole}</div>
+          ${emailLine}
+          <div style="font-size:11px;line-height:16px;margin-top:${email ? 8 : 11}px"><a href="https://www.mads.org.mt/" style="font-weight:600;color:#185da3;text-decoration:none">mads.org.mt</a></div>
+        </td>
+        <td width="42" height="104" style="width:42px;height:104px;vertical-align:middle;text-align:center;background:#eaf3fb;border-left:1px solid #d3e4f2;padding:0;font-size:0;line-height:0">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin:0 auto">
+            <tr><td style="padding:0 0 9px;text-align:center;font-size:0;line-height:0">${icon("instagram", "MADS Instagram", "https://www.instagram.com/mads.malta/")}</td></tr>
+            <tr><td style="padding:0;text-align:center;font-size:0;line-height:0">${icon("facebook", "MADS Facebook", "https://www.facebook.com/madsonline/")}</td></tr>
+          </table>
+        </td>
+      </tr>
+    </table>`;
+  }
+
+  async function copySignature(button, name, role, email) {
+    const html = signatureMarkup(name, role, email, hostedAssets);
+    const plain = [name, `${role} · MADS`, email, "https://www.mads.org.mt/", "https://www.instagram.com/mads.malta/", "https://www.facebook.com/madsonline/"].filter(Boolean).join("\n");
+    try {
+      await navigator.clipboard.write([new ClipboardItem({
+        "text/html": new Blob([html], {type:"text/html"}),
+        "text/plain": new Blob([plain], {type:"text/plain"})
+      })]);
+      button.textContent = "Copied";
+      setTimeout(() => button.textContent = "Copy signature", 2200);
+    } catch {
+      const temporary = document.createElement("div");
+      temporary.innerHTML = html;
+      temporary.style.cssText = "position:fixed;left:-10000px;top:0";
+      document.body.appendChild(temporary);
+      const range = document.createRange();
+      range.selectNodeContents(temporary);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      const copied = document.execCommand("copy");
+      selection.removeAllRanges();
+      temporary.remove();
+      button.textContent = copied ? "Copied" : "Copy unavailable";
+      setTimeout(() => button.textContent = "Copy signature", 2200);
+    }
+  }
+
+  for (const [name, role, email] of people) {
+    const card = document.createElement("section");
+    card.className = "card";
+    if (name === "MADS Team") card.id = "mads-team";
+    const head = document.createElement("div");
+    head.className = "card-head";
+    const title = document.createElement("h2");
+    title.textContent = `${name} · ${role}`;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "Checking images…";
+    button.disabled = true;
+    button.addEventListener("click", () => copySignature(button, name, role, email));
+    copyButtons.push(button);
+    head.append(title, button);
+    const signature = document.createElement("div");
+    signature.className = "signature";
+    signature.innerHTML = signatureMarkup(name, role, email, localAssets);
+    card.append(head, signature);
+    container.appendChild(card);
+  }
+
+  function checkImage(url) {
+    return new Promise(resolve => {
+      const image = new Image();
+      const timer = setTimeout(() => resolve(false), 8000);
+      image.onload = () => { clearTimeout(timer); resolve(image.naturalWidth > 0); };
+      image.onerror = () => { clearTimeout(timer); resolve(false); };
+      image.src = `${url}?check=20261015`;
+    });
+  }
+
+  Promise.all(["logo-white", "instagram", "facebook"].map(name => checkImage(`${hostedAssets}${name}.png`)))
+    .then(results => {
+      if (results.every(Boolean)) {
+        imageStatus.textContent = "Signature images are live. You can now copy a signature into your email app.";
+        for (const button of copyButtons) {
+          button.disabled = false;
+          button.textContent = "Copy signature";
+        }
+      } else {
+        imageStatus.textContent = "Signature images are not live yet. Copying is paused so Outlook does not show broken images. Refresh this page after the website update is published.";
+        for (const button of copyButtons) button.textContent = "Images not live yet";
+      }
+    });
+</script>
+</body>
+</html>
