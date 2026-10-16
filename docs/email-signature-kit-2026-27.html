@@ -50,15 +50,43 @@
   const imageStatus = document.getElementById("image-status");
   const copyButtons = [];
 
-  function signatureMarkup(name, role, email, assetBase) {
+  function signatureMarkup(name, role, email, assetBase, variant = "standard") {
     const safeName = name.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
     const safeRole = role.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
+    if (variant === "open") {
+      const socialIcon = (name, label, url) => `<a href="${url}" title="${label}" aria-label="${label}" style="display:block;width:22px;height:22px;text-decoration:none"><img src="${assetBase}${name}-contrast.png" width="22" height="22" alt="${label}" style="display:block;width:22px;height:22px;border:0"></a>`;
+      return `<table role="presentation" width="340" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;table-layout:fixed;width:340px;max-width:100%;font-family:Arial,Helvetica,sans-serif">
+        <tr>
+          <td width="80" style="width:80px;vertical-align:middle;padding:0 10px 0 0">
+            <table role="presentation" width="70" cellpadding="0" cellspacing="0" border="0" bgcolor="#123d72" style="border-collapse:collapse;width:70px;background:#123d72"><tr><td width="70" height="70" style="width:70px;height:70px;padding:0;text-align:center;vertical-align:middle"><a href="https://www.mads.org.mt/" style="display:block;width:70px;height:70px;text-decoration:none" aria-label="MADS website"><img src="${assetBase}logo-white.png" width="62" height="62" alt="MADS" style="display:block;width:62px;height:62px;border:0;margin:4px"></a></td></tr></table>
+          </td>
+          <td width="260" style="width:260px;vertical-align:middle;padding:0 0 0 12px;border-left:3px solid #3179bd;font-family:Arial,Helvetica,sans-serif;color:#185da3">
+            <strong style="display:block;font-size:17px;line-height:21px;color:#185da3">${safeName}</strong>
+            <span style="display:block;font-size:12px;line-height:17px;font-weight:600;color:#185da3">${safeRole}</span>
+            <a href="mailto:${email}" style="display:block;margin-top:3px;font-size:12px;line-height:17px;color:#185da3;text-decoration:underline">${email}</a>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;width:100%;margin-top:8px;border-top:1px solid #9bb8d2">
+              <tr>
+                <td style="vertical-align:middle;padding-top:5px"><a href="https://www.mads.org.mt/" style="font-size:12px;line-height:17px;font-weight:600;color:#185da3;text-decoration:underline">mads.org.mt</a></td>
+                <td width="29" style="width:29px;vertical-align:middle;padding:5px 5px 0 0">${socialIcon("instagram", "MADS Instagram", "https://www.instagram.com/mads.malta/")}</td>
+                <td width="22" style="width:22px;vertical-align:middle;padding-top:5px">${socialIcon("facebook", "MADS Facebook", "https://www.facebook.com/madsonline/")}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>`;
+    }
+    const smallLogo = variant === "small-logo";
+    const tableWidth = smallLogo ? 324 : 340;
+    const logoColumnWidth = smallLogo ? 80 : 96;
+    const logoSize = smallLogo ? 66 : 90;
+    const tileHeight = smallLogo ? 92 : 100;
+    const logoMargin = smallLogo ? "13px 7px" : "5px 3px";
     const emailLine = email ? `<div style="font-size:12px;line-height:17px;margin-top:3px"><a href="mailto:${email}" style="color:#185da3;text-decoration:underline">${email}</a></div>` : "";
     const icon = (name, label, url) => `<a href="${url}" title="${label}" aria-label="${label}" style="display:block;width:25px;height:25px;text-decoration:none"><img src="${assetBase}${name}-contrast.png" width="25" height="25" alt="${label}" style="display:block;width:25px;height:25px;border:0"></a>`;
-    return `<table role="presentation" width="340" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;table-layout:fixed;width:340px;max-width:100%;font-family:Arial,Helvetica,sans-serif;color:#162c45;background:#f2f6fb">
+    return `<table role="presentation" width="${tableWidth}" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;table-layout:fixed;width:${tableWidth}px;max-width:100%;font-family:Arial,Helvetica,sans-serif;color:#162c45;background:#f2f6fb">
       <tr>
-        <td width="96" height="100" bgcolor="#123d72" style="width:96px;height:100px;background:#123d72;vertical-align:middle;text-align:center;padding:0">
-          <a href="https://www.mads.org.mt/" style="display:block;width:96px;height:100px;text-decoration:none" aria-label="MADS website"><img src="${assetBase}logo-white.png" width="90" height="90" alt="MADS" style="display:block;width:90px;height:90px;border:0;margin:5px 3px"></a>
+        <td width="${logoColumnWidth}" height="${tileHeight}" bgcolor="#123d72" style="width:${logoColumnWidth}px;height:${tileHeight}px;background:#123d72;vertical-align:middle;text-align:center;padding:0">
+          <a href="https://www.mads.org.mt/" style="display:block;width:${logoColumnWidth}px;height:${tileHeight}px;text-decoration:none" aria-label="MADS website"><img src="${assetBase}logo-white.png" width="${logoSize}" height="${logoSize}" alt="MADS" style="display:block;width:${logoSize}px;height:${logoSize}px;border:0;margin:${logoMargin}"></a>
         </td>
         <td width="206" bgcolor="#f2f6fb" style="width:206px;vertical-align:middle;padding:7px 5px 7px 13px;background:#f2f6fb;border-left:3px solid #3179bd;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:17px;color:#185da3;white-space:normal">
           <strong style="display:block;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:19px;font-weight:700;color:#185da3">${safeName}</strong>
@@ -66,7 +94,7 @@
           ${emailLine}
           <div style="font-size:12px;line-height:17px;margin-top:${email ? 7 : 9}px"><a href="https://www.mads.org.mt/" style="font-weight:600;color:#185da3;text-decoration:underline">mads.org.mt</a></div>
         </td>
-        <td width="38" height="100" bgcolor="#123d72" style="width:38px;height:100px;vertical-align:middle;text-align:center;background:#123d72;padding:0;font-size:0;line-height:0">
+        <td width="38" height="${tileHeight}" bgcolor="#123d72" style="width:38px;height:${tileHeight}px;vertical-align:middle;text-align:center;background:#123d72;padding:0;font-size:0;line-height:0">
           <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin:0 auto">
             <tr><td style="padding:0 0 8px;text-align:center;font-size:0;line-height:0">${icon("instagram", "MADS Instagram", "https://www.instagram.com/mads.malta/")}</td></tr>
             <tr><td style="padding:0;text-align:center;font-size:0;line-height:0">${icon("facebook", "MADS Facebook", "https://www.facebook.com/madsonline/")}</td></tr>
@@ -76,8 +104,8 @@
     </table>`;
   }
 
-  async function copySignature(button, name, role, email) {
-    const html = signatureMarkup(name, role, email, hostedAssets);
+  async function copySignature(button, name, role, email, variant) {
+    const html = signatureMarkup(name, role, email, hostedAssets, variant);
     const plain = [name, role ? `${role} · MADS` : "", email, "https://www.mads.org.mt/", "https://www.instagram.com/mads.malta/", "https://www.facebook.com/madsonline/"].filter(Boolean).join("\n");
     try {
       await navigator.clipboard.write([new ClipboardItem({
@@ -104,26 +132,35 @@
     }
   }
 
-  for (const [name, role, email] of people) {
+  const designs = people.flatMap(([name, role, email]) =>
+    name === "Jeremy Austin" ? [[name, role, email, "standard"], [name, role, email, "small-logo"], [name, role, email, "open"]] : [[name, role, email, "standard"]]
+  );
+  for (const [name, role, email, variant] of designs) {
     const card = document.createElement("section");
     card.className = "card";
     if (name === "MADS Team") card.id = "mads-team";
+    if (variant === "small-logo") card.id = "jeremy-small-logo";
+    if (variant === "open") card.id = "jeremy-open";
     const head = document.createElement("div");
     head.className = "card-head";
     const title = document.createElement("h2");
-    title.textContent = role ? `${name} · ${role}` : name;
+    title.textContent = variant === "small-logo" ? `${name} · smaller logo experiment` : variant === "open" ? `${name} · open layout experiment` : role ? `${name} · ${role}` : name;
     const button = document.createElement("button");
     button.type = "button";
     button.textContent = "Checking images…";
     button.disabled = true;
-    button.addEventListener("click", () => copySignature(button, name, role, email));
+    button.addEventListener("click", () => copySignature(button, name, role, email, variant));
     copyButtons.push(button);
     head.append(title, button);
     const signature = document.createElement("div");
     signature.className = "signature";
-    signature.innerHTML = signatureMarkup(name, role, email, localAssets);
+    signature.innerHTML = signatureMarkup(name, role, email, localAssets, variant);
     card.append(head, signature);
     container.appendChild(card);
+  }
+
+  if (["#jeremy-small-logo", "#jeremy-open"].includes(location.hash)) {
+    requestAnimationFrame(() => document.querySelector(location.hash).scrollIntoView({block: "start"}));
   }
 
   function checkImage(url) {
