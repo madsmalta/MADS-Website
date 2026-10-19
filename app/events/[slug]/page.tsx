@@ -4,9 +4,9 @@ import { ChevronLeft, MapPin } from "lucide-react";
 import { notFound } from "next/navigation";
 import { PageShell } from "@/components/page-shell";
 import { publicEvents } from "@/data/site";
-import { formatEventTimeRange } from "@/lib/event-format";
+import { formatEventDateRange, formatEventTimeRange } from "@/lib/event-format";
 import { getEventLocationUrl } from "@/lib/event-location";
-import { eventDisplayStatus, formatEventDate } from "@/lib/events";
+import { eventDisplayStatus } from "@/lib/events";
 import { absoluteUrl, breadcrumbSchema, pageMetadata, siteName } from "@/lib/seo";
 import { StructuredData } from "@/components/structured-data";
 
@@ -30,6 +30,7 @@ export default async function EventDetail({ params }: { params: Promise<{ slug: 
   if (!event) notFound();
 
   const locationUrl = getEventLocationUrl(event);
+  const registrationInInfo = Boolean(event.poster && event.registrationUrl && event.registrationLabel);
   const withOffset = (value: string) => /(?:Z|[+-]\d{2}:\d{2})$/.test(value) ? value : `${value}${event.utcOffset}`;
   const eventSchema = {
     "@type": "Event", "@id": absoluteUrl(`/events/${event.slug}#event`),
@@ -39,19 +40,21 @@ export default async function EventDetail({ params }: { params: Promise<{ slug: 
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     image: event.poster ? absoluteUrl(event.poster.src) : undefined,
     location: { "@type": "Place", name: event.venue?.name ?? event.location, address: event.venue ? { "@type": "PostalAddress", streetAddress: event.venue.streetAddress, addressLocality: event.venue.addressLocality, addressCountry: event.venue.addressCountry } : event.location },
-    organizer: { "@type": "Organization", name: siteName, url: absoluteUrl() },
+    organizer: event.organizerName ? { "@type": "Organization", name: event.organizerName } : { "@type": "Organization", name: siteName, url: absoluteUrl() },
   };
   return <PageShell><article className="shell event-detail">
     <StructuredData data={[eventSchema, breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Events", path: "/events" }, { name: event.title, path: `/events/${event.slug}` }])]} />
     <Link href="/events" className="back-link"><ChevronLeft size={17} /> All events</Link>
     <p className="eyebrow">{event.category}</p>
     <h1>{event.title}</h1>
-    <p className="lede">{event.status === "Postponed" ? "This event has been postponed. We’ll share the new date and details once they’re confirmed." : event.longDescription}</p>
-    <div className="event-info" data-scroll-reveal>
-      <div><span>Date & time</span><strong className="event-info-date-time">{event.status === "Postponed" ? "New date to be confirmed" : <><span>{formatEventDate(event, { weekday: "long", day: "numeric", month: "long", year: "numeric" })}</span><span>{formatEventTimeRange(event)}</span></>}</strong></div>
+    <div className="event-description">{(event.status === "Postponed" ? "This event has been postponed. We’ll share the new date and details once they’re confirmed." : event.longDescription).split("\n\n").map((paragraph) => <p className="lede" key={paragraph}>{paragraph}</p>)}</div>
+    <div className={`event-info${registrationInInfo ? " event-info--with-action" : ""}`} data-scroll-reveal>
+      <div><span>Date & time</span><strong className="event-info-date-time">{event.status === "Postponed" ? "New date to be confirmed" : <><span>{formatEventDateRange(event)}</span><span>{formatEventTimeRange(event)}</span></>}</strong></div>
       <div><span>Location</span><strong><MapPin size={16} /> {locationUrl ? <a className="event-location-link" href={locationUrl} target="_blank" rel="noopener noreferrer">{event.location}</a> : event.location}</strong></div>
       <div><span>Status</span><strong>{eventDisplayStatus(event)}</strong></div>
+      {registrationInInfo && <div className="event-info-action"><a className="button button--dark event-registration" href={event.registrationUrl} target="_blank" rel="noopener noreferrer">{event.registrationLabel}</a></div>}
     </div>
-    {event.poster && <figure className="event-poster" data-scroll-reveal><Image src={event.poster.src} alt={event.poster.alt} width={1254} height={1254} sizes="(max-width: 600px) calc(100vw - 40px), 520px" /></figure>}
+    {!registrationInInfo && event.registrationUrl && event.registrationLabel && <a className="button button--dark event-registration" href={event.registrationUrl} target="_blank" rel="noopener noreferrer">{event.registrationLabel}</a>}
+    {event.poster && <figure className="event-poster" data-scroll-reveal><Image src={event.poster.src} alt={event.poster.alt} width={event.poster.width ?? 1254} height={event.poster.height ?? 1254} sizes="(max-width: 600px) calc(100vw - 40px), 520px" /></figure>}
   </article></PageShell>;
 }

@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, CalendarDays, Clock, MapPin } from "lucide-react";
 import type { EventItem } from "@/data/site";
-import { formatEventTimeRange } from "@/lib/event-format";
+import { formatEventDateRange, formatEventTimeRange } from "@/lib/event-format";
 import { getEventLocationUrl } from "@/lib/event-location";
 import { eventDisplayStatus, formatEventDate } from "@/lib/events";
 export function EventCard({ event }: { event: EventItem }) {
@@ -22,7 +22,7 @@ export function EventCard({ event }: { event: EventItem }) {
     {status !== "Upcoming" && status !== "Past event" && <p className="event-status">{status}</p>}
    </div>
    <div className="event-card-details">
-    <p className="event-meta event-card-date"><CalendarDays size={15} aria-hidden="true" /> {postponed ? "New date to be confirmed" : formatEventDate(event, { weekday: "long", day: "numeric", month: "long", year: "numeric" })}</p>
+    <p className="event-meta event-card-date"><CalendarDays size={15} aria-hidden="true" /> {postponed ? "New date to be confirmed" : formatEventDateRange(event)}</p>
     {!postponed && <p className="event-meta"><Clock size={15} aria-hidden="true" /> {formatEventTimeRange(event)}</p>}
     <p className="event-meta"><MapPin size={15} aria-hidden="true" /> {locationUrl ? <a className="event-location-link" href={locationUrl} target="_blank" rel="noopener noreferrer">{event.location}</a> : event.location}</p>
     <p>{event.description}</p>

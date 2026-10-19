@@ -5,8 +5,8 @@ import type { EventMountArg } from "@fullcalendar/core";
 import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import type { EventItem } from "@/data/site";
-import { formatEventTimeRange } from "@/lib/event-format";
-import { eventDisplayStatus, formatEventDate } from "@/lib/events";
+import { formatEventDateRange, formatEventTimeRange } from "@/lib/event-format";
+import { eventDisplayStatus } from "@/lib/events";
 
 type Preview = { event: EventItem; anchor: HTMLElement };
 
@@ -28,13 +28,12 @@ function EventPreview({ preview, id, keepOpen, leave }: {
   el.style.visibility = "visible";
  }, [preview]);
  const event = preview.event;
- const timed = event.date.includes("T");
  return createPortal(
   <div ref={panel} id={id} role="tooltip" className="calendar-tooltip" onPointerEnter={keepOpen} onPointerLeave={leave}>
    <p className="calendar-tooltip-category">{event.category} · {eventDisplayStatus(event)}</p>
    <h3>{event.title}</h3>
    <div className="calendar-tooltip-details">
-    <p>{formatEventDate(event, { weekday:"long", day:"numeric", month:"long", year:"numeric" })}<br/>{timed ? `${formatEventTimeRange(event)} Malta time` : "All day"}</p>
+    <p>{formatEventDateRange(event)}<br/>{formatEventTimeRange(event)}</p>
     <p>{event.location || "Location to be confirmed"}</p>
    </div>
    <p className="calendar-tooltip-description">{event.description}</p>
@@ -108,8 +107,9 @@ export function Calendar({ events, initialDate }: { events: EventItem[]; initial
   };
  }, [cancelTimers, dismiss]);
  const calendarEvents = useMemo(() => events.map(event => ({
-  id: event.slug, title: event.status === "Cancelled" ? `${event.title} — Cancelled` : event.title, start: `${event.date}${event.utcOffset}`, end: event.end ? `${event.end}${event.utcOffset}` : undefined,
-  url: `/events/${event.slug}`, classNames: [`category-${event.category.toLowerCase()}`, ...(event.slug === "christmas-gala-2026" ? ["calendar-event-centered"] : [])],
+  id: event.slug, title: event.status === "Cancelled" ? `${event.title} — Cancelled` : event.title,
+  start: `${event.date}${event.utcOffset}`, end: event.end ? `${event.end}${event.utcOffset}` : undefined,
+  url: `/events/${event.slug}`, classNames: [`category-${event.category.toLowerCase()}`, ...(["christmas-gala-2026", "world-diabetes-day-2026", "trd-2026"].includes(event.slug) ? ["calendar-event-centered"] : [])],
   extendedProps: { details: event },
  })), [events]);
  const unmount = useCallback((info: EventMountArg) => {

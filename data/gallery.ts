@@ -71,6 +71,14 @@ const attardPhotos = photos("attard", [2,1,3,4,5,6,7,8], index => index === 1 ? 
 const mostaPhotos = photos("mosta", [1,2,3,4,5,6,7,8,9,10], index => [2,3,5,6,7].includes(index) ? "MADS volunteers demonstrating oral-health activities with participants in Mosta" : "MADS volunteers presenting an oral-health talk in Mosta");
 const pembrokePhotos = photos("pembroke", [1,2,3,4,5,6,7,8,9,10,11,12], index => index === 3 ? "Participants holding oral-health activity materials at the Pembroke talk" : "MADS volunteers demonstrating oral-health activities at the Pembroke talk");
 const scoutsPhotos = photos("scouts", [2,3,6,4,5,1], index => index === 1 ? "Scouts showing tooth-themed stickers on their hands" : index === 5 ? "MADS volunteers and Scouts together after the oral-health talk" : "MADS volunteers presenting oral-health activities to Scouts");
+const freshersStandFiles = [
+ "stand-1-06", "stand-1-01", "stand-1-02", "stand-1-03", "stand-1-04", "stand-1-05", "stand-1-09", "stand-1-07", "stand-1-08",
+ "stand-2-01", "stand-2-02", "stand-2-03", "stand-2-04", "stand-2-05", "stand-2-06", "stand-2-07",
+];
+const freshersStandPhotos: GalleryPhoto[] = freshersStandFiles.map((file, position) => ({
+ src: `/media/galleries/freshers-stand/${file}.webp`,
+ alt: `${["stand-1-07", "stand-1-08", "stand-2-01", "stand-2-06", "stand-2-07"].includes(file) ? "Activities and supplies at the MADS Freshers stand" : "MADS volunteers and students at the Freshers stand"} (photo ${position + 1} of ${freshersStandFiles.length})`,
+}));
 
 const volleyballGathering = new Set([56,70,112,154,175,210,217,231,238,266,308]);
 const volleyballPhotos = photos("volleyball", [224,28,49,56,63,70,77,84,91,98,105,112,119,126,140,147,154,161,175,182,203,210,231,238,245,252,259,266,273,280,301,308], index =>
@@ -86,6 +94,7 @@ const curatedSitcPhotos = curatedPhotos([...sitcPhotos,...sitcAdditionalPhotos,.
 const curatedVolleyballPhotos = curatedPhotos(volleyballPhotos, octoberGallerySelections.volleyball);
 
 export const galleries: Gallery[] = [
+ {slug:"freshers-stand",title:"Freshers stand",category:"Outreach",image:freshersStandPhotos[0].src,alt:"MADS volunteers and students at the Freshers stand",description:"Photos from the MADS Freshers stand.",photos:freshersStandPhotos},
  {slug:"pembroke",title:"Pembroke Skola Sajf",category:"Outreach",image:"/media/pembroke.webp",alt:"MADS volunteers demonstrating brushing with a dental model at the Pembroke talk",description:"A look at the MADS oral-health outreach talk in Pembroke.",photos:pembrokePhotos},
  {slug:"mosta",title:"Mosta Skola Sajf",category:"Outreach",image:"/media/mosta.webp",alt:"MADS volunteers delivering an oral-health presentation in Mosta",description:"Moments from the MADS oral-health outreach talk in Mosta.",photos:mostaPhotos},
  {slug:"scouts",title:"Scouts talk",category:"Outreach",image:"/media/scouts.webp",alt:"MADS presenters speaking to a group of Scouts",description:"MADS students talking with Scouts about looking after their teeth.",photos:scoutsPhotos},
