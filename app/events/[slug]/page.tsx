@@ -55,6 +55,7 @@ export default async function EventDetail({ params }: { params: Promise<{ slug: 
       {registrationInInfo && <div className="event-info-action"><a className="button button--dark event-registration" href={event.registrationUrl} target="_blank" rel="noopener noreferrer">{event.registrationLabel}</a></div>}
     </div>
     {!registrationInInfo && event.registrationUrl && event.registrationLabel && <a className="button button--dark event-registration" href={event.registrationUrl} target="_blank" rel="noopener noreferrer">{event.registrationLabel}</a>}
+    {event.photoGalleryUrl && <Link className="button button--dark event-registration" href={event.photoGalleryUrl}>View event photos</Link>}
     {event.poster && <figure className="event-poster" data-scroll-reveal><Image src={event.poster.src} alt={event.poster.alt} width={event.poster.width ?? 1254} height={event.poster.height ?? 1254} sizes="(max-width: 600px) calc(100vw - 40px), 520px" /></figure>}
   </article></PageShell>;
 }

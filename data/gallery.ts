@@ -80,6 +80,28 @@ const freshersStandPhotos: GalleryPhoto[] = freshersStandFiles.map((file, positi
  alt: `${["stand-1-07", "stand-1-08", "stand-2-01", "stand-2-06", "stand-2-07"].includes(file) ? "Activities and supplies at the MADS Freshers stand" : "MADS volunteers and students at the Freshers stand"} (photo ${position + 1} of ${freshersStandFiles.length})`,
 }));
 
+const primaryImpressionsPhotos: GalleryPhoto[] = [
+ ["684", "Students socialising at Primary Impressions"],
+ ["865", "Students together by the MADS banner at Primary Impressions"],
+ ["829", "A group of students together at Primary Impressions"],
+ ["916", "Two students at Primary Impressions"],
+ ["945", "Three students at Primary Impressions"],
+ ["025", "Students with MADS Freshers Week cards at Primary Impressions"],
+ ["803", "Students raising glasses at Primary Impressions"],
+ ["930", "Two students smiling at Primary Impressions"],
+ ["840", "Students with MADS Freshers Week cards and a gift at Primary Impressions"],
+ ["899", "Students holding gifts at Primary Impressions"],
+ ["754", "Students playing a tabletop game at Primary Impressions"],
+ ["996", "Tabletop games at Primary Impressions"],
+ ["907", "Food shared at Primary Impressions"],
+ ["983", "Students sharing pizza at Primary Impressions"],
+ ["888", "Dental-themed gifts displayed at Primary Impressions"],
+ ["940", "Dental-themed gifts displayed at Primary Impressions"],
+].map(([file, alt], index, all) => ({
+ src: `/media/galleries/primary-impressions/${file}.jpg`,
+ alt: `${alt} (photo ${index + 1} of ${all.length})`,
+}));
+
 const volleyballGathering = new Set([56,70,112,154,175,210,217,231,238,266,308]);
 const volleyballPhotos = photos("volleyball", [224,28,49,56,63,70,77,84,91,98,105,112,119,126,140,147,154,161,175,182,203,210,231,238,245,252,259,266,273,280,301,308], index =>
  volleyballGathering.has(index) ? "Participants together at the MADS Volleyball Tournament" :
@@ -101,6 +123,7 @@ export const galleries: Gallery[] = [
  {slug:"attard",title:"Attard Skola Sajf",category:"Outreach",image:attardPhotos[0].src,alt:attardPhotos[0].alt,description:"Photographs from the MADS oral-health outreach talk in Attard.",photos:attardPhotos},
  {slug:"sitc",title:"Science in the City",category:"Outreach",image:curatedSitcPhotos[0].src,alt:"MADS volunteers speaking with visitors at Science in the City",description:"MADS and volunteers spoke with visitors about oral health and led activities, while clinical-year dental students gave check-ups in the Faculty of Dental Surgery’s Mobile Dental Unit (MDU).",photos:curatedSitcPhotos},
  {slug:"open-wide",title:"Open Wide Open Bar",category:"Student life",image:openWidePhotos[0].src,alt:"MADS volunteers together at Open Wide Open Bar",description:"Photos from Open Wide Open Bar, a MADS party.",photos:openWidePhotos},
+ {slug:"primary-impressions",title:"Primary Impressions",category:"Student life",image:primaryImpressionsPhotos[0].src,alt:"Students socialising at Primary Impressions",description:"Photos from the Primary Impressions freshers meet-up at Queen Victoria Pub in Valletta on 9 October 2026.",photos:primaryImpressionsPhotos},
  {slug:"volleyball",title:"MADS Volleyball Tournament",category:"Student life",image:curatedVolleyballPhotos[0].src,alt:"Students playing beach volleyball at the MADS tournament",description:"Photos from a day of beach volleyball with MADS.",photos:curatedVolleyballPhotos},
 ];
 

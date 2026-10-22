@@ -1,5 +1,5 @@
 export type Category = "Academic" | "Social" | "Freshers" | "Outreach" | "International" | "Wellbeing";
-export type EventItem = { slug: string; title: string; date: string; end?: string; utcOffset: "+01:00" | "+02:00"; category: Category; location: string; locationUrl?: string; venue?: { name: string; streetAddress: string; addressLocality: string; addressCountry: string }; organizerName?: string; status: "Upcoming" | "Postponed" | "Cancelled" | "Sold out"; description: string; longDescription: string; poster?: { src: string; alt: string; width?: number; height?: number }; registrationLabel?: string; registrationUrl?: string };
+export type EventItem = { slug: string; title: string; date: string; end?: string; utcOffset: "+01:00" | "+02:00"; category: Category; location: string; locationUrl?: string; venue?: { name: string; streetAddress: string; addressLocality: string; addressCountry: string }; organizerName?: string; status: "Upcoming" | "Postponed" | "Cancelled" | "Sold out"; description: string; longDescription: string; poster?: { src: string; alt: string; width?: number; height?: number }; photoGalleryUrl?: string; registrationLabel?: string; registrationUrl?: string };
 
 export const siteRoutes = [
   { href: "/", label: "Home" }, { href: "/events", label: "Events" }, { href: "/opportunities", label: "Opportunities" }, { href: "/outreach", label: "Outreach" }, { href: "/student-life", label: "Student Life" }, { href: "/about", label: "About MADS" }, { href: "/contact", label: "Contact" },
@@ -17,12 +17,13 @@ export const publicEvents: EventItem[] = [
     venue: { name: "Queen Victoria Pub", streetAddress: "20 South Street", addressLocality: "Valletta", addressCountry: "MT" },
     locationUrl: "https://www.google.com/maps/search/?api=1&query=The+Queen+Victoria+City+Pub%2C+20+South+Street%2C+Valletta%2C+Malta",
     status: "Upcoming",
-    description: "A MADS freshers meet-up to meet new faces and catch up with fellow dental students after summer.",
-    longDescription: "Join MADS for an evening with freshers and fellow dental students. Primary Impressions is a chance to meet people from your course, reconnect after summer and get to know each other at Queen Victoria Pub in Valletta.",
+    description: "Photos from the Primary Impressions freshers meet-up at Queen Victoria Pub in Valletta.",
+    longDescription: "Primary Impressions brought freshers and fellow dental students together at Queen Victoria Pub in Valletta on 9 October 2026. Browse photos from the evening.",
     poster: {
       src: "/media/primary-impressions.jpg",
       alt: "Primary Impressions poster featuring Valletta and a dental impression tray.",
     },
+    photoGalleryUrl: "/student-life/primary-impressions",
   },
   {
     slug: "world-diabetes-day-2026",
@@ -51,10 +52,10 @@ export const publicEvents: EventItem[] = [
     description: "A residential MMSA training weekend open to all dental faculty students, with talks and time to connect.",
     longDescription: "MMSA’s Training and Resource Development Weekend (TRD) runs from Friday 20 November at 15:00 to Sunday 22 November at 11:00 at San Antonio Hotel. It is open to all dental faculty students.\n\nMADS is planning four one-hour lecturer talks, two on Friday and two on Saturday, alongside social activities. The €150 fee covers two nights’ accommodation and the meals and activities listed in the application form.\n\nApply by Wednesday 28 October at 23:59. Places are first come, first served; the form requires proof of payment and a signed waiver. Saturday talk times, topics and speakers have not yet been confirmed.",
     poster: {
-      src: "/media/trd-2026-vegas.png",
-      alt: "MMSA TRD 2026 Vegas poster with a Las Vegas sign, San Antonio venue and 20–22 November dates.",
-      width: 1080,
-      height: 1350,
+      src: "/media/trd-2026-mads-will-be-there.png",
+      alt: "MADS and MMSA TRD 2026 poster with a Vegas sign, db San Antonio venue and 20–22 November dates.",
+      width: 1121,
+      height: 1403,
     },
     registrationLabel: "Apply for TRD",
     registrationUrl: "https://forms.gle/FQy25KNtm18s69QDA",
