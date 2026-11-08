@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import "./globals.css";
 import "./theme.css";
 import "./sitewide.css";
+import { Intro } from "@/components/intro";
 import { RouteScroll } from "@/components/route-scroll";
 import { isPreview, siteDescription, siteName, siteUrl } from "@/lib/seo";
 
@@ -44,5 +46,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" className={`${manrope.variable} ${marcellus.variable} ${sourceSans.variable}`} suppressHydrationWarning><body><RouteScroll />{children}</body></html>;
+  return <html lang="en" className={`${manrope.variable} ${marcellus.variable} ${sourceSans.variable}`} suppressHydrationWarning><body><Script id="mads-intro-session" strategy="beforeInteractive">{`try{if(!sessionStorage.getItem('mads-reveal-v3')){document.documentElement.dataset.reveal='play';sessionStorage.setItem('mads-reveal-v3','seen')}}catch(e){}`}</Script><RouteScroll /><Intro />{children}</body></html>;
 }

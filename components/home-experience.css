@@ -1,4 +1,3 @@
-body:has(.home-redesign) .intro{display:none!important}
 .home-redesign{background:#fff;--home-space:80px}
 .home-redesign ::selection{background:var(--gold);color:var(--navy)}
 .home-width{width:min(1280px,calc(100% - 160px));margin-inline:auto}
