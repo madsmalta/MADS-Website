@@ -1,0 +1,6 @@
+.home-outreach-slideshow .home-outreach-photo-active{opacity:1;transition:opacity .85s cubic-bezier(.22,1,.36,1)}
+.home-outreach-slideshow[data-ready="false"] .home-outreach-photo-active{opacity:0}
+.home-outreach-slideshow .home-photo-zones{z-index:1}
+.home-outreach-photo-caption{position:absolute;z-index:2;bottom:20px;left:20px}
+@media(max-width:600px){.home-outreach-photo-caption{bottom:14px;left:14px}}
+@media(prefers-reduced-motion:reduce){.home-outreach-slideshow .home-outreach-photo-active{transition:none}}

@@ -1,9 +1,33 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import "./theme.css";
-import { Intro } from "@/components/intro";
+import "./sitewide.css";
 import { RouteScroll } from "@/components/route-scroll";
 import { isPreview, siteDescription, siteName, siteUrl } from "@/lib/seo";
+
+const manrope = localFont({
+  src: [
+    { path: "../public/fonts/manrope-regular.woff2", weight: "400", style: "normal" },
+    { path: "../public/fonts/manrope-semibold.woff2", weight: "600", style: "normal" },
+    { path: "../public/fonts/manrope-bold.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--mads-manrope",
+  display: "swap",
+  adjustFontFallback: "Arial",
+});
+const marcellus = localFont({
+  src: "../public/fonts/marcellus-regular.woff2",
+  variable: "--mads-marcellus",
+  display: "swap",
+  adjustFontFallback: "Times New Roman",
+});
+const sourceSans = localFont({
+  src: "../public/fonts/source-sans-3-semibold.woff2",
+  variable: "--mads-source-sans",
+  display: "swap",
+  adjustFontFallback: "Arial",
+});
 
 export const metadata: Metadata = {
   title: { default: "MADS | Malta Association of Dental Students", template: "%s | MADS" },
@@ -20,5 +44,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" suppressHydrationWarning><head><script dangerouslySetInnerHTML={{__html:`try{if(!sessionStorage.getItem('mads-reveal-v2')){document.documentElement.dataset.reveal='play';sessionStorage.setItem('mads-reveal-v2','seen')}}catch(e){}`}} /></head><body><RouteScroll /><Intro />{children}</body></html>;
+  return <html lang="en" className={`${manrope.variable} ${marcellus.variable} ${sourceSans.variable}`} suppressHydrationWarning><body><RouteScroll />{children}</body></html>;
 }

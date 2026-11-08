@@ -7,7 +7,7 @@ export const metadata = sectionMetadata.opportunities;
 
 export default function Opportunities() {
   return <PageShell>
-    <section className="page-hero shell" data-dental-icon="scalpel">
+    <section className="page-hero shell" data-dental-icon="scalpel" data-hero="opportunities">
       <p className="eyebrow">Opportunities</p>
       <h1>Beyond the timetable</h1>
       <p>Explore exchanges, conferences, courses and volunteering.</p>

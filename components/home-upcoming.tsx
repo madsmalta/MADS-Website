@@ -13,7 +13,7 @@ export type HomeUpcomingEvent = {
   timeLabel: string;
 };
 
-const ROTATION_MS = 15_000;
+const ROTATION_MS = 6_000;
 
 export function HomeUpcoming({ events }: { events: HomeUpcomingEvent[] }) {
   const container = useRef<HTMLDivElement>(null);
@@ -79,9 +79,9 @@ export function HomeUpcoming({ events }: { events: HomeUpcomingEvent[] }) {
             aria-hidden={!active}
             key={event.slug}
           >
-            <CalendarPlus size={26} aria-hidden="true" />
+            <p className="home-event-date">{event.dateLabel} · {event.timeLabel}</p>
             <h3>{event.title}</h3>
-            <p>{event.dateLabel} · {event.timeLabel}<br />
+            <p>
               {event.locationHref ? <a className="event-location-link home-event-location" href={event.locationHref} target="_blank" rel="noopener noreferrer"><MapPin size={20} aria-hidden="true" />{event.location}</a> : <span className="home-event-location"><MapPin size={20} aria-hidden="true" />{event.location}</span>}
             </p>
             <Link className="button button--outline" href={`/events/${event.slug}`} scroll={false}>Event details</Link>

@@ -16,7 +16,7 @@ export function GalleryDetail({ gallery }: { gallery: Gallery }) {
     <Link className="back-link" href={section.path}>Back to {section.label}</Link>
     <h1>{gallery.title}</h1>
     {gallery.photos ? <>
-      <a className="gallery-cover-link" href={gallery.image} target="_blank" rel="noopener noreferrer" aria-label={`View the cover photo from ${gallery.title} in a new tab`} data-scroll-reveal><Photo src={gallery.image} alt={gallery.alt} className="gallery-full gallery-cover" priority/></a>
+      <a className="gallery-cover-link" href={gallery.image} target="_blank" rel="noopener noreferrer" aria-label={`View the cover photo from ${gallery.title} in a new tab`}><Photo src={gallery.image} alt={gallery.alt} className="gallery-full gallery-cover" priority/></a>
       <div className="gallery-intro"><p>{gallery.photos.length} photographs</p><p>Select a photo to view it larger.</p></div>
       <div className="gallery-photo-grid">
         {gallery.photos.slice(1).map((photo, index) => <a href={photo.src} target="_blank" rel="noopener noreferrer" key={photo.src} aria-label={`View photo ${index + 2} of ${gallery.photos!.length} from ${gallery.title} in a new tab`}>

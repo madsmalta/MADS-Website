@@ -9,11 +9,11 @@ export default function Outreach() {
  const featured = outreachGalleries.find(g => g.slug === "sitc")!;
  const otherGalleries = outreachGalleries.filter(g => g.slug !== "sitc");
  return <PageShell>
-  <section className="shell page-hero" data-dental-icon="mask"><p className="eyebrow">Outreach</p><h1>Sharing what we learn</h1><p>Through oral-health talks and outreach activities, we aim to raise awareness and contribute positively to the wider community.<br/>Explore our work with schools, scouts and other communities.</p></section>
+  <section className="shell page-hero" data-dental-icon="mask" data-hero="outreach"><p className="eyebrow">Outreach</p><h1>Sharing what we learn</h1><p>Through oral-health talks and outreach activities, we aim to raise awareness and contribute positively to the wider community.<br/>Explore our work with schools, scouts and other communities.</p></section>
   <section className="student-band outreach-invitation"><div className="shell student-band-inner" data-scroll-reveal><div><h2>Get involved with MADS</h2><p>Interested in organising a community activity together?</p></div><Link className="button button--light" href="/contact?topic=outreach#ask-mads">Let’s talk</Link></div></section>
   <div className="shell outreach-collection">
    <section className="outreach-feature" aria-labelledby="outreach-feature-title" data-scroll-reveal>
-    <Photo src="/media/galleries/sitc/140.webp" alt="MADS volunteers speaking with visitors at Science in the City" />
+    <Photo src="/media/galleries/sitc/140.webp" alt="MADS volunteers speaking with visitors at Science in the City" priority />
     <div className="outreach-feature-copy"><h2 id="outreach-feature-title">{featured.title}</h2><p>{featured.description}</p><Link href={galleryPath(featured)} scroll={false} className="text-link">View photos <ArrowUpRight size={18} aria-hidden="true" /></Link></div>
    </section>
    <section className="outreach-talks" aria-labelledby="outreach-talks-title">

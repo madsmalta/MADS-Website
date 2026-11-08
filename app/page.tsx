@@ -1,25 +1,81 @@
+import { HomeOpening } from "@/components/home-opening";
+import { HomeOutreachPhotos } from "@/components/home-outreach-photos";
 import Link from "next/link";
-import {DentalDetail} from "@/components/dental-detail";
-import {ArrowUpRight,ArrowRight} from "lucide-react";
-import {PageShell} from "@/components/page-shell";
-import {Photo} from "@/components/photo";
-import {Newsletter} from "@/components/newsletter";
-import {HomeUpcoming} from "@/components/home-upcoming";
-import {SocialLinks} from "@/components/social-links";
-import {galleryPath, studentLifeGalleries} from "@/data/gallery";
-import {publicEvents} from "@/data/site";
-import {formatEventDateRange,formatEventTimeRange} from "@/lib/event-format";
-import {getEventLocationUrl} from "@/lib/event-location";
-import {partitionEvents} from "@/lib/events";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { PageShell } from "@/components/page-shell";
+import { Photo } from "@/components/photo";
+import { Newsletter } from "@/components/newsletter";
+import { HomeExperience } from "@/components/home-experience";
+import { HomeUpcoming } from "@/components/home-upcoming";
+import { publicEvents } from "@/data/site";
+import { studentLifeGalleries, galleryPath } from "@/data/gallery";
+import { formatEventDateRange, formatEventTimeRange } from "@/lib/event-format";
+import { getEventLocationUrl } from "@/lib/event-location";
+import { partitionEvents } from "@/lib/events";
 import { sectionMetadata, organizationSchema, websiteSchema } from "@/lib/seo";
 import { StructuredData } from "@/components/structured-data";
+
 export const metadata = sectionMetadata.home;
 export const dynamic = "force-dynamic";
-export default function Home(){const featuredEvents=partitionEvents(publicEvents).upcoming.map(event=>({slug:event.slug,title:event.title,location:event.location,locationHref:getEventLocationUrl(event),dateLabel:formatEventDateRange(event),timeLabel:formatEventTimeRange(event)}));return <PageShell>
-<StructuredData data={[organizationSchema(), websiteSchema()]} />
-<section className="home-opening"><div className="shell opening-copy"><div><p className="eyebrow">Malta Association of Dental Students</p><h1>One dental community</h1></div><div className="opening-description"><p>Representing, connecting and supporting Malta’s dental students throughout their studies.</p><div className="hero-actions"><Link className="button button--dark" href="/events">Explore events <ArrowUpRight size={18}/></Link></div></div></div><div className="home-photo-wrap"><Photo src="/media/committee-home-original.png" alt="The MADS 2026–2027 committee together on the University steps" className="home-group" priority/><div className="photo-caption"><div><span className="committee-year">MADS · 2026–2027</span><h2>Your committee. Here for you.</h2></div><Link className="committee-photo-link" href="/about">Meet the team <ArrowUpRight size={19}/></Link></div></div></section>
-<section className="shell welcome-links" data-scroll-reveal><Link href="/contact"><span>Questions or ideas?</span><strong>Contact us <ArrowUpRight size={20}/></strong></Link><Link href="/#newsletter"><span>Join our newsletter</span><strong>The Molar <ArrowUpRight size={20}/></strong></Link><Link href="/opportunities"><span>Ways to take part</span><strong>Explore opportunities <ArrowUpRight size={20}/></strong></Link><div className="welcome-social"><span>See what we’re up to</span><div className="welcome-social__row"><strong>Follow us on</strong><SocialLinks showSeparator/></div></div></section>
-<section className="shell section home-events"><div data-scroll-reveal><p className="eyebrow">Get together</p><h2>What’s coming up?</h2><p>Keep space in your calendar for MADS.</p></div><HomeUpcoming events={featuredEvents}/></section>
-<section className="community-section"><div className="shell community-grid" data-scroll-reveal><Photo src="/media/galleries/sitc/additional-047.webp" alt="MADS volunteers and visitors at the Science in the City oral-health stand" className="community-photo"/><div className="community-copy"><DentalDetail/><p className="eyebrow">Beyond the faculty</p><h2>Small conversations.<br/>A wider community.</h2><p>From oral-health talks to volunteering, discover how MADS students get involved beyond campus.</p><Link href="/outreach" className="button button--dark">Explore our outreach <ArrowUpRight size={18}/></Link></div></div></section>
-<section className="shell section"><div className="section-heading" data-scroll-reveal><div><h2>More than a timetable</h2></div><Link href="/student-life" className="text-link">Student Life <ArrowRight size={18}/></Link></div><div className="story-pair">{studentLifeGalleries.map(g=><Link className="story" href={galleryPath(g)} scroll={false} key={g.slug} data-scroll-reveal><Photo src={g.image} alt={g.alt}/><div className="story-caption"><div><h3>{g.title}</h3></div><ArrowUpRight size={24}/></div></Link>)}</div></section>
-<section className="shell section opportunity-intro" data-scroll-reveal><div><h2>Explore what’s possible</h2></div><div><p>We’ll share exchanges, volunteering, conferences and courses so you can find something that interests you.</p><Link href="/opportunities" className="button button--dark">Explore opportunities <ArrowUpRight size={18}/></Link></div></section><Newsletter/></PageShell>;}
+
+export default function Home() {
+  const featuredEvents = partitionEvents(publicEvents).upcoming.map(event => ({
+    slug: event.slug,
+    title: event.title,
+    location: event.location,
+    locationHref: getEventLocationUrl(event),
+    dateLabel: formatEventDateRange(event),
+    timeLabel: formatEventTimeRange(event),
+  }));
+
+  return <PageShell>
+    <StructuredData data={[organizationSchema(), websiteSchema()]} />
+    <HomeExperience>
+      <HomeOpening />
+
+      <section className="home-agenda" aria-labelledby="home-events-title">
+        <div className="home-width home-agenda-grid">
+          <div className="home-agenda-intro">
+            <h2 id="home-events-title">What’s coming up?</h2>
+            <p>Keep space in your calendar for MADS</p>
+            <Link href="/events" className="home-inline-link">View the full calendar <ArrowRight size={18} aria-hidden="true" /></Link>
+          </div>
+          <HomeUpcoming events={featuredEvents} />
+        </div>
+      </section>
+
+      <section className="home-outreach" aria-labelledby="home-outreach-title">
+        <div className="home-width home-outreach-grid">
+          <HomeOutreachPhotos />
+          <div className="home-outreach-copy">
+            <h2 id="home-outreach-title">Small conversations.<br />A wider community.</h2>
+            <p>From oral-health talks to volunteering, discover how MADS students get involved beyond campus.</p>
+            <Link href="/outreach" className="button button--dark">Explore our outreach <ArrowUpRight size={18} aria-hidden="true" /></Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="home-width home-student-life" aria-labelledby="home-student-life-title">
+        <div className="home-section-heading">
+          <h2 id="home-student-life-title">More than a timetable</h2>
+          <Link href="/student-life" className="home-inline-link">Discover student life <ArrowRight size={18} aria-hidden="true" /></Link>
+        </div>
+        <div className="home-life-grid">
+          {studentLifeGalleries.filter(gallery => gallery.slug !== "open-wide").map(gallery => <Link href={galleryPath(gallery)} className="home-life-story" key={gallery.slug}>
+            <Photo src={gallery.image} alt={gallery.alt} className="home-life-image" />
+            <div className="home-life-story-caption"><h3>{gallery.title}</h3><span className="home-story-arrow"><ArrowUpRight size={22} aria-hidden="true" /></span></div>
+          </Link>)}
+        </div>
+      </section>
+
+      <section className="home-opportunities" aria-labelledby="home-opportunities-title">
+        <div className="home-width home-opportunities-inner">
+          <div><h2 id="home-opportunities-title">Explore what’s possible</h2>
+          <p>Exchanges, volunteering, conferences and courses.</p></div>
+          <Link href="/opportunities" className="button button--dark">Explore opportunities <ArrowUpRight size={18} aria-hidden="true" /></Link>
+        </div>
+      </section>
+      <Newsletter />
+    </HomeExperience>
+  </PageShell>;
+}

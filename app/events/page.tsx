@@ -13,7 +13,7 @@ export const dynamic = "force-dynamic";
 export default function Events() {
   const { upcoming, updates, past } = partitionEvents(publicEvents);
   return <PageShell>
-    <section className="page-hero shell" data-dental-icon="syringe">
+    <section className="page-hero shell" data-dental-icon="syringe" data-hero="events">
       <p className="eyebrow">Events & calendar</p>
       <h1>See what’s on</h1>
       <p>Find the next MADS gathering below.<br/>Follow our public calendar in Google Calendar or Outlook to keep up with what’s coming.</p>

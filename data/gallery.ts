@@ -123,7 +123,7 @@ export const galleries: Gallery[] = [
  {slug:"attard",title:"Attard Skola Sajf",category:"Outreach",image:attardPhotos[0].src,alt:attardPhotos[0].alt,description:"Photographs from the MADS oral-health outreach talk in Attard.",photos:attardPhotos},
  {slug:"sitc",title:"Science in the City",category:"Outreach",image:curatedSitcPhotos[0].src,alt:"MADS volunteers speaking with visitors at Science in the City",description:"MADS and volunteers spoke with visitors about oral health and led activities, while clinical-year dental students gave check-ups in the Faculty of Dental Surgery’s Mobile Dental Unit (MDU).",photos:curatedSitcPhotos},
  {slug:"open-wide",title:"Open Wide Open Bar",category:"Student life",image:openWidePhotos[0].src,alt:"MADS volunteers together at Open Wide Open Bar",description:"Photos from Open Wide Open Bar, a MADS party.",photos:openWidePhotos},
- {slug:"primary-impressions",title:"Primary Impressions",category:"Student life",image:primaryImpressionsPhotos[0].src,alt:"Students socialising at Primary Impressions",description:"Photos from the Primary Impressions freshers meet-up at Queen Victoria Pub in Valletta on 9 October 2026.",photos:primaryImpressionsPhotos},
+ {slug:"primary-impressions",title:"Primary Impressions",category:"Student life",image:primaryImpressionsPhotos[0].src,alt:"Students socialising at Primary Impressions",description:"Photos from the Primary Impressions freshers meet-up.",photos:primaryImpressionsPhotos},
  {slug:"volleyball",title:"MADS Volleyball Tournament",category:"Student life",image:curatedVolleyballPhotos[0].src,alt:"Students playing beach volleyball at the MADS tournament",description:"Photos from a day of beach volleyball with MADS.",photos:curatedVolleyballPhotos},
 ];
 

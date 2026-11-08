@@ -1,0 +1,218 @@
+body:has(.home-redesign) .intro{display:none!important}
+.home-redesign{background:#fff;--home-space:80px}
+.home-redesign ::selection{background:var(--gold);color:var(--navy)}
+.home-width{width:min(1280px,calc(100% - 160px));margin-inline:auto}
+.home-redesign .button{min-height:50px;padding:13px 24px;border-radius:4px;box-shadow:none;font-size:1rem;line-height:24px}
+.home-redesign .button--dark:hover{background:var(--teal-dark)}
+.home-inline-link{display:inline-flex;align-items:center;gap:12px;min-height:44px;font:600 1rem/1.5 var(--utility);color:var(--teal-dark);text-underline-offset:6px}
+.home-inline-link:hover{text-decoration:underline}
+.home-agenda{display:grid;grid-template-columns:minmax(0,490fr) minmax(0,710fr);gap:80px;align-items:center;padding-block:var(--home-space)}
+.home-agenda-intro h2{font-size:2.75rem;line-height:1.23;margin:0 0 16px}
+.home-agenda-intro p{font-size:1rem;margin:0 0 12px;color:var(--muted)}
+.home-agenda .home-upcoming{background:var(--paper);color:var(--navy);border:1px solid var(--line);border-radius:12px;padding:36px 100px 36px 36px}
+.home-agenda .home-upcoming h3{font-size:1.75rem;line-height:1.3;color:var(--navy);margin:0 0 16px}
+.home-agenda .home-upcoming p{font-size:1rem;color:var(--muted);margin-bottom:20px}
+.home-agenda .home-upcoming .home-event-date{font:600 .875rem/1.6 var(--utility);color:var(--teal-dark);margin:0 0 16px}
+.home-agenda .home-upcoming .event-location-link{color:var(--muted);text-decoration-color:var(--line);text-underline-offset:4px}
+.home-agenda .home-upcoming .button--outline{color:var(--teal-dark);border-color:var(--line);background:transparent}
+.home-agenda .home-upcoming .button--outline:hover{background:var(--pale);border-color:var(--teal)}
+.home-agenda .home-upcoming-controls button{background:transparent;border-color:var(--line);box-shadow:none;color:var(--teal-dark)}
+.home-agenda .home-upcoming-controls button:hover{background:var(--teal-dark);color:#fff;border-color:var(--teal-dark);transform:none}
+.home-outreach{background:var(--pale);padding-block:72px}
+.home-outreach-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.home-outreach-image{aspect-ratio:600/460;border-radius:10px;background:var(--line)}
+.home-outreach-copy h2{font-size:2.75rem;line-height:1.23;margin:0 0 20px}
+.home-outreach-copy p{max-width:475px;font-size:1rem;line-height:1.75;margin:0 0 20px}
+.home-student-life{padding-block:var(--home-space)}
+.home-section-heading{display:flex;justify-content:space-between;align-items:center;gap:28px;margin-bottom:32px}
+.home-section-heading h2{font-size:2.75rem;line-height:1.23;margin:0}
+.home-section-heading .home-inline-link{white-space:nowrap}
+.home-life-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:40px;align-items:start}
+.home-life-image{aspect-ratio:1.48;border-radius:10px;background:var(--paper)}
+.home-life-story:nth-child(2){padding-top:72px}
+.home-life-story:nth-child(2) .home-life-image{aspect-ratio:1.2}
+.home-life-story{display:block;color:var(--navy);text-decoration:none}
+.home-life-story-caption{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:18px}
+.home-life-story-caption h3{font:400 1.625rem/1.3 var(--serif);margin:0}
+.home-story-arrow{display:grid;place-items:center;width:44px;height:44px;flex-shrink:0;border:1px solid var(--line);border-radius:50%;color:var(--teal-dark);transition:background .2s,color .2s}
+.home-life-story:hover .home-story-arrow{background:var(--teal-dark);color:white;border-color:var(--teal-dark)}
+.home-life-story:focus-visible{outline:2px solid var(--teal);outline-offset:6px;border-radius:10px}
+.home-opportunities{background:var(--paper);padding-block:64px}
+.home-opportunities-inner{display:flex;align-items:center;justify-content:space-between;gap:40px}
+.home-opportunities h2{font-size:2.625rem;line-height:1.24;margin:0 0 12px}
+.home-opportunities p{font-size:1rem;margin:0}
+.home-opportunities .button{flex-shrink:0}
+.home-redesign .newsletter{grid-template-columns:minmax(0,560fr) minmax(0,640fr);padding:64px max(80px,calc((100% - 1280px)/2));gap:80px}
+.home-redesign .newsletter-title{font-size:3.5rem;line-height:1.18;margin-bottom:16px}
+.home-redesign .newsletter-tagline{font-size:2rem;line-height:1.2;margin-bottom:16px}
+.home-redesign .newsletter .contact-field{border-radius:4px}
+.home-redesign .newsletter form{gap:20px 16px}
+.home-redesign .newsletter .contact-field__control{min-height:64px}
+@media(max-width:1150px){
+ .home-width{width:calc(100% - 96px)}
+ .home-agenda,.home-outreach-grid{gap:48px}
+ .home-agenda-intro h2,.home-outreach-copy h2,.home-section-heading h2{font-size:2.4rem}
+ .home-redesign .newsletter{padding-inline:48px;gap:48px}
+ .home-life-grid{gap:40px}
+ .home-opportunities-inner{gap:28px}
+ .home-opportunities h2{font-size:2.3rem}
+}
+@media(max-width:800px){
+ .home-redesign{--home-space:56px}
+ .home-width{width:calc(100% - 48px)}
+ .home-agenda{grid-template-columns:1fr;gap:28px}
+ .home-agenda .home-upcoming{width:100%;justify-self:center}
+ .home-outreach{padding-block:40px}
+ .home-outreach-grid{grid-template-columns:1fr;gap:28px}
+ .home-outreach-image{aspect-ratio:1.5}
+ .home-outreach-copy p{max-width:55ch}
+ .home-section-heading{align-items:flex-start;flex-direction:column;gap:12px;margin-bottom:24px}
+ .home-life-grid{grid-template-columns:1fr;gap:24px}
+ .home-life-story:nth-child(2){padding-top:0}
+ .home-life-story:nth-child(2) .home-life-image{aspect-ratio:1.65}
+ .home-life-image{aspect-ratio:1.65}
+ .home-opportunities{padding-block:40px}
+ .home-opportunities-inner{align-items:flex-start;flex-direction:column;gap:24px}
+ .home-redesign .newsletter{grid-template-columns:1fr;padding:48px 24px;gap:32px}
+ .home-redesign .newsletter p{max-width:55ch}
+}
+@media(max-width:600px){
+ .home-redesign{--home-space:48px}
+ .home-life-story-caption h3{font-size:1.4rem}
+ .home-agenda-intro h2,.home-outreach-copy h2,.home-section-heading h2{font-size:2.125rem;line-height:1.24}
+ .home-agenda .home-upcoming{padding:26px 76px 26px 24px}
+ .home-agenda .home-upcoming h3{font-size:1.45rem}
+ .home-agenda .home-upcoming p{font-size:.92rem}
+ .home-agenda .home-upcoming .home-event-date{font-size:.8rem}
+ .home-agenda .home-upcoming .button{min-height:46px;padding-inline:18px}
+ .home-outreach-image{aspect-ratio:342/260}
+ .home-outreach-copy p,.home-opportunities p{font-size:.9375rem}
+ .home-life-image{aspect-ratio:342/250}
+ .home-opportunities h2{font-size:2.125rem}
+ .home-redesign .newsletter-title{font-size:2.875rem}
+ .home-redesign .newsletter-tagline{font-size:1.6875rem}
+ .home-redesign .newsletter form{grid-template-columns:1fr}
+}
+.home-redesign{--home-space:88px;--home-blue:var(--navy);--home-ice:var(--pale);background:#fff}
+.home-redesign .button{border-radius:999px;font-family:var(--sans);font-size:.94rem;font-weight:600}
+.home-redesign .home-inline-link{color:var(--teal-dark);font-family:var(--sans);font-size:.94rem}
+.home-redesign .home-section-heading .home-inline-link{font-size:1.0625rem}
+.home-agenda-intro h2,.home-outreach-copy h2,.home-section-heading h2,.home-opportunities h2{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,3.2vw,3rem);line-height:1.15;letter-spacing:-.03em;color:var(--home-blue);text-wrap:balance}
+.home-agenda{grid-template-columns:1fr 1.25fr;gap:72px}
+.home-agenda-intro p{margin-top:20px}
+.home-agenda .home-upcoming{background:var(--navy);color:#fff;border:0;border-radius:20px;padding:40px 106px 40px 36px}
+.home-agenda .home-upcoming h3{color:#fff;font-size:1.5rem;line-height:1.35;margin-bottom:18px}
+.home-agenda .home-upcoming p{color:#d8e5f5}
+.home-agenda .home-upcoming .home-event-date{color:var(--gold);line-height:1.65}
+.home-agenda .home-upcoming .event-location-link{color:#d8e5f5;text-decoration-color:#adc4e0}
+.home-agenda .home-upcoming .event-location-link:hover{color:#fff}
+.home-agenda .home-upcoming .button--outline{background:#fff;border-color:#fff;color:var(--navy);min-height:46px}
+.home-agenda .home-upcoming .button--outline:hover{background:var(--pale);border-color:var(--pale);color:var(--navy)}
+.home-agenda .home-upcoming-controls button{background:transparent;border-color:#8196b0;color:#fff}
+.home-agenda .home-upcoming-controls button:hover{background:#fff;border-color:#fff;color:var(--navy)}
+.home-agenda .home-upcoming > svg{color:var(--gold)}
+.home-agenda .home-upcoming :is(a,button):focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+.home-outreach{background:var(--paper);padding-block:80px}
+.home-outreach-grid{gap:72px}
+.home-outreach-image{border-radius:20px;aspect-ratio:1.3}
+.home-outreach-copy p{color:var(--muted);margin-top:24px}
+.home-life-grid{grid-template-columns:1fr 1fr;gap:32px}
+.home-life-story:nth-child(2){padding-top:0}
+.home-life-image,.home-life-story:nth-child(2) .home-life-image{aspect-ratio:1.4;border-radius:20px}
+.home-life-story-caption{padding-block:20px 0}
+.home-life-story-caption h3{font:600 1.25rem/1.4 var(--sans);color:var(--home-blue)}
+.home-story-arrow{border-color:var(--line);color:var(--teal-dark)}
+.home-opportunities{background:var(--pale);padding-block:56px}
+.home-opportunities h2{margin-bottom:16px}
+.home-redesign .newsletter{border:0;padding-block:72px;gap:64px}
+.home-redesign .newsletter-title{font-size:clamp(3.25rem,5vw,4.5rem);margin-bottom:18px}
+.home-redesign .newsletter-tagline{font:400 1.65rem/1.4 var(--serif)}
+.home-redesign .newsletter .contact-field{border-radius:12px}
+@media(max-width:1150px){.home-agenda,.home-outreach-grid{gap:40px}}
+@media(max-width:800px){
+ .home-redesign{--home-space:56px}
+ .home-agenda{grid-template-columns:1fr;gap:28px}
+ .home-agenda .home-upcoming{padding:30px 90px 30px 26px;border-radius:16px}
+ .home-outreach{padding-block:48px}
+ .home-outreach-grid{gap:28px}
+ .home-outreach-image{aspect-ratio:1.4;border-radius:16px}
+ .home-life-grid{grid-template-columns:1fr;gap:28px}
+ .home-life-image,.home-life-story:nth-child(2) .home-life-image{border-radius:16px}
+ .home-opportunities{padding-block:44px}
+ .home-redesign .newsletter{padding-block:48px;gap:32px}
+}
+.home-redesign .home-agenda{display:block;width:100%;padding-block:76px 82px;background:var(--navy);color:#fff;overflow:hidden}
+.home-agenda-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(40px,6vw,92px);align-items:center;position:relative}
+.home-agenda-grid::before{content:"";position:absolute;left:-52px;top:-32px;width:220px;height:220px;border:1px solid #ffffff19;border-radius:50%;pointer-events:none}
+.home-agenda-intro{position:relative;z-index:1}
+.home-redesign .home-agenda-intro h2{color:#fff;font-size:clamp(2.6rem,4.2vw,4rem);max-width:13ch}
+.home-agenda-intro h2::before{content:"";display:block;width:58px;height:3px;margin-bottom:27px;background:var(--gold)}
+.home-redesign .home-agenda-intro p{color:#d5e3ee;font-size:1.08rem;margin:22px 0 12px}
+.home-redesign .home-agenda .home-inline-link{color:#b8d9ff}
+.home-agenda .home-inline-link svg,.home-opportunities .button svg{transition:transform .22s ease}
+.home-agenda .home-inline-link:hover svg,.home-opportunities .button:hover svg{transform:translate(4px,-2px)}
+.home-redesign .home-agenda .home-upcoming{background:#f8f8f3;color:var(--navy);border:1px solid #d9e2eb;border-left:5px solid var(--gold);box-shadow:0 22px 42px #071c3340;border-radius:18px;padding:42px 106px 42px 42px}
+.home-redesign .home-agenda .home-upcoming h3{color:var(--navy)}
+.home-redesign .home-agenda .home-upcoming p{color:var(--muted)}
+.home-redesign .home-agenda .home-upcoming .home-event-date{color:var(--teal-dark)}
+.home-redesign .home-agenda .home-upcoming .event-location-link{color:var(--teal-dark);text-decoration-color:#7c9aa6}
+.home-redesign .home-agenda .home-upcoming .event-location-link:hover{color:var(--navy)}
+.home-redesign .home-agenda .home-upcoming .button--outline{background:var(--teal);color:#fff;border-color:var(--teal)}
+.home-redesign .home-agenda .home-upcoming .button--outline:hover{background:var(--teal-dark);border-color:var(--teal-dark);color:#fff}
+.home-redesign .home-agenda .home-upcoming-controls button{background:#fff;border-color:#c7d2df;color:var(--navy)}
+.home-redesign .home-agenda .home-upcoming-controls button:hover{background:var(--navy);border-color:var(--navy);color:#fff}
+.home-redesign .home-agenda .home-upcoming>svg{color:var(--teal-dark)}
+.home-redesign .home-agenda .home-upcoming :is(a,button):focus-visible{outline-color:var(--focus-ring)}
+
+.home-redesign .home-outreach{background:#fff;padding-block:96px}
+.home-outreach-grid{grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr)}
+.home-outreach-image{isolation:isolate;box-shadow:20px 20px 0 var(--pale)}
+.home-outreach-copy{padding:22px 0 22px 10px}
+.home-outreach-copy h2{max-width:16ch}
+.home-outreach-copy h2::after{content:"";display:block;width:86px;height:1px;background:var(--gold);margin-top:24px}
+.home-outreach-copy p{max-width:39ch}
+
+.home-redesign .home-student-life{padding-block:90px 112px;background:linear-gradient(90deg,#fff 0 53%,var(--paper) 53% 100%)}
+.home-section-heading{margin-bottom:42px}
+.home-life-story:nth-child(2){padding-top:62px}
+.home-life-story .photo{overflow:hidden}
+.home-life-story img{transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+.home-life-story:hover img{transform:scale(1.035)}
+.home-life-story-caption{border-top:2px solid var(--navy);margin-top:18px;padding:18px 2px 0}
+.home-life-story:nth-child(2) .home-life-story-caption{border-top-color:var(--gold)}
+
+.home-redesign .home-opportunities{background:var(--teal-dark);color:#fff;padding-block:78px;position:relative;overflow:hidden}
+.home-opportunities::after{content:"";position:absolute;width:340px;height:340px;right:-110px;top:-120px;border:1px solid #ffffff38;border-radius:50%;box-shadow:0 0 0 70px #ffffff0d,0 0 0 140px #ffffff08;pointer-events:none}
+.home-opportunities-inner{position:relative;z-index:1}
+.home-redesign .home-opportunities h2{color:#fff;font-size:clamp(2.7rem,4vw,4rem);max-width:17ch}
+.home-redesign .home-opportunities p{color:#eaf1f5;font-size:1.08rem}
+.home-redesign .home-opportunities .button{background:#fff;color:var(--navy);border-color:#fff}
+.home-redesign .home-opportunities .button:hover{background:var(--sea-pale);color:var(--navy)}
+
+@media(max-width:800px){
+ .home-redesign .home-agenda{padding-block:52px 58px}
+ .home-agenda-grid{grid-template-columns:1fr;gap:30px}
+ .home-agenda-grid::before{left:auto;right:-70px;top:-45px}
+ .home-redesign .home-agenda-intro h2{font-size:clamp(2.5rem,7vw,3.3rem)}
+ .home-redesign .home-outreach{padding-block:52px}
+ .home-outreach-grid{grid-template-columns:1fr;gap:24px}
+ .home-outreach-image{box-shadow:12px 12px 0 var(--pale)}
+ .home-outreach-copy{padding:4px 0 0;text-align:center}
+ .home-outreach-copy h2{font-size:clamp(2rem,5.2vw,2.5rem);line-height:1.18;margin:0 auto}
+ .home-outreach-copy h2::after{margin:18px auto 0}
+ .home-outreach-copy p{margin:18px auto 16px;line-height:1.65}
+ .home-redesign .home-student-life{padding-block:62px 72px;background:#fff}
+ .home-life-story:nth-child(2){padding-top:0}
+ .home-redesign .home-opportunities{padding-block:62px}
+}
+@media(max-width:600px){
+ .home-redesign .home-agenda .home-upcoming{padding:28px 78px 28px 24px}
+ .home-redesign .home-outreach{padding-block:42px}
+ .home-redesign .home-student-life{padding-block:52px 62px}
+ .home-section-heading{margin-bottom:28px}
+ .home-life-story-caption{margin-top:10px}
+ .home-redesign .home-opportunities{padding-block:54px}
+ .home-redesign .home-opportunities h2{font-size:2.6rem}
+}
+@media(prefers-reduced-motion:reduce){.home-life-story img,.home-agenda .home-inline-link svg,.home-opportunities .button svg{transition:none}.home-life-story:hover img,.home-agenda .home-inline-link:hover svg,.home-opportunities .button:hover svg{transform:none}}
+

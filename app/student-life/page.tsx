@@ -9,7 +9,8 @@ export const metadata = sectionMetadata.studentLife;
 
 export default function StudentLife() {
   return <PageShell>
-    <section className="shell page-hero" data-dental-icon="aligners">
+    <section className="shell page-hero" data-dental-icon="aligners" data-hero="student-life">
+      <p className="eyebrow">Student life</p>
       <h1>The social scene</h1>
       <p>Explore photos from MADS events and student activities.</p>
     </section>
@@ -18,8 +19,8 @@ export default function StudentLife() {
       <Link className="button button--light" href="/contact?topic=events#ask-mads">Suggest an event</Link>
     </div></section>
     <section className="shell gallery-grid student-life-gallery-grid" aria-label="Student life photo galleries">
-      {studentLifeGalleries.map((gallery) => <Link className="story" href={galleryPath(gallery)} scroll={false} key={gallery.slug} data-scroll-reveal>
-        <Photo src={gallery.image} alt={gallery.alt} />
+      {studentLifeGalleries.map((gallery, index) => <Link className="story" href={galleryPath(gallery)} scroll={false} key={gallery.slug} data-scroll-reveal={index === 0 ? undefined : ""}>
+        <Photo src={gallery.image} alt={gallery.alt} priority={index === 0} />
         <div className="story-caption"><div><h2>{gallery.title}</h2><p>{gallery.description}</p></div><ArrowUpRight size={22} aria-hidden="true" /></div>
       </Link>)}
     </section>

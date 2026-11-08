@@ -52,7 +52,48 @@ export function ContactForm({ category, onCategoryChange }: ContactFormProps) {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Partial<Record<FieldName, boolean>>>({});
   const [delivery, setDelivery] = useState<DeliveryStatus>("checking");
+  const [categoryOpen, setCategoryOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(0);
+  const categoryMenu = useRef<HTMLDivElement>(null);
+  const categoryTrigger = useRef<HTMLButtonElement>(null);
   const needsCourse = category !== "Outreach collaboration";
+
+  useEffect(() => {
+    if (!categoryOpen) return;
+    const closeOnOutsideClick = (event: PointerEvent) => {
+      if (!categoryMenu.current?.contains(event.target as Node) && !categoryTrigger.current?.contains(event.target as Node)) setCategoryOpen(false);
+    };
+    document.addEventListener("pointerdown", closeOnOutsideClick);
+    return () => document.removeEventListener("pointerdown", closeOnOutsideClick);
+  }, [categoryOpen]);
+
+  function selectCategory(option: string) {
+    onCategoryChange(option);
+    setActiveCategory(contactCategories.findIndex((item) => item === option));
+    setCategoryOpen(false);
+    categoryTrigger.current?.focus();
+  }
+
+  function categoryKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
+    const current = categoryOpen ? activeCategory : Math.max(0, contactCategories.findIndex((item) => item === category));
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      setActiveCategory((current + (event.key === "ArrowDown" ? 1 : -1) + contactCategories.length) % contactCategories.length);
+      setCategoryOpen(true);
+    } else if (event.key === "Home" || event.key === "End") {
+      event.preventDefault();
+      setActiveCategory(event.key === "Home" ? 0 : contactCategories.length - 1);
+      setCategoryOpen(true);
+    } else if (event.key === "Escape" && categoryOpen) {
+      event.preventDefault();
+      setCategoryOpen(false);
+    } else if (event.key === "Enter" && categoryOpen) {
+      event.preventDefault();
+      selectCategory(contactCategories[activeCategory]);
+    } else if (event.key === "Tab") {
+      setCategoryOpen(false);
+    }
+  }
 
   useEffect(() => {
     const controller = new AbortController();
@@ -180,7 +221,14 @@ export function ContactForm({ category, onCategoryChange }: ContactFormProps) {
     </div>
     <div className={`form-pair ${needsCourse ? "" : "form-pair--single"}`}>
       {needsCourse && <div className="contact-field-group"><label className={fieldClass("course")}><FieldLabel>Course (optional)</FieldLabel><input ref={(control) => setControlRef("course", control)} className="contact-field__control" name="course" maxLength={100} placeholder=" " aria-invalid={Boolean(errors.course)} aria-describedby={describedBy("course")} onBlur={(event) => handleBlur(event.currentTarget)} onInput={(event) => handleInput(event.currentTarget)} /></label>{errors.course && <p className="contact-field-feedback" id={`${formId}-course-error`}>{errors.course}</p>}</div>}
-      <div className="contact-field-group"><label className="contact-field contact-field--select"><FieldLabel>Enquiry category</FieldLabel><select className="contact-field__control" name="category" value={category} onChange={(event) => onCategoryChange(event.target.value)}>{contactCategories.map((option) => <option key={option}>{option}</option>)}</select></label></div>
+      <div className="contact-field-group contact-field-group--category">
+        <div className="contact-field contact-field--select">
+          <FieldLabel>Enquiry category</FieldLabel>
+          <input type="hidden" name="category" value={category} />
+          <button ref={categoryTrigger} type="button" role="combobox" className="contact-field__control contact-category-trigger" aria-label={`Enquiry category: ${category}`} aria-haspopup="listbox" aria-expanded={categoryOpen} aria-controls={`${formId}-categories`} aria-activedescendant={categoryOpen ? `${formId}-category-${activeCategory}` : undefined} onClick={() => { setActiveCategory(Math.max(0, contactCategories.findIndex((item) => item === category))); setCategoryOpen((open) => !open); }} onKeyDown={categoryKeyDown}>{category}<span className="contact-category-chevron" aria-hidden="true" /></button>
+        </div>
+        {categoryOpen && <div ref={categoryMenu} id={`${formId}-categories`} className="contact-category-menu" role="listbox" aria-label="Enquiry category">{contactCategories.map((option, index) => <button key={option} id={`${formId}-category-${index}`} type="button" role="option" aria-selected={category === option} className={`contact-category-option ${activeCategory === index ? "contact-category-option--active" : ""}`} tabIndex={-1} onPointerEnter={() => setActiveCategory(index)} onClick={() => selectCategory(option)}>{option}</button>)}</div>}
+      </div>
     </div>
     <div className="contact-field-group"><label className={fieldClass("message", "contact-field--textarea")}><FieldLabel>Message</FieldLabel><textarea ref={(control) => setControlRef("message", control)} className="contact-field__control" required name="message" rows={6} maxLength={5000} placeholder=" " aria-invalid={Boolean(errors.message)} aria-describedby={describedBy("message")} onBlur={(event) => handleBlur(event.currentTarget)} onInput={(event) => handleInput(event.currentTarget)} /></label>{errors.message && <p className="contact-field-feedback" id={`${formId}-message-error`}>{errors.message}</p>}</div>
     <label className={`checkbox ${errors.consent ? "checkbox--error" : ""}`}><input ref={(control) => setControlRef("consent", control)} required type="checkbox" name="consent" aria-invalid={Boolean(errors.consent)} aria-describedby={describedBy("consent")} onChange={(event) => updateError(event.currentTarget, true)} /> <span>I agree that MADS may use these details to respond to this enquiry.</span></label>
