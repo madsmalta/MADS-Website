@@ -86,7 +86,7 @@ export function HomeUpcoming({ events }: { events: HomeUpcomingEvent[] }) {
               {event.locationHref ? <a className="event-location-link home-event-location" href={event.locationHref} target="_blank" rel="noopener noreferrer"><MapPin size={20} aria-hidden="true" />{event.location}</a> : <span className="home-event-location"><MapPin size={20} aria-hidden="true" />{event.location}</span>}
             </p>
             {event.ticketUrl ? <div className="home-upcoming-actions">
-              <a className="button button--outline" href={event.ticketUrl} target="_blank" rel="noopener noreferrer">Buy tickets here <ArrowUpRight size={17} aria-hidden="true" /></a>
+              <a className="button button--outline" href={event.ticketUrl} target="_blank" rel="noopener noreferrer">Buy tickets here</a>
               <Link className="home-upcoming-details-link" href={`/events/${event.slug}`} scroll={false}>Event details <ArrowUpRight size={17} aria-hidden="true" /></Link>
             </div> : <Link className="button button--outline" href={`/events/${event.slug}`} scroll={false}>Event details</Link>}
           </article>;
