@@ -70,8 +70,16 @@ export const publicEvents: EventItem[] = [
     category: "Social",
     location: "Haywharf, Floriana",
     status: "Upcoming",
-    description: "Join MADS for the annual Christmas Gala at Haywharf. Ticketing and booking details will follow.",
-    longDescription: "The MADS annual Christmas Gala brings dental students and lecturers together at Haywharf in Floriana on Saturday 19 December. Join us from 20:00 until 01:00 the next morning for a festive evening. Ticketing and booking details will be shared closer to the event.",
+    description: "Join MADS for the annual Christmas Gala at Haywharf. Tickets are available now.",
+    longDescription: "The MADS annual Christmas Gala brings dental students and lecturers together at Haywharf in Floriana on Saturday 19 December. Join us from 20:00 until 01:00 the next morning for a formal evening. Book your ticket using the form below.",
+    poster: {
+      src: "/media/mads-christmas-gala-2026.png",
+      alt: "MADS Annual Gala 2026 poster showing the Haywharf venue, Saturday 19 December date and formal theme.",
+      width: 1080,
+      height: 1350,
+    },
+    registrationLabel: "Buy tickets here",
+    registrationUrl: "https://forms.gle/28TgSAg868hLYmTK6",
   },
 ];
 

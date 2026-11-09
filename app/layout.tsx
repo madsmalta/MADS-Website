@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import "./globals.css";
 import "./theme.css";
 import "./sitewide.css";
@@ -45,5 +46,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" className={`${manrope.variable} ${marcellus.variable} ${sourceSans.variable}`} data-reveal="play"><body><RouteScroll /><Intro />{children}</body></html>;
+  return <html lang="en" className={`${manrope.variable} ${marcellus.variable} ${sourceSans.variable}`} suppressHydrationWarning><body><Script id="intro-once" strategy="beforeInteractive">{`try { if (!sessionStorage.getItem('mads-intro-seen')) { sessionStorage.setItem('mads-intro-seen', '1'); document.documentElement.dataset.reveal = 'play'; } } catch { document.documentElement.dataset.reveal = 'play'; }`}</Script><RouteScroll /><Intro />{children}</body></html>;
 }

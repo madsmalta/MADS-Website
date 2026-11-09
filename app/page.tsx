@@ -26,6 +26,7 @@ export default function Home() {
     locationHref: getEventLocationUrl(event),
     dateLabel: formatEventDateRange(event),
     timeLabel: formatEventTimeRange(event),
+    ticketUrl: event.registrationLabel === "Buy tickets here" ? event.registrationUrl : undefined,
   }));
 
   return <PageShell>

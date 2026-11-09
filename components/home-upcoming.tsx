@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CalendarPlus, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
+import { ArrowUpRight, CalendarPlus, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export type HomeUpcomingEvent = {
@@ -11,6 +11,7 @@ export type HomeUpcomingEvent = {
   locationHref: string | null;
   dateLabel: string;
   timeLabel: string;
+  ticketUrl?: string;
 };
 
 const ROTATION_MS = 6_000;
@@ -84,7 +85,10 @@ export function HomeUpcoming({ events }: { events: HomeUpcomingEvent[] }) {
             <p>
               {event.locationHref ? <a className="event-location-link home-event-location" href={event.locationHref} target="_blank" rel="noopener noreferrer"><MapPin size={20} aria-hidden="true" />{event.location}</a> : <span className="home-event-location"><MapPin size={20} aria-hidden="true" />{event.location}</span>}
             </p>
-            <Link className="button button--outline" href={`/events/${event.slug}`} scroll={false}>Event details</Link>
+            {event.ticketUrl ? <div className="home-upcoming-actions">
+              <a className="button button--outline" href={event.ticketUrl} target="_blank" rel="noopener noreferrer">Buy tickets here <ArrowUpRight size={17} aria-hidden="true" /></a>
+              <Link className="home-upcoming-details-link" href={`/events/${event.slug}`} scroll={false}>Event details <ArrowUpRight size={17} aria-hidden="true" /></Link>
+            </div> : <Link className="button button--outline" href={`/events/${event.slug}`} scroll={false}>Event details</Link>}
           </article>;
         })}
       </div>

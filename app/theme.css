@@ -353,11 +353,13 @@ body:has(.newsletter-confirmed-hero) #main-content{display:flex;flex:1;flex-dire
 .event-card-poster img{display:block;width:100%;height:100%;object-fit:cover}
 .event-card .event-card-date{margin-bottom:8px;font-weight:600;color:var(--teal-dark)}
 .event-card--poster .event-card-copy{min-width:0}
+.event-card-ticket{display:inline-flex;align-items:center;gap:8px;width:max-content;margin-top:12px}
 @media(min-width:1050px){
  .event-card{padding-block:22px}
  .event-card-details{display:grid;grid-template-columns:max-content max-content minmax(0,1fr);align-items:center;gap:4px 22px}
  .event-card .event-card-details .event-meta{margin-bottom:0}
- .event-card-details>p:last-child{grid-column:1/-1;max-width:70ch;margin:6px 0 0}
+ .event-card-details>p:last-of-type{grid-column:1/-1;max-width:70ch;margin:6px 0 0}
+ .event-card-details .event-card-ticket{grid-column:1/-1}
 }
 .contact-section{border-top:3px solid var(--gold);padding:48px;margin-bottom:65px}
 .contact-section-title{font:700 clamp(1.35rem,1.7vw,1.55rem)/1.35 var(--utility);letter-spacing:normal;color:var(--teal-dark);margin-bottom:18px}
@@ -416,7 +418,7 @@ body:has(.newsletter-confirmed-hero) #main-content{display:flex;flex:1;flex-dire
  .event-card-heading .event-status{margin-top:8px;margin-bottom:0!important}
  .event-card-details{grid-column:1/-1;min-width:0}
  .event-card-details .event-meta{margin-bottom:2px}
- .event-card-details>p:last-child{margin-top:8px;margin-bottom:0}
+ .event-card-details>p:last-of-type{margin-top:8px;margin-bottom:0}
  .gallery-grid .story-caption{padding-inline:18px}
  .contact-section{padding:30px 20px}
  .listing-empty{grid-template-columns:1fr;gap:12px;padding:25px 23px}
