@@ -14,7 +14,6 @@ export function usePhotoSlideshow(photoCount: number) {
   }, [current, photoCount]);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = window.setTimeout(() => browse(1), 6000);
     return () => window.clearTimeout(timer);
   }, [browse]);

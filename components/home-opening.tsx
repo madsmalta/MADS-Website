@@ -54,8 +54,8 @@ export function HomeOpening() {
         {previous !== null && renderPhoto(previous, false)}
         {renderPhoto(current, true)}
         <div className="home-photo-zones" role="group" aria-label="Browse homepage photographs">
-          <button type="button" className="home-photo-zone home-photo-zone--previous" aria-label="Previous photograph" onClick={() => browse(-1)}><span className="home-photo-zone-icon" style={{ backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}><ChevronLeft size={22} aria-hidden="true" /></span></button>
-          <button type="button" className="home-photo-zone home-photo-zone--next" aria-label="Next photograph" onClick={() => browse(1)}><span className="home-photo-zone-icon" style={{ backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}><ChevronRight size={22} aria-hidden="true" /></span></button>
+          <button type="button" className="home-photo-zone home-photo-zone--previous" aria-label="Previous photograph" onClick={() => browse(-1)}><span className="home-photo-zone-icon"><ChevronLeft size={22} aria-hidden="true" /></span></button>
+          <button type="button" className="home-photo-zone home-photo-zone--next" aria-label="Next photograph" onClick={() => browse(1)}><span className="home-photo-zone-icon"><ChevronRight size={22} aria-hidden="true" /></span></button>
         </div>
         <span className="sr-only" role="status" aria-live="polite">{current + 1} of {photos.length}: {photo.alt}</span>
         <div className="home-clinical-caption">

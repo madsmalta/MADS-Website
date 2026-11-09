@@ -10,14 +10,15 @@
 .home-photo-zones{position:absolute;z-index:1;inset:0;display:flex}
 .home-photo-zone{display:flex;align-items:center;width:50%;height:100%;padding:24px;border:0;background:transparent;color:var(--navy);cursor:pointer}
 .home-photo-zone--next{justify-content:flex-end}
-.home-photo-zone-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.95);box-shadow:0 4px 18px rgba(16,44,70,.13);opacity:0;transform:scale(.9);transition:opacity .18s,transform .18s}
+.home-photo-zone-icon{display:grid;place-items:center;width:44px;height:44px;border:1px solid rgba(255,255,255,.5);border-radius:50%;background:rgba(18,45,68,.68);color:#fff;box-shadow:0 5px 18px rgba(16,44,70,.22);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transform:scale(.9);transition:opacity .18s,transform .18s,background-color .18s}
 .home-photo-zone:hover .home-photo-zone-icon,.home-photo-zone:focus-visible .home-photo-zone-icon,.home-photo-zone:active .home-photo-zone-icon{opacity:1;transform:scale(1)}
+.home-photo-zone:hover .home-photo-zone-icon{background:rgba(18,45,68,.8)}
 .home-photo-zone:focus-visible{outline:none}
 .home-photo-zone:focus-visible .home-photo-zone-icon{outline:3px solid var(--teal);outline-offset:3px}
 .home-clinical-caption{position:absolute;z-index:2;inset:auto 24px 72px;display:flex;align-items:end;font:600 .875rem/1.5 var(--sans)}
-.home-photo-caption-link{position:relative;display:inline-flex;align-items:center;gap:8px;min-height:34px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.94);color:var(--navy);font-size:.72rem;line-height:1.3;text-decoration:none;box-shadow:0 4px 18px rgba(16,44,70,.13)}
+.home-photo-caption-link{position:relative;display:inline-flex;align-items:center;gap:8px;min-height:34px;padding:5px 12px;border:1px solid rgba(255,255,255,.5);border-radius:999px;background:rgba(18,45,68,.68);color:#fff;font-size:.72rem;line-height:1.3;text-decoration:none;box-shadow:0 5px 18px rgba(16,44,70,.22);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background-color .18s}
 .home-photo-caption-link::after{content:"";position:absolute;inset:-6px}
-.home-photo-caption-link:hover{text-decoration:underline;text-underline-offset:4px}
+.home-photo-caption-link:hover{background:rgba(18,45,68,.8);text-decoration:underline;text-underline-offset:4px}
 .home-mission{position:relative;z-index:3;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(270px,.75fr);align-items:center;gap:36px;width:calc(100% - 96px);max-width:1152px;margin:-48px auto 0;padding:28px clamp(28px,3.6vw,56px);border-radius:18px;background:#fff;box-shadow:0 18px 48px rgba(16,44,70,.08);animation:home-mission-arrive .65s cubic-bezier(.2,.7,.2,1) both}
 .home-mission-heading{padding-right:clamp(20px,3vw,48px);border-right:1px solid var(--line)}
 .home-mission h1{max-width:730px;margin:0;font:400 clamp(2.5rem,4.35vw,4.2rem)/1.1 var(--serif);letter-spacing:-.03em;color:var(--navy);text-wrap:balance}
@@ -65,7 +66,7 @@
  .home-photo-zone{position:absolute;top:50%;width:48px;height:48px;padding:0;transform:translateY(-50%);pointer-events:auto}
  .home-photo-zone--previous{left:10px}
  .home-photo-zone--next{right:10px}
- .home-photo-zone-icon{width:44px;height:44px;background:rgba(17,45,71,.42);border:1px solid rgba(255,255,255,.32);box-shadow:0 5px 18px rgba(16,44,70,.16);color:#fff;opacity:1;transform:none}
- .home-photo-zone:active .home-photo-zone-icon{background:rgba(17,45,71,.58);transform:scale(.96)}
+ .home-photo-zone-icon{width:44px;height:44px;opacity:1;transform:none}
+ .home-photo-zone:active .home-photo-zone-icon{background:rgba(18,45,68,.8);transform:scale(.96)}
 }
 @media(prefers-reduced-motion:reduce){.home-mission{animation:none}.home-photo-active,.home-clinical a,.home-photo-zone-icon{transition:none}}
