@@ -23,7 +23,7 @@ type PageMetadata = {
   imageAlt?: string;
 };
 
-export function pageMetadata({ title, description, path, image = "/media/mads-social-v2.jpg", imageAlt = "Malta Association of Dental Students — MADS" }: PageMetadata): Metadata {
+export function pageMetadata({ title, description, path, image = "/media/mads-social-v3.jpg", imageAlt = "Malta Association of Dental Students — MADS" }: PageMetadata): Metadata {
   const fullTitle = path === "/" ? title : `${title} | MADS`;
   return {
     title: { absolute: fullTitle },
@@ -51,7 +51,7 @@ export const sectionMetadata = {
 export function organizationSchema() {
   return {
     "@type": "Organization", "@id": absoluteUrl("/#organization"), name: siteName,
-    alternateName: "MADS", url: absoluteUrl(), logo: absoluteUrl("/media/mads-logo.png"),
+    alternateName: "MADS", url: absoluteUrl(), logo: absoluteUrl("/media/mads-brand-logo.png"),
     description: siteDescription, email: "info@mads.org.mt",
     sameAs: ["https://www.instagram.com/mads.malta", "https://www.facebook.com/madsonline", "https://www.um.edu.mt/ds/students/mads/"],
   };
