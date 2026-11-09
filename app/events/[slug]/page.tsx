@@ -40,7 +40,7 @@ export default async function EventDetail({ params }: { params: Promise<{ slug: 
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     image: event.poster ? absoluteUrl(event.poster.src) : undefined,
     location: { "@type": "Place", name: event.venue?.name ?? event.location, address: event.venue ? { "@type": "PostalAddress", streetAddress: event.venue.streetAddress, addressLocality: event.venue.addressLocality, addressCountry: event.venue.addressCountry } : event.location },
-    organizer: event.organizerName ? { "@type": "Organization", name: event.organizerName } : { "@type": "Organization", name: siteName, url: absoluteUrl() },
+    organizer: event.organizerName ? { "@type": "Organization", name: event.organizerName, url: event.organizerUrl } : { "@type": "Organization", name: siteName, url: absoluteUrl() },
   };
   return <PageShell><article className="shell event-detail">
     <StructuredData data={[eventSchema, breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Events", path: "/events" }, { name: event.title, path: `/events/${event.slug}` }])]} />
