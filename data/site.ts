@@ -57,15 +57,13 @@ export const publicEvents: EventItem[] = [
     organizerUrl: "https://mmsa.org.mt/",
     status: "Upcoming",
     description: "A residential MMSA training weekend open to all dental faculty students, with talks and time to connect.",
-    longDescription: "MMSA’s Training and Resource Development Weekend (TRD) runs from Friday 20 November at 15:00 to Sunday 22 November at 11:00 at San Antonio Hotel. It is open to all dental faculty students.\n\nMADS is planning four one-hour lecturer talks, two on Friday and two on Saturday, alongside social activities. The €150 fee covers two nights’ accommodation and the meals and activities listed in the application form.\n\nApply by Wednesday 28 October at 23:59. Places are first come, first served; the form requires proof of payment and a signed waiver. Saturday talk times, topics and speakers have not yet been confirmed.",
+    longDescription: "MMSA’s Training and Resource Development Weekend (TRD) runs from Friday 20 November at 15:00 to Sunday 22 November at 11:00 at San Antonio Hotel. It is open to all dental faculty students.\n\nMADS is planning four one-hour lecturer talks, two on Friday and two on Saturday, alongside social activities. The €150 fee covers two nights’ accommodation, meals and activities.\n\nApplications closed on 28 October 2026. Saturday talk times, topics and speakers have not yet been confirmed.",
     poster: {
       src: "/media/trd-2026-mads-will-be-there.png",
       alt: "MADS and MMSA TRD 2026 poster with a Vegas sign, db San Antonio venue and 20–22 November dates.",
       width: 1121,
       height: 1403,
     },
-    registrationLabel: "Apply for TRD",
-    registrationUrl: "https://forms.gle/FQy25KNtm18s69QDA",
   },
   {
     slug: "christmas-gala-2026",
@@ -100,17 +98,6 @@ export const opportunities = [
     location: "In front of Parliament, Valletta",
     actionLabel: "Volunteer for WDD",
     actionUrl: "https://forms.gle/6nK3MddCyignKy6SA",
-  },
-  {
-    title: "TRD Weekend",
-    type: "Training & development",
-    summary: "A residential weekend with MMSA and four planned one-hour talks. The €150 fee includes two hotel nights, meals and activities detailed in the application form.",
-    dates: "20 November, 15:00 – 22 November, 11:00",
-    eligibility: "All dental faculty students",
-    deadline: "28 October · 23:59",
-    location: "San Antonio Hotel",
-    actionLabel: "Apply for TRD",
-    actionUrl: "https://forms.gle/FQy25KNtm18s69QDA",
   },
 ];
 

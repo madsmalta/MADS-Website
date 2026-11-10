@@ -26,7 +26,7 @@ export function EventCard({ event }: { event: EventItem }) {
     {!postponed && <p className="event-meta"><Clock size={15} aria-hidden="true" /> {formatEventTimeRange(event)}</p>}
     <p className="event-meta"><MapPin size={15} aria-hidden="true" /> {locationUrl ? <a className="event-location-link" href={locationUrl} target="_blank" rel="noopener noreferrer">{event.location}</a> : event.location}</p>
     <p>{event.description}</p>
-    {event.slug === "christmas-gala-2026" && event.registrationUrl && <a className="button button--dark event-card-ticket" href={event.registrationUrl} target="_blank" rel="noopener noreferrer">Buy tickets here <ArrowUpRight size={16} aria-hidden="true" /></a>}
+    {["christmas-gala-2026", "world-diabetes-day-2026"].includes(event.slug) && event.registrationUrl && event.registrationLabel && <a className="button button--dark event-card-action" href={event.registrationUrl} target="_blank" rel="noopener noreferrer">{event.registrationLabel} <ArrowUpRight size={16} aria-hidden="true" /></a>}
    </div>
   </div>
   <Link className="round-link" href={href} scroll={false} aria-label={`View ${event.title}`}><ArrowUpRight size={20} /></Link>
