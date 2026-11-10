@@ -36,6 +36,12 @@ export const publicEvents: EventItem[] = [
     status: "Upcoming",
     description: "Join MADS and MMSA on World Diabetes Day in Valletta. Student volunteers can help throughout the day.",
     longDescription: "Join MADS and MMSA for World Diabetes Day in front of Parliament, Valletta, on Saturday 14 November. The stand runs from 09:00 to 16:00, with full-day and shorter volunteer shifts. Students from all dental courses and years can help at the stand. Clinical check-ups are for MDS3–5 and DH2–3 students; see the sign-up form for shift times and requirements.",
+    poster: {
+      src: "/media/world-diabetes-day-2026.webp",
+      alt: "World Diabetes Day 2026 event graphic with the date, time and Valletta location.",
+      width: 1200,
+      height: 675,
+    },
     registrationLabel: "Volunteer for WDD",
     registrationUrl: "https://forms.gle/6nK3MddCyignKy6SA",
   },
