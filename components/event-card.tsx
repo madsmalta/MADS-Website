@@ -13,7 +13,7 @@ export function EventCard({ event }: { event: EventItem }) {
 
  return <article className={`event-card${event.poster ? " event-card--poster" : ""}`} data-scroll-reveal>
   {event.poster ? <Link className="event-card-poster" href={href} scroll={false} aria-label={`View ${event.title} event details`}>
-   <Image src={event.poster.src} alt={event.poster.alt} width={320} height={320} sizes="(max-width: 480px) 96px, 150px" />
+   <Image src={event.poster.src} alt={event.poster.alt} width={event.poster.width ?? 320} height={event.poster.height ?? 320} sizes="(max-width: 480px) 72px, 150px" />
   </Link> : <div className="event-date"><span>{postponed ? "Date" : formatEventDate(event, { month: "short" })}</span><strong>{postponed ? "TBD" : formatEventDate(event, { day: "numeric" })}</strong></div>}
   <div className="event-card-copy">
    <div className="event-card-heading">
@@ -26,7 +26,7 @@ export function EventCard({ event }: { event: EventItem }) {
     {!postponed && <p className="event-meta"><Clock size={15} aria-hidden="true" /> {formatEventTimeRange(event)}</p>}
     <p className="event-meta"><MapPin size={15} aria-hidden="true" /> {locationUrl ? <a className="event-location-link" href={locationUrl} target="_blank" rel="noopener noreferrer">{event.location}</a> : event.location}</p>
     <p>{event.description}</p>
-    {["christmas-gala-2026", "world-diabetes-day-2026"].includes(event.slug) && event.registrationUrl && event.registrationLabel && <a className="button button--dark event-card-action" href={event.registrationUrl} target="_blank" rel="noopener noreferrer">{event.registrationLabel} <ArrowUpRight size={16} aria-hidden="true" /></a>}
+    {event.slug === "christmas-gala-2026" && event.registrationUrl && event.registrationLabel && <a className="button button--dark event-card-action" href={event.registrationUrl} target="_blank" rel="noopener noreferrer">{event.registrationLabel} <ArrowUpRight size={16} aria-hidden="true" /></a>}
    </div>
   </div>
   <Link className="round-link" href={href} scroll={false} aria-label={`View ${event.title}`}><ArrowUpRight size={20} /></Link>

@@ -19,15 +19,17 @@ export const metadata = sectionMetadata.home;
 export const dynamic = "force-dynamic";
 
 export default function Home() {
-  const featuredEvents = partitionEvents(publicEvents).upcoming.map(event => ({
-    slug: event.slug,
-    title: event.title,
-    location: event.location,
-    locationHref: getEventLocationUrl(event),
-    dateLabel: formatEventDateRange(event),
-    timeLabel: formatEventTimeRange(event),
-    ticketUrl: event.registrationLabel === "Buy tickets here" ? event.registrationUrl : undefined,
-  }));
+  const featuredEvents = [...partitionEvents(publicEvents).upcoming]
+    .sort((a, b) => Number(b.slug === "christmas-gala-2026") - Number(a.slug === "christmas-gala-2026"))
+    .map(event => ({
+      slug: event.slug,
+      title: event.title,
+      location: event.location,
+      locationHref: getEventLocationUrl(event),
+      dateLabel: formatEventDateRange(event),
+      timeLabel: formatEventTimeRange(event),
+      ticketUrl: event.registrationLabel === "Buy tickets here" ? event.registrationUrl : undefined,
+    }));
 
   return <PageShell>
     <StructuredData data={[organizationSchema(), websiteSchema()]} />
