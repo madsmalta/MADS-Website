@@ -17,11 +17,11 @@ type HeroPhoto = { src: keyof typeof preparedCovers; alt: string; label: string;
 const photos: HeroPhoto[] = [
   { src: "/media/committee-edited.webp", alt: "The 2026–2027 MADS committee together", label: "Meet the committee", href: "/about", position: "50% 12%", committee: true },
   { src: "/media/galleries/sitc/october-057.webp", alt: "MADS students carrying out a dental check-up at Science in the City", label: "Science in the City", href: "/outreach/sitc", position: "50% 48%" },
-  { src: "/media/galleries/freshers-stand/stand-1-06.webp", alt: "Students visiting the MADS Freshers stand", label: "Freshers stand", href: "/outreach/freshers-stand", position: "50% 72%" },
-  { src: "/media/galleries/sitc/additional-047.webp", alt: "MADS volunteers and visitors at the Science in the City oral-health stand", label: "Science in the City", href: "/outreach/sitc", position: "50% 30%" },
+  { src: "/media/galleries/freshers-stand/stand-1-06.webp", alt: "Students visiting the MADS Freshers stand", label: "Freshers stand", href: "/outreach/freshers-stand", position: "50% 67%" },
+  { src: "/media/galleries/sitc/additional-047.webp", alt: "MADS volunteers and visitors at the Science in the City oral-health stand", label: "Science in the City", href: "/outreach/sitc", position: "50% 6%" },
   { src: "/media/galleries/primary-impressions/684.jpg", alt: "Students socialising at Primary Impressions", label: "Primary Impressions", href: "/student-life/primary-impressions", position: "50% 55%" },
   { src: "/media/galleries/volleyball/224.webp", alt: "Students playing beach volleyball at the MADS tournament", label: "MADS Volleyball Tournament", href: "/student-life/volleyball", position: "50% 50%" },
-  { src: "/media/galleries/sitc/october-024.webp", alt: "Volunteers sharing oral-health information at Science in the City", label: "Science in the City", href: "/outreach/sitc", position: "50% 20%" },
+  { src: "/media/galleries/sitc/october-024.webp", alt: "Volunteers sharing oral-health information at Science in the City", label: "Science in the City", href: "/outreach/sitc", position: "50% 24%" },
 ];
 
 export function HomeOpening() {
