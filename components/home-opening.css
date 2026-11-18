@@ -1,10 +1,10 @@
-.home-clinical{background:var(--pale);color:var(--navy);padding:12px max(24px,calc((100% - 1320px)/2)) 72px}
+.home-clinical{background:var(--pale);color:var(--navy);padding:24px max(24px,calc((100% - 1320px)/2)) 72px}
 .home-clinical-image{height:clamp(452px,calc(100svh - 274px),792px);position:relative;overflow:hidden;border-radius:20px;background:linear-gradient(135deg,var(--teal-dark),var(--navy) 70%,var(--teal))}
 .home-clinical-image>picture,.home-photo-layer{position:absolute;inset:0;display:block}
 .home-clinical-image>picture>img,.home-photo-layer>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--photo-position,50% 48%)}
 .home-photo-committee{isolation:isolate;background:#b89c72}
 .home-photo-committee::before{content:"";position:absolute;inset:-24px;background:url('/media/committee-edited.webp') center/cover;filter:blur(18px) brightness(.75)}
-.home-clinical-image>.home-photo-committee>img{z-index:1;object-fit:contain;object-position:center}
+.home-clinical-image>.home-photo-committee>img{z-index:1;object-fit:contain;object-position:center;transform:scale(1.05);transform-origin:center bottom}
 .home-photo-active{opacity:1;transition:opacity .85s cubic-bezier(.22,1,.36,1)}
 .home-clinical-image[data-ready="false"] .home-photo-active{opacity:0}
 .home-photo-zones{position:absolute;z-index:1;inset:0;display:flex}
@@ -33,7 +33,7 @@
 @keyframes home-mission-arrive{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:1050px){.home-mission{grid-template-columns:minmax(0,1fr) minmax(230px,.78fr);gap:24px;width:calc(100% - 48px);padding:32px}.home-mission h1{font-size:clamp(2.4rem,4.5vw,3.4rem)}.home-mission-actions{gap:8px 16px}}
 @media(max-width:800px){
- .home-clinical{padding:12px 16px 48px}
+ .home-clinical{padding:24px 16px 48px}
  .home-clinical-image{height:clamp(360px,56svh,540px);border-radius:16px}
  .home-clinical-caption{inset:auto 16px 54px}
  .home-mission{width:calc(100% - 16px);grid-template-columns:1fr;gap:18px;margin-top:-18px;padding:28px 30px;text-align:center}
@@ -44,11 +44,11 @@
  .home-mission-actions{justify-content:center}
 }
 @media(max-width:600px){
- .home-clinical{padding:12px 12px 36px}
+ .home-clinical{padding:24px 12px 36px}
  .home-clinical-image{height:auto;aspect-ratio:1.03;border-radius:16px}
  .home-photo-layer>img{object-position:51% 48%}
  .home-photo-committee::before{display:none}
- .home-clinical-image>.home-photo-committee>img{object-fit:cover;object-position:50% 0}
+ .home-clinical-image>.home-photo-committee>img{object-fit:cover;object-position:50% 0;transform:none}
  .home-photo-zone{padding:12px}
  .home-clinical-caption{inset:auto 10px 38px}
  .home-photo-caption-link{gap:6px;padding:5px 10px;font-size:.68rem}
